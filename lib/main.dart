@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hooked_up/screen/explainer/explainer.dart';
-// import 'package:hooked_up/screen/splash/splash.dart';
 // import 'package:hooked_up/screen/explainer/explainer.dart';
+// import 'package:hooked_up/screen/splash/splash.dart';
+// import 'package:hooked_up/screen/splash/splash.dart';
+import 'package:hooked_up/screen/explainer/explainer.dart';
+import 'package:hooked_up/screen/explainer/explainertest.dart';
 // import 'package:hooked_up/screen/splash/splash.dart';
 
 void main() {
