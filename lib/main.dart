@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:hooked_up/screen/explainer/explainer.dart';
-// import 'package:hooked_up/screen/splash/splash.dart';
-// import 'package:hooked_up/screen/splash/splash.dart';
-import 'package:hooked_up/screen/explainer/explainer.dart';
-import 'package:hooked_up/screen/explainer/explainertest.dart';
-// import 'package:hooked_up/screen/splash/splash.dart';
+import 'package:hooked_up/screen/splash/splash.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,7 +17,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const ExplainerScreen(),
+      home: const SplashScreen(),
     );
   }
 }
