@@ -200,7 +200,6 @@ class _ExplainerScreenState extends State<ExplainerScreen> {
           title,
           style: TextStyle(
             color: const Color(0xFFD88F48),
-            fontFamily: 'Manrope',
             fontSize: screenSize.width * 0.050,
             fontWeight: FontWeight.w700,
           ),
@@ -211,7 +210,6 @@ class _ExplainerScreenState extends State<ExplainerScreen> {
           description,
           style: TextStyle(
             color: Colors.white,
-            fontFamily: 'Manrope',
             fontSize: screenSize.width * 0.035,
             fontWeight: FontWeight.w400,
           ),
