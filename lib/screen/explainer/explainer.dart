@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooked_up/screen/auth/login.dart';
 
 class ExplainerScreen extends StatefulWidget {
@@ -50,49 +51,39 @@ class _ExplainerScreenState extends State<ExplainerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
-
     return Scaffold(
       body: Container(
         color: const Color.fromRGBO(9, 16, 24, 1),
         child: Stack(
           children: [
             Positioned(
-              top: _activePage == 0 ? -screenSize.height * 0.38 : 0,
+              top: _activePage == 0 ? -380.h : 0,
               left: 0,
               right: 0,
               child: Image.asset(
                 _pageImages[_activePage],
-                height: _activePage == 0
-                    ? screenSize.height * 1.1
-                    : screenSize.height,
-                width: screenSize.width * 1.2,
+                height: _activePage == 0 ? 1100.h : 1.sh,
+                width: 1.2.sw,
                 fit: BoxFit.cover,
               ),
             ),
             Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
-                padding: EdgeInsets.only(bottom: screenSize.height * 0.09),
+                padding: EdgeInsets.only(bottom: 90.h),
                 child: AnimatedOpacity(
                   opacity: _opacity,
                   duration: const Duration(milliseconds: 200),
                   child: Container(
-                    padding: EdgeInsets.fromLTRB(
-                      screenSize.width * 0.05,
-                      screenSize.height * 0.03,
-                      screenSize.width * 0.05,
-                      screenSize.height * 0.03,
-                    ),
-                    width: screenSize.width * 0.9,
-                    height: screenSize.height * 0.42,
+                    padding: const EdgeInsets.fromLTRB(20, 25, 23, 27),
+                    width: 354.w,
+                    height: 334.h,
                     decoration: BoxDecoration(
                       color: _backgroundColors[_activePage],
                       border: Border.all(
                         color: const Color(0xFF697B89),
                       ),
-                      borderRadius:
-                          BorderRadius.circular(screenSize.width * 0.05),
+                      borderRadius: BorderRadius.circular(20.r),
                     ),
                     child: Stack(
                       children: [
@@ -100,21 +91,18 @@ class _ExplainerScreenState extends State<ExplainerScreen> {
                           controller: _pageController,
                           children: [
                             _buildPage(
-                              screenSize,
                               title:
                                   'Explainer Title - Lorem Ipsum dolor sit amet',
                               description:
                                   'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ',
                             ),
                             _buildPage(
-                              screenSize,
                               title:
                                   'Explainer Title - Lorem Ipsum dolor sit amet',
                               description:
                                   'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ',
                             ),
                             _buildPage(
-                              screenSize,
                               title:
                                   'Explainer Title - Lorem Ipsum dolor sit amet',
                               description:
@@ -123,31 +111,23 @@ class _ExplainerScreenState extends State<ExplainerScreen> {
                           ],
                         ),
                         Positioned(
-                          bottom: -15,
+                          bottom: -15.h,
                           left: 0,
                           right: 0,
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment
-                                .spaceBetween, // Keeps the dots and button at opposite ends
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              // Empty widget to push the dots towards the right
                               Container(),
-
-                              // Dots moved towards the right
                               Padding(
-                                padding: EdgeInsets.only(
-                                    left: screenSize.width *
-                                        0.16), // Increased left padding to move dots right
+                                padding: EdgeInsets.only(left: 60.w),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment
-                                      .end, // Align dots to the far right
                                   children: List<Widget>.generate(
                                     3,
                                     (index) => Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 4.0),
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 4.w),
                                       child: CircleAvatar(
-                                        radius: 6,
+                                        radius: 6.r,
                                         backgroundColor: _activePage == index
                                             ? const Color(0xFFFEF5CC)
                                                 .withOpacity(0.8)
@@ -157,25 +137,7 @@ class _ExplainerScreenState extends State<ExplainerScreen> {
                                   ),
                                 ),
                               ),
-                              // Skip button remains on the far right
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const LoginPage()),
-                                  );
-                                },
-                                child: Text(
-                                  'Skip', // Button text
-                                  style: TextStyle(
-                                    color: const Color(0xFFF5F5F5),
-                                    fontSize: screenSize.width *
-                                        0.04, // Font size adjusted based on screen width
-                                  ),
-                                ),
-                              ),
+                              NewWidget(),
                             ],
                           ),
                         ),
@@ -191,8 +153,7 @@ class _ExplainerScreenState extends State<ExplainerScreen> {
     );
   }
 
-  Widget _buildPage(Size screenSize,
-      {required String title, required String description}) {
+  Widget _buildPage({required String title, required String description}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -200,22 +161,47 @@ class _ExplainerScreenState extends State<ExplainerScreen> {
           title,
           style: TextStyle(
             color: const Color(0xFFD88F48),
-            fontSize: screenSize.width * 0.050,
+            fontSize: 22.sp,
             fontWeight: FontWeight.w700,
           ),
-          overflow: TextOverflow.visible,
         ),
-        SizedBox(height: screenSize.height * 0.03),
+        SizedBox(height: 24.h),
         Text(
           description,
           style: TextStyle(
             color: Colors.white,
-            fontSize: screenSize.width * 0.035,
+            fontSize: 14.sp,
             fontWeight: FontWeight.w400,
           ),
-          overflow: TextOverflow.visible,
         ),
       ],
+    );
+  }
+}
+
+class NewWidget extends StatelessWidget {
+  const NewWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  const LoginPage()),
+        );
+      },
+      child: Text(
+        'Skip',
+        style: TextStyle(
+          color: const Color(0xFFF5F5F5),
+          fontSize: 12.sp,
+        ),
+      ),
     );
   }
 }

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hooked_up/components/green_button.dart';
+import 'package:hooked_up/screen/auth/create_account.dart';
 import 'package:hooked_up/screen/auth/forgot_pass.dart';
 
 class LoginPage extends StatefulWidget {
@@ -12,7 +15,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
     final keyboardVisible = MediaQuery.of(context).viewInsets.bottom > 0;
 
     return Scaffold(
@@ -22,96 +24,83 @@ class _LoginPageState extends State<LoginPage> {
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.symmetric(
-                horizontal: screenSize.width * 0.08), // Adjusted padding
+              horizontal: 45.w,
+            ), // Responsive padding
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Padding(
-                  padding: EdgeInsets.only(top: screenSize.height * 0.10),
-                  child: SvgPicture.asset(
-                    'assets/images/splash/logo.svg',
-                    height: screenSize.height * 0.15, // Adjusted size for logo
-                    width: screenSize.width * 0.25, // Adjusted size for logo
-                  ),
+                SizedBox(height: 100.h), // Responsive vertical spacing
+                SvgPicture.asset(
+                  'assets/images/splash/logo.svg',
+                  height: 141.h, // Adjusted logo size
+                  width: 145.w,
                 ),
                 SizedBox(
-                  height: keyboardVisible
-                      ? screenSize.height * 0.02
-                      : screenSize.height * 0.03,
+                  height: keyboardVisible ? 10.h : 27.h,
                 ),
                 Text(
                   'Hooked Up',
                   style: TextStyle(
                     fontFamily: 'Chronograph',
                     color: const Color(0xFFD88F48),
-                    fontSize: screenSize.width * 0.08,
-                    fontWeight: FontWeight.w500,
+                    fontSize: 45.sp, // Responsive font size
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
                 SizedBox(
-                  height: keyboardVisible
-                      ? screenSize.height * 0.02
-                      : screenSize.height * 0.05,
+                  height: keyboardVisible ? 10.h : 61.h,
                 ),
                 TextField(
                   decoration: InputDecoration(
                     labelText: 'Email',
-                    hintStyle: const TextStyle(
-                      fontSize: 12, // Adjusted font size
-                    ),
+                    labelStyle: TextStyle(fontSize: 16.sp), // Responsive label
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(20.r),
                       borderSide: BorderSide.none,
                     ),
                     filled: true,
                     fillColor: const Color(0xFFF5F5F5),
-                    contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 18),
+                    contentPadding: EdgeInsets.symmetric(
+                      horizontal: 24.w,
+                      vertical: 18.h,
+                    ),
                   ),
                 ),
                 SizedBox(
-                  height: keyboardVisible
-                      ? screenSize.height * 0.02
-                      : screenSize.height * 0.01,
+                  height: keyboardVisible ? 10.h : 12.h,
                 ),
                 TextField(
                   obscureText: true,
                   decoration: InputDecoration(
                     labelText: 'Password',
+                    labelStyle: TextStyle(fontSize: 16.sp), // Responsive label
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(20.r),
                       borderSide: BorderSide.none,
                     ),
                     filled: true,
                     fillColor: const Color(0xFFF5F5F5),
-                  ),
-                ),
-                SizedBox(
-                  height: keyboardVisible
-                      ? screenSize.height * 0.02
-                      : screenSize.height * 0.04,
-                ),
-                SizedBox(
-                  width: double.infinity,
-                  child: TextButton(
-                    style: TextButton.styleFrom(
-                      backgroundColor: const Color(0xFF606C38),
-                      padding: const EdgeInsets.symmetric(vertical: 14.0),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                    onPressed: () {},
-                    child: Text(
-                      'LOG IN',
-                      style: TextStyle(
-                          color: const Color(0xFFF3FAFE),
-                          fontSize: screenSize.width * 0.05,
-                          fontWeight: FontWeight.w700),
+                    contentPadding: EdgeInsets.symmetric(
+                      horizontal: 24.w,
+                      vertical: 18.h,
                     ),
                   ),
                 ),
-                SizedBox(height: screenSize.height * 0),
+                SizedBox(
+                  height: keyboardVisible ? 10.h : 42.h,
+                ),
+                SizedBox(
+                    width: double.infinity,
+                    child: GreenButton(
+                      text: 'CONFIRM',
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const CreateAccount(),
+                          ),
+                        );
+                      },
+                    )),
                 TextButton(
                   onPressed: () {
                     Navigator.push(
@@ -121,39 +110,38 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     );
                   },
-                  child: const Text(
+                  child: Text(
                     'Forgot Password?',
-                    style: TextStyle(decoration: TextDecoration.underline),
+                    style: TextStyle(
+                      decoration: TextDecoration.underline,
+                      fontSize: 14.sp,
+                    ),
                   ),
                 ),
-                SizedBox(
-                  height: screenSize.height * 0.07,
-                ),
-                const Text(
+                SizedBox(height: 60.h), // Adjusted spacing
+                Text(
                   'Still don\'t have an account?',
-                  style: TextStyle(fontSize: 14),
+                  style: TextStyle(fontSize: 14.sp), // Responsive text
                 ),
-                SizedBox(
-                  height: screenSize.height * 0.01,
-                ),
+                SizedBox(height: 10.h),
                 SizedBox(
                   width: double.infinity,
                   child: TextButton(
                     style: TextButton.styleFrom(
                       backgroundColor: const Color(0xFFD88F48),
-                      padding: const EdgeInsets.symmetric(vertical: 14.0),
+                      padding: EdgeInsets.symmetric(vertical: 14.h),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(20.r),
                       ),
                     ),
                     onPressed: () {},
                     child: Text(
                       'CREATE ACCOUNT',
                       style: TextStyle(
-                          color: const Color(0xFFF3FAFE),
-                          fontSize:
-                              screenSize.width * 0.05, // Adjusted font size
-                          fontWeight: FontWeight.w700),
+                        color: const Color(0xFFF3FAFE),
+                        fontSize: 22.sp, // Responsive font size
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ),
                 ),
