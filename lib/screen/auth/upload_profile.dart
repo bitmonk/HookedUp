@@ -1,10 +1,8 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooked_up/components/green_button.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:hooked_up/screen/auth/phone_verification.dart';
 
 class UploadProfile extends StatefulWidget {
   const UploadProfile({super.key});
@@ -14,8 +12,6 @@ class UploadProfile extends StatefulWidget {
 }
 
 class _UploadProfileState extends State<UploadProfile> {
-  File? _selectedImage;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,16 +92,11 @@ class _UploadProfileState extends State<UploadProfile> {
                               ),
                             ),
                           ),
-                          _selectedImage != null
-                              ? Image.file(_selectedImage!)
-                              : const Text('No Image Selected!'),
                           Positioned(
                             top: 80.h,
                             right: 15.w,
                             child: GestureDetector(
-                              onTap: () {
-                                _pickImageFromGallery();
-                              },
+                              onTap: () {},
                               child: Container(
                                 height: 48.h,
                                 width: 48.h,
@@ -145,8 +136,8 @@ class _UploadProfileState extends State<UploadProfile> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const UploadProfile(),
-                              ),
+                                  builder: (context) =>
+                                      const PhoneVerification()),
                             );
                           },
                         ),
@@ -160,13 +151,5 @@ class _UploadProfileState extends State<UploadProfile> {
         ),
       ),
     );
-  }
-
-  Future _pickImageFromGallery() async {
-    final returnedImage =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
-    setState(() {
-      _selectedImage = File(returnedImage!.path);
-    });
   }
 }

@@ -137,7 +137,7 @@ class _ExplainerScreenState extends State<ExplainerScreen> {
                                   ),
                                 ),
                               ),
-                              NewWidget(),
+                              const NewWidget(),
                             ],
                           ),
                         ),
