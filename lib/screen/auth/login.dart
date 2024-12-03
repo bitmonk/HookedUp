@@ -134,7 +134,14 @@ class _LoginPageState extends State<LoginPage> {
                         borderRadius: BorderRadius.circular(20.r),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const CreateAccount(),
+                        ),
+                      );
+                    },
                     child: Text(
                       'CREATE ACCOUNT',
                       style: TextStyle(
