@@ -15,7 +15,7 @@ class CustomRadioButton extends StatelessWidget {
     required this.groupValue,
     required this.onChanged,
     required this.label,
-    this.size = 48.0,
+    this.size = 40,
     this.selectedColor = const Color(0xFF606C38),
     this.unselectedColor = Colors.grey,
   });

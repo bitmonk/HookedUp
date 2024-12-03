@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooked_up/components/custom_radio_button.dart';
-import 'package:hooked_up/components/cutom_check_box.dart';
 import 'package:hooked_up/components/green_button.dart';
-import 'package:hooked_up/screen/auth/i_work_in_page.dart';
+import 'package:hooked_up/screen/auth/choose_interest.dart';
+import 'package:hooked_up/screen/auth/here_for_page.dart';
 
-class HereForPage extends StatefulWidget {
-  const HereForPage({super.key});
+class IWorkInPage extends StatefulWidget {
+  const IWorkInPage({super.key});
 
   @override
-  State<HereForPage> createState() => _HereForPageState();
+  State<IWorkInPage> createState() => _IWorkInPageState();
 }
 
-class _HereForPageState extends State<HereForPage> {
+class _IWorkInPageState extends State<IWorkInPage> {
   String? _selectedOption = 'Option 1';
   @override
   Widget build(BuildContext context) {
@@ -61,7 +61,7 @@ class _HereForPageState extends State<HereForPage> {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          'I am here for ...',
+                          'I work in ...',
                           style: TextStyle(
                             fontFamily: 'Manrope',
                             fontSize: 22.sp,
@@ -71,7 +71,7 @@ class _HereForPageState extends State<HereForPage> {
                         ),
                       ),
                       SizedBox(
-                        height: 12.h,
+                        height: 8.h,
                       ),
                       Padding(
                         padding: EdgeInsets.only(right: 80.w),
@@ -85,9 +85,9 @@ class _HereForPageState extends State<HereForPage> {
                         ),
                       ),
                       SizedBox(
-                        height: 24.h,
+                        height: 14.h,
                       ),
-                      CustomCheckBox(
+                      CustomRadioButton(
                           value: 'Option 1',
                           groupValue: _selectedOption ?? '',
                           onChanged: (value) {
@@ -95,8 +95,8 @@ class _HereForPageState extends State<HereForPage> {
                               _selectedOption = value;
                             });
                           },
-                          label: 'Grey Nomad'),
-                      CustomCheckBox(
+                          label: 'Trade'),
+                      CustomRadioButton(
                           value: 'Option 2',
                           groupValue: _selectedOption ?? '',
                           onChanged: (value) {
@@ -104,8 +104,8 @@ class _HereForPageState extends State<HereForPage> {
                               _selectedOption = value;
                             });
                           },
-                          label: 'Travelling Family'),
-                      CustomCheckBox(
+                          label: 'Corporate Professional'),
+                      CustomRadioButton(
                           value: 'Option 3',
                           groupValue: _selectedOption ?? '',
                           onChanged: (value) {
@@ -113,8 +113,8 @@ class _HereForPageState extends State<HereForPage> {
                               _selectedOption = value;
                             });
                           },
-                          label: 'Solo'),
-                      CustomCheckBox(
+                          label: 'Retired'),
+                      CustomRadioButton(
                           value: 'Option 4',
                           groupValue: _selectedOption ?? '',
                           onChanged: (value) {
@@ -122,8 +122,8 @@ class _HereForPageState extends State<HereForPage> {
                               _selectedOption = value;
                             });
                           },
-                          label: 'Party of 2'),
-                      CustomCheckBox(
+                          label: 'Healthcare'),
+                      CustomRadioButton(
                           value: 'Option 5',
                           groupValue: _selectedOption ?? '',
                           onChanged: (value) {
@@ -131,9 +131,54 @@ class _HereForPageState extends State<HereForPage> {
                               _selectedOption = value;
                             });
                           },
-                          label: 'Staying Locally'),
+                          label: 'Engineer'),
+                      CustomRadioButton(
+                          value: 'Option 6',
+                          groupValue: _selectedOption ?? '',
+                          onChanged: (value) {
+                            setState(() {
+                              _selectedOption = value;
+                            });
+                          },
+                          label: 'Tech'),
+                      CustomRadioButton(
+                          value: 'Option 7',
+                          groupValue: _selectedOption ?? '',
+                          onChanged: (value) {
+                            setState(() {
+                              _selectedOption = value;
+                            });
+                          },
+                          label: 'Education'),
+                      CustomRadioButton(
+                          value: 'Option 8',
+                          groupValue: _selectedOption ?? '',
+                          onChanged: (value) {
+                            setState(() {
+                              _selectedOption = value;
+                            });
+                          },
+                          label: 'Self Employed'),
+                      CustomRadioButton(
+                          value: 'Option 9',
+                          groupValue: _selectedOption ?? '',
+                          onChanged: (value) {
+                            setState(() {
+                              _selectedOption = value;
+                            });
+                          },
+                          label: 'Hospitality'),
+                      CustomRadioButton(
+                          value: 'Option 10',
+                          groupValue: _selectedOption ?? '',
+                          onChanged: (value) {
+                            setState(() {
+                              _selectedOption = value;
+                            });
+                          },
+                          label: 'Other'),
                       SizedBox(
-                        height: 240.h,
+                        height: 30.h,
                       ),
                       SizedBox(
                         width: double.infinity,
@@ -141,11 +186,10 @@ class _HereForPageState extends State<HereForPage> {
                             text: 'NEXT',
                             onPressed: () {
                               Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const IWorkInPage(),
-                                ),
-                              );
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const ChooseInterest()));
                             }),
                       ),
                     ],
