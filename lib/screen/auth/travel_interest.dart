@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooked_up/components/custom_checkbox_multiple.dart';
 import 'package:hooked_up/components/green_button.dart';
 import 'package:hooked_up/screen/auth/i_work_in_page.dart';
+import 'package:hooked_up/screen/subscription/select_plan.dart';
 
 class TravelInterest extends StatefulWidget {
   const TravelInterest({super.key});
@@ -212,8 +213,7 @@ class _TravelInterestState extends State<TravelInterest> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const IWorkInPage(),
-                              ),
+                                  builder: (context) => const SelectPlan()),
                             );
                           },
                         ),
