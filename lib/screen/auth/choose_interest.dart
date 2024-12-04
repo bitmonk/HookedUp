@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooked_up/components/custom_checkbox_multiple.dart';
-import 'package:hooked_up/components/cutom_check_box.dart'; // Assuming this is a checkbox widget
 import 'package:hooked_up/components/green_button.dart';
-import 'package:hooked_up/screen/auth/i_work_in_page.dart';
 import 'package:hooked_up/screen/auth/travel_interest.dart';
 
 class ChooseInterest extends StatefulWidget {
@@ -15,7 +13,7 @@ class ChooseInterest extends StatefulWidget {
 }
 
 class _ChooseInterestState extends State<ChooseInterest> {
-  List<String> _selectedOptions = []; // A list to store selected options
+  List<String> _selectedOptions = [];
 
   @override
   Widget build(BuildContext context) {

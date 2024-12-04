@@ -3,16 +3,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooked_up/components/green_button.dart';
 import 'package:hooked_up/components/subscription/subscription_card.dart';
-import 'package:hooked_up/screen/subscription/payment_details.dart';
 
-class SelectPlan extends StatefulWidget {
-  const SelectPlan({super.key});
+class PaymentDetails extends StatefulWidget {
+  const PaymentDetails({super.key});
 
   @override
-  State<SelectPlan> createState() => _SelectPlanState();
+  State<PaymentDetails> createState() => _PaymentDetailsState();
 }
 
-class _SelectPlanState extends State<SelectPlan> {
+class _PaymentDetailsState extends State<PaymentDetails> {
   int selectedIndex = 0;
 
   @override
@@ -61,7 +60,7 @@ class _SelectPlanState extends State<SelectPlan> {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          'Subscribe to Hooked Up',
+                          'Payment details',
                           style: TextStyle(
                             fontFamily: 'Manrope',
                             fontSize: 22.sp,
@@ -118,37 +117,6 @@ class _SelectPlanState extends State<SelectPlan> {
                       SizedBox(
                         height: 12.h,
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            selectedIndex = 1;
-                          });
-                        },
-                        child: SubscriptionCard(
-                          durationTitle: 'Quarterly',
-                          amount: 12.12,
-                          perTitle: 'per quarter',
-                          button: false,
-                          isSelected: selectedIndex == 1,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 12.h,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            selectedIndex = 2;
-                          });
-                        },
-                        child: SubscriptionCard(
-                          durationTitle: 'Yearly',
-                          amount: 13.13,
-                          perTitle: 'per year',
-                          button: false,
-                          isSelected: selectedIndex == 2,
-                        ),
-                      ),
                       SizedBox(
                         height: 82.h,
                       ),
@@ -156,14 +124,7 @@ class _SelectPlanState extends State<SelectPlan> {
                         width: double.infinity,
                         child: GreenButton(
                           text: 'SELECT PLAN',
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const PaymentDetails(),
-                              ),
-                            );
-                          },
+                          onPressed: () {},
                         ),
                       ),
                       SizedBox(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hooked_up/components/custom_checkbox_multiple.dart';
 import 'package:hooked_up/components/custom_radio_button.dart';
 import 'package:hooked_up/components/cutom_check_box.dart';
 import 'package:hooked_up/components/green_button.dart';
@@ -14,7 +15,7 @@ class HereForPage extends StatefulWidget {
 }
 
 class _HereForPageState extends State<HereForPage> {
-  String? _selectedOption = 'Option 1';
+  List<String> _selectedOption = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,53 +88,86 @@ class _HereForPageState extends State<HereForPage> {
                       SizedBox(
                         height: 24.h,
                       ),
-                      CustomCheckBox(
+                      CustomCheckBoxMultiple(
                           value: 'Option 1',
-                          groupValue: _selectedOption ?? '',
+                          isChecked: _selectedOption.contains('Option 1'),
                           onChanged: (value) {
                             setState(() {
-                              _selectedOption = value;
+                              if (value) {
+                                _selectedOption.add('Option 1');
+                              } else {
+                                _selectedOption.remove('Option 1');
+                              }
                             });
                           },
-                          label: 'Grey Nomad'),
-                      CustomCheckBox(
+                          label: 'Learn a new skill'),
+                      CustomCheckBoxMultiple(
                           value: 'Option 2',
-                          groupValue: _selectedOption ?? '',
+                          isChecked: _selectedOption.contains('Option 2'),
                           onChanged: (value) {
                             setState(() {
-                              _selectedOption = value;
+                              if (value) {
+                                _selectedOption.add('Option 2');
+                              } else {
+                                _selectedOption.remove('Option 2');
+                              }
                             });
                           },
-                          label: 'Travelling Family'),
-                      CustomCheckBox(
+                          label: 'Bucket List'),
+                      CustomCheckBoxMultiple(
                           value: 'Option 3',
-                          groupValue: _selectedOption ?? '',
+                          isChecked: _selectedOption.contains('Option 3'),
                           onChanged: (value) {
                             setState(() {
-                              _selectedOption = value;
+                              if (value) {
+                                _selectedOption.add('Option 3');
+                              } else {
+                                _selectedOption.remove('Option 3');
+                              }
                             });
                           },
-                          label: 'Solo'),
-                      CustomCheckBox(
+                          label: 'Grow my network'),
+                      CustomCheckBoxMultiple(
                           value: 'Option 4',
-                          groupValue: _selectedOption ?? '',
+                          isChecked: _selectedOption.contains('Option 4'),
                           onChanged: (value) {
                             setState(() {
-                              _selectedOption = value;
+                              if (value) {
+                                _selectedOption.add('Option 4');
+                              } else {
+                                _selectedOption.remove('Option 4');
+                              }
                             });
                           },
-                          label: 'Party of 2'),
-                      CustomCheckBox(
+                          label: 'Experiences while travelling'),
+                      CustomCheckBoxMultiple(
                           value: 'Option 5',
-                          groupValue: _selectedOption ?? '',
+                          isChecked: _selectedOption.contains('Option 5'),
                           onChanged: (value) {
                             setState(() {
-                              _selectedOption = value;
+                              if (value) {
+                                _selectedOption.add('Option 5');
+                              } else {
+                                _selectedOption.remove('Option 5');
+                              }
                             });
                           },
-                          label: 'Staying Locally'),
+                          label: 'Share my knowledge'),
+                      CustomCheckBoxMultiple(
+                          value: 'Option 6',
+                          isChecked: _selectedOption.contains('Option 6'),
+                          onChanged: (value) {
+                            setState(() {
+                              if (value) {
+                                _selectedOption.add('Option 6');
+                              } else {
+                                _selectedOption.remove('Option 6');
+                              }
+                            });
+                          },
+                          label: 'Host'),
                       SizedBox(
-                        height: 240.h,
+                        height: 180.h,
                       ),
                       SizedBox(
                         width: double.infinity,

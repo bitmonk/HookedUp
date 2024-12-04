@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooked_up/components/green_button.dart';
 import 'package:hooked_up/screen/auth/phone_verification.dart';
+// import 'package:image_picker/image_picker.dart';
 
 class UploadProfile extends StatefulWidget {
   const UploadProfile({super.key});
@@ -12,6 +15,19 @@ class UploadProfile extends StatefulWidget {
 }
 
 class _UploadProfileState extends State<UploadProfile> {
+  // File? _selectedImage;
+  // Future<void> uploadImage() async {
+  //   final ImagePicker picker = ImagePicker();
+  //   final XFile? pickedFile =
+  //       await picker.pickImage(source: ImageSource.gallery);
+
+  //   if (pickedFile != null) {
+  //     setState(() {
+  //       _selectedImage = File(pickedFile.path);
+  //     });
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,9 +92,7 @@ class _UploadProfileState extends State<UploadProfile> {
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: 24.h,
-                      ),
+                      SizedBox(height: 24.h),
                       Stack(
                         children: [
                           Padding(
@@ -89,14 +103,32 @@ class _UploadProfileState extends State<UploadProfile> {
                               decoration: const BoxDecoration(
                                 color: Color(0xFFCFD4D9),
                                 shape: BoxShape.circle,
+                                // image: _selectedImage != null
+                                //     ? DecorationImage(
+                                //         image: FileImage(_selectedImage!),
+                                //         fit: BoxFit.cover,
+                                //       )
+                                //     : null,
                               ),
+                              child:Align(
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        'MJ',
+                                        style: TextStyle(
+                                            fontSize: 90.sp,
+                                            color: const Color(0xFFFFFFFF)),
+                                      ),
+                                    )
                             ),
                           ),
                           Positioned(
                             top: 80.h,
                             right: 15.w,
                             child: GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                // uploadImage();
+                                print('clicked!');
+                              },
                               child: Container(
                                 height: 48.h,
                                 width: 48.h,
@@ -108,21 +140,6 @@ class _UploadProfileState extends State<UploadProfile> {
                                   Icons.add_rounded,
                                   color: Colors.black,
                                 ),
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            left: 0,
-                            right: 0,
-                            top: 0,
-                            bottom: 200.h,
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: Text(
-                                'MJ',
-                                style: TextStyle(
-                                    fontSize: 90.sp,
-                                    color: const Color(0xFFFFFFFF)),
                               ),
                             ),
                           ),
