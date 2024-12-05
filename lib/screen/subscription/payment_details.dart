@@ -155,7 +155,7 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                                         ),
                                 ),
                                 child: SvgPicture.asset(
-                                    'assets/images/payment/mastercard.svg'),
+                                    'assets/images/icons/mastercard.svg'),
                               ),
                             ),
                             SizedBox(width: 9.h),
@@ -183,7 +183,7 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                                         ),
                                 ),
                                 child: SvgPicture.asset(
-                                    'assets/images/payment/visa.svg'),
+                                    'assets/images/icons/visa.svg'),
                               ),
                             ),
                           ],
@@ -325,7 +325,7 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                           onPressed: () {
                             showClosablePopup(
                                 context: context,
-                                title: "Welcome to Your Free Trial",
+                                title: "Welcome to Your Free Trial!",
                                 content:
                                     "Your 7-day free trial is now active. Make the most of it and explore Hooked Up!",
                                 buttonText: "Get Started",
