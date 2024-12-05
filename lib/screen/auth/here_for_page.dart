@@ -15,7 +15,7 @@ class HereForPage extends StatefulWidget {
 }
 
 class _HereForPageState extends State<HereForPage> {
-  List<String> _selectedOption = [];
+  final List<String> _selectedOption = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

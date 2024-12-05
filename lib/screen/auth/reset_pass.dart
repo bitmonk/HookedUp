@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooked_up/components/green_button.dart';
+import 'package:hooked_up/components/popup/closable_popup.dart';
 
 class ResetPass extends StatefulWidget {
   const ResetPass({super.key});
@@ -122,77 +123,36 @@ class _ResetPassState extends State<ResetPass> {
                 SizedBox(
                   height: 50.h,
                 ),
-                SizedBox(
-                  width: double.infinity,
-                  child: GreenButton(
-                    text: 'CONFIRM',
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                          contentPadding:
-                              EdgeInsets.fromLTRB(26.w, 19.h, 32.w, 31.h),
-                          title: Stack(
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  SvgPicture.asset(
-                                    'assets/images/splash/logo.svg',
-                                    height: 46.h,
-                                    width: 45.w,
-                                  ),
-                                  SizedBox(height: 24.h),
-                                  Text(
-                                    'Password Changed Successfully',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 22.sp,
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                  SizedBox(height: 20.h),
-                                ],
-                              ),
-                              Positioned(
-                                right: 0,
-                                top: 0,
-                                child: GestureDetector(
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                  },
-                                  child: Container(
-                                    padding: EdgeInsets.all(8.w),
-                                    decoration: BoxDecoration(
-                                      color: const Color(0xFF9FA482)
-                                          .withOpacity(0.42),
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: const Icon(
-                                      Icons.close,
-                                      color: Color(0xFF2B361C),
-                                      size: 24,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          content: GreenButton(
-                            text: 'OKAY',
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
+                const ClosablePopup(),
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class ClosablePopup extends StatelessWidget {
+  const ClosablePopup({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: GreenButton(
+        text: 'CONFIRM',
+        onPressed: () {
+          showClosablePopup(
+              context: context,
+              title: "Password Changed Successfully",
+              buttonText: "OKAY",
+              onPressed: () {
+                Navigator.pop(context);
+              });
+        },
       ),
     );
   }

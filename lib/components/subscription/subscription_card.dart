@@ -135,7 +135,8 @@ class _SubscriptionCardState extends State<SubscriptionCard> {
                           ),
                         ),
                       )
-                    : SizedBox.shrink(), // If no button, return an empty space
+                    : const SizedBox
+                        .shrink(), // If no button, return an empty space
               ],
             ),
           ),

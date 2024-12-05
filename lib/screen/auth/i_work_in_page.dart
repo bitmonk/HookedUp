@@ -4,7 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooked_up/components/custom_radio_button.dart';
 import 'package:hooked_up/components/green_button.dart';
 import 'package:hooked_up/screen/auth/choose_interest.dart';
-import 'package:hooked_up/screen/auth/here_for_page.dart';
 
 class IWorkInPage extends StatefulWidget {
   const IWorkInPage({super.key});

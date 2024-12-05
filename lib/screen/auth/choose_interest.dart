@@ -13,7 +13,7 @@ class ChooseInterest extends StatefulWidget {
 }
 
 class _ChooseInterestState extends State<ChooseInterest> {
-  List<String> _selectedOptions = [];
+  final List<String> _selectedOptions = [];
 
   @override
   Widget build(BuildContext context) {

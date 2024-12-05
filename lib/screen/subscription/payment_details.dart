@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooked_up/components/green_button.dart';
+import 'package:hooked_up/components/popup/closable_popup.dart';
 import 'package:hooked_up/components/subscription/subscription_card.dart';
+import 'package:hooked_up/screen/auth/get_notified.dart';
 
 class PaymentDetails extends StatefulWidget {
   const PaymentDetails({super.key});
@@ -13,6 +15,7 @@ class PaymentDetails extends StatefulWidget {
 
 class _PaymentDetailsState extends State<PaymentDetails> {
   int selectedIndex = 0;
+  int cardSelectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -114,17 +117,227 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                           isSelected: selectedIndex == 0,
                         ),
                       ),
+                      Divider(
+                        height: 50.h,
+                        color: const Color(0xFFF5F5F5),
+                        thickness: 1,
+                        indent: 10,
+                        endIndent: 10,
+                      ),
+                      SizedBox(
+                        height: 5.h,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Row(
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  cardSelectedIndex = 0;
+                                });
+                              },
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 14.w, vertical: 7.h),
+                                height: 43.h,
+                                width: 73.w,
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFFF5F5F5),
+                                  // ignore: prefer_const_constructors
+                                  borderRadius: BorderRadius.circular(11.r),
+                                  border: cardSelectedIndex == 0
+                                      ? Border.all(
+                                          color: const Color(0xFFD88F48),
+                                        )
+                                      : Border.all(
+                                          color: Colors.transparent,
+                                        ),
+                                ),
+                                child: SvgPicture.asset(
+                                    'assets/images/payment/mastercard.svg'),
+                              ),
+                            ),
+                            SizedBox(width: 9.h),
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  cardSelectedIndex = 1;
+                                });
+                              },
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 14.w, vertical: 7.h),
+                                height: 43.h,
+                                width: 73.w,
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFFF5F5F5),
+                                  // ignore: prefer_const_constructors
+                                  borderRadius: BorderRadius.circular(11.r),
+                                  border: cardSelectedIndex == 1
+                                      ? Border.all(
+                                          color: const Color(0xFFD88F48),
+                                        )
+                                      : Border.all(
+                                          color: Colors.transparent,
+                                        ),
+                                ),
+                                child: SvgPicture.asset(
+                                    'assets/images/payment/visa.svg'),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 21.h,
+                      ),
+                      Stack(
+                        children: [
+                          TextField(
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20.r),
+                                borderSide: BorderSide.none,
+                              ),
+                              filled: true,
+                              fillColor: const Color(0xFFF5F5F5),
+                              contentPadding: EdgeInsets.symmetric(
+                                horizontal: 24.w,
+                                vertical: 18.h,
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            left: 24.w, // Adjust horizontal position
+                            top: 10.h, // Adjust vertical position
+                            child: Text(
+                              'Name on Card',
+                              style: TextStyle(
+                                fontSize: 10.sp,
+                                color: const Color(0xFF212221),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                       SizedBox(
                         height: 12.h,
                       ),
-                      SizedBox(
-                        height: 82.h,
+                      Stack(
+                        children: [
+                          TextField(
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20.r),
+                                borderSide: BorderSide.none,
+                              ),
+                              filled: true,
+                              fillColor: const Color(0xFFF5F5F5),
+                              contentPadding: EdgeInsets.symmetric(
+                                horizontal: 24.w,
+                                vertical: 18.h,
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            left: 24.w, // Adjust horizontal position
+                            top: 10.h, // Adjust vertical position
+                            child: Text(
+                              'Card Number',
+                              style: TextStyle(
+                                fontSize: 10.sp,
+                                color: const Color(0xFF212221),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
+                      // Row(
+                      //   children: [
+                      //     TextField(
+                      //       keyboardType: TextInputType.number,
+                      //       decoration: InputDecoration(
+                      //         border: OutlineInputBorder(
+                      //           borderRadius: BorderRadius.circular(20.r),
+                      //           borderSide: BorderSide.none,
+                      //         ),
+                      //         filled: true,
+                      //         fillColor: const Color(0xFFF5F5F5),
+                      //         contentPadding: EdgeInsets.symmetric(
+                      //           horizontal: 24.w,
+                      //           vertical: 18.h,
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
+                      SizedBox(height: 12.h),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextField(
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                labelText: 'Expiry',
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20.r),
+                                  borderSide: BorderSide.none,
+                                ),
+                                filled: true,
+                                fillColor: const Color(0xFFF5F5F5),
+                                contentPadding: EdgeInsets.symmetric(
+                                  horizontal: 24.w,
+                                  vertical: 18.h,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 12.w,
+                          ),
+                          Expanded(
+                            child: TextField(
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                labelText: 'CVV',
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20.r),
+                                  borderSide: BorderSide.none,
+                                ),
+                                filled: true,
+                                fillColor: const Color(0xFFF5F5F5),
+                                contentPadding: EdgeInsets.symmetric(
+                                  horizontal: 24.w,
+                                  vertical: 18.h,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 80.h),
                       SizedBox(
                         width: double.infinity,
                         child: GreenButton(
                           text: 'SELECT PLAN',
-                          onPressed: () {},
+                          onPressed: () {
+                            showClosablePopup(
+                                context: context,
+                                title: "Welcome to Your Free Trial",
+                                content:
+                                    "Your 7-day free trial is now active. Make the most of it and explore Hooked Up!",
+                                buttonText: "Get Started",
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const GetNotified(),
+                                    ),
+                                  );
+                                });
+                          },
                         ),
                       ),
                       SizedBox(

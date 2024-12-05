@@ -14,7 +14,7 @@ class TravelInterest extends StatefulWidget {
 }
 
 class _TravelInterestState extends State<TravelInterest> {
-  List<String> _selectedOptions = []; // A list to store selected options
+  final List<String> _selectedOptions = []; // A list to store selected options
 
   @override
   Widget build(BuildContext context) {
