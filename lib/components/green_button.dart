@@ -12,7 +12,7 @@ class GreenButton extends StatelessWidget {
     return TextButton(
       style: TextButton.styleFrom(
         backgroundColor: const Color(0xFF606C38),
-        padding: EdgeInsets.symmetric(vertical: 12.h),
+        padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 37.w),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.r),
         ),

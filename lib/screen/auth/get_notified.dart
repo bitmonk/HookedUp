@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooked_up/components/green_button.dart';
+import 'package:hooked_up/screen/home/home_social_feed.dart';
 
 class GetNotified extends StatefulWidget {
   const GetNotified({super.key});
@@ -35,7 +36,7 @@ class _GetNotifiedState extends State<GetNotified> {
                 ),
               ),
               SizedBox(
-                height: 50.h,
+                height: 12.h,
               ),
               Text(
                 'Get Notified!',
@@ -58,7 +59,7 @@ class _GetNotifiedState extends State<GetNotified> {
                     ),
                     TextSpan(
                       text:
-                          'You can manage your notifications through Settings .',
+                          'You can manage your notifications through Settings anytime.',
                       style: TextStyle(
                         color: const Color(0xFF212221).withOpacity(0.6),
                       ),
@@ -75,9 +76,9 @@ class _GetNotifiedState extends State<GetNotified> {
                     SizedBox(
                       width: 340.w,
                       child: SvgPicture.asset(
-                        'assets/images/icons/phone_background.svg',
-                        height: 347.h,
-                        width: 258.w,
+                        'assets/images/icons/faded_background.svg',
+                        height: 378.h,
+                        width: 348.w,
                       ),
                     ),
                     Positioned(
@@ -407,9 +408,41 @@ class _GetNotifiedState extends State<GetNotified> {
                   ],
                 ),
               ),
-              Center(
-                  child: GreenButton(
-                      text: 'TURN ON NOTIFICATIONS', onPressed: () {})),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: 90.0.h),
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Column(
+                      mainAxisAlignment:
+                          MainAxisAlignment.end, // Align content to the bottom
+                      children: [
+                        GreenButton(
+                          text: 'TURN ON NOTIFICATIONS',
+                          onPressed: () {},
+                        ),
+                        SizedBox(height: 11.h),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const HomeSocialFeed(),
+                              ),
+                            );
+                          },
+                          child: const Text(
+                            'Not right now',
+                            style: TextStyle(
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
         ),
