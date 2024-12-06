@@ -65,6 +65,7 @@ class _SocialFeedState extends State<HomeSocialFeed> {
           ),
         ],
       ),
+      // Feed Page Start -->
       body: Padding(
         padding: const EdgeInsets.only(top: 10.0),
         child: Container(
@@ -193,6 +194,7 @@ class _SocialFeedState extends State<HomeSocialFeed> {
           ),
         ),
       ),
+      // Feed Page End ***
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: const Color(0xFFFFFFFF),
