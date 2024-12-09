@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooked_up/components/green_button.dart';
 import 'package:hooked_up/screen/auth/create_account.dart';
 import 'package:hooked_up/screen/auth/forgot_pass.dart';
+import 'package:hooked_up/screen/home/home_social_feed.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -96,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const CreateAccount(),
+                            builder: (context) => const HomeSocialFeed(),
                           ),
                         );
                       },

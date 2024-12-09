@@ -67,12 +67,10 @@ class _SocialFeedState extends State<HomeSocialFeed> {
         ],
       ),
       // Feed Page Start -->
-      body: ListView(
-        children: const [
-          FeedPost(),
-          FeedPost(),
-          FeedPost(),
-        ],
+      body: const SizedBox(
+        height: double.infinity,
+        width: double.infinity,
+        child: FeedPost(),
       ),
       // Feed Page End ***
       bottomNavigationBar: SizedBox(
