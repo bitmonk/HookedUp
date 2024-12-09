@@ -6,8 +6,9 @@ List<FeedPostModel> dummyFeedPosts = [
     location: 'New York, USA',
     profileImage: 'assets/images/explainer/fishing.png',
     postImage: 'assets/images/main/fishing_pic.png',
-    likeCount: '200',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    likeCount: 200,
+    description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     comments: [
       'Lorem ipsum!',
       'Great post!',
@@ -20,7 +21,7 @@ List<FeedPostModel> dummyFeedPosts = [
     location: 'Los Angeles, USA',
     profileImage: 'assets/images/explainer/profile.png',
     postImage: 'assets/images/explainer/profile.png',
-    likeCount: '500',
+    likeCount: 500,
     description:
         'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     comments: [
@@ -35,9 +36,9 @@ List<FeedPostModel> dummyFeedPosts = [
     location: 'London, UK',
     profileImage: 'assets/images/explainer/profile2.png',
     postImage: 'assets/images/explainer/profile2.png',
-    likeCount: '350',
+    likeCount: 350,
     description:
-        'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        'Ut enim ad minim veniam, elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     comments: [
       'Incredible!',
       'This is the best!',

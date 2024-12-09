@@ -1,12 +1,80 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooked_up/model/dummy_data.dart';
 
-class FeedPost extends StatelessWidget {
+class FeedPost extends StatefulWidget {
   const FeedPost({
     super.key,
   });
+
+  @override
+  State<FeedPost> createState() => _FeedPostState();
+}
+
+class _FeedPostState extends State<FeedPost> {
+  bool _viewMoreClicked = false;
+  bool _isLiked = false;
+
+  void _showCommentBox() {
+    showModalBottomSheet(
+        backgroundColor: const Color(0xFFFFFFFC),
+        context: context,
+        builder: (BuildContext context) {
+          return SizedBox(
+            height: 709.h,
+            child: Center(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(top: 20.h, right: 19.w),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(left: 156.0.w),
+                          child: Text(
+                            'Comments',
+                            style: TextStyle(
+                              fontSize: 22.sp,
+                              fontWeight: FontWeight.w700,
+                              color: const Color(0xFFD88F48),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                              child: Container(
+                                padding: EdgeInsets.all(8.w),
+                                decoration: BoxDecoration(
+                                  color:
+                                      const Color(0xFF9FA482).withOpacity(0.42),
+                                  shape: BoxShape.circle,
+                                ),
+                                child: const Icon(
+                                  Icons.close,
+                                  color: Color(0xFF2B361C),
+                                  size: 24,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,10 +156,29 @@ class FeedPost extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 25.w),
                 child: Row(
                   children: [
-                    SizedBox(
-                      height: 25.h,
-                      width: 24.h,
-                      child: SvgPicture.asset('assets/images/icons/heart.svg'),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _isLiked = !_isLiked;
+                          if (_isLiked) {
+                            post.likeCount++;
+                          } else {
+                            post.likeCount--;
+                          }
+                        });
+                      },
+                      child: SizedBox(
+                        height: 25.h,
+                        width: 24.h,
+                        child: SvgPicture.asset(
+                          'assets/images/icons/heart.svg',
+                          colorFilter: _isLiked
+                              ? const ColorFilter.mode(
+                                  Color(0xFFD88F48), BlendMode.srcIn)
+                              : const ColorFilter.mode(
+                                  Colors.black, BlendMode.srcIn),
+                        ),
+                      ),
                     ),
                     SizedBox(width: 12.w),
                     SizedBox(
@@ -119,7 +206,7 @@ class FeedPost extends StatelessWidget {
                 padding:
                     EdgeInsets.symmetric(horizontal: 25.0.w, vertical: 12.h),
                 child: Text(
-                  post.likeCount,
+                  '${post.likeCount}',
                   style: TextStyle(
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w700,
@@ -129,6 +216,7 @@ class FeedPost extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(left: 25.0.w, right: 18.w),
                 child: RichText(
+                  maxLines: _viewMoreClicked ? null : 2,
                   text: TextSpan(
                     children: [
                       TextSpan(
@@ -140,8 +228,7 @@ class FeedPost extends StatelessWidget {
                         ),
                       ),
                       TextSpan(
-                        text:
-                            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et ...',
+                        text: post.description,
                         style: TextStyle(
                           fontSize: 14.sp,
                           color: const Color(0xFF000000),
@@ -154,11 +241,18 @@ class FeedPost extends StatelessWidget {
               Padding(
                 padding:
                     EdgeInsets.symmetric(horizontal: 25.0.w, vertical: 12.h),
-                child: Text(
-                  'View more',
-                  style: TextStyle(
-                    fontSize: 12.sp,
-                    color: const Color(0xFF212221).withOpacity(0.6),
+                child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _viewMoreClicked = !_viewMoreClicked;
+                    });
+                  },
+                  child: Text(
+                    _viewMoreClicked ? 'View less' : 'View more',
+                    style: TextStyle(
+                      fontSize: 12.sp,
+                      color: const Color(0xFF212221).withOpacity(0.6),
+                    ),
                   ),
                 ),
               ),
@@ -216,11 +310,16 @@ class FeedPost extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Text(
-                      'View all comments',
-                      style: TextStyle(
-                        fontSize: 12.sp,
-                        color: const Color(0xFF212221).withOpacity(0.6),
+                    GestureDetector(
+                      onTap: () {
+                        _showCommentBox();
+                      },
+                      child: Text(
+                        'View all comments',
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          color: const Color(0xFF212221).withOpacity(0.6),
+                        ),
                       ),
                     ),
                     Padding(

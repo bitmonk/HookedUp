@@ -3,7 +3,7 @@ class FeedPostModel {
   final String profileImage;
   final String location;
   final String postImage;
-  final String likeCount;
+  int likeCount;
   final String description;
   final List<String> comments;
   final String timeAgo;
