@@ -8,11 +8,23 @@ List<FeedPostModel> dummyFeedPosts = [
     postImage: 'assets/images/main/fishing_pic.png',
     likeCount: 200,
     description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     comments: [
-      'Lorem ipsum!',
-      'Great post!',
-      'Looking awesome!',
+      Comment(
+        userName: 'Jane Smith',
+        text: 'Lorem ipsum!',
+        timeAgo: '5h',
+      ),
+      Comment(
+        userName: 'Bob Brown',
+        text: 'Great post!',
+        timeAgo: '10m',
+      ),
+      Comment(
+        userName: 'Alice Green',
+        text: 'Looking awesome!',
+        timeAgo: '15h',
+      ),
     ],
     timeAgo: '2 hours ago',
   ),
@@ -25,9 +37,21 @@ List<FeedPostModel> dummyFeedPosts = [
     description:
         'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     comments: [
-      'Amazing!',
-      'So cool!',
-      'Can’t wait to try this!',
+      Comment(
+        userName: 'Tom Hardy',
+        text: 'Amazing!',
+        timeAgo: '30m',
+      ),
+      Comment(
+        userName: 'Sophia Blue',
+        text: 'So cool!',
+        timeAgo: '45m',
+      ),
+      Comment(
+        userName: 'Emma White',
+        text: 'Can’t wait to try this!',
+        timeAgo: '1d ',
+      ),
     ],
     timeAgo: '4 hours ago',
   ),
@@ -38,10 +62,18 @@ List<FeedPostModel> dummyFeedPosts = [
     postImage: 'assets/images/explainer/profile2.png',
     likeCount: 350,
     description:
-        'Ut enim ad minim veniam, elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     comments: [
-      'Incredible!',
-      'This is the best!',
+      Comment(
+        userName: 'Olivia Brown',
+        text: 'Incredible!',
+        timeAgo: '2h',
+      ),
+      Comment(
+        userName: 'Liam Black',
+        text: 'This is the best!',
+        timeAgo: '3d',
+      ),
     ],
     timeAgo: '1 day ago',
   ),

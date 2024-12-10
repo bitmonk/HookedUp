@@ -1,3 +1,15 @@
+class Comment {
+  final String userName;
+  final String text;
+  final String timeAgo;
+
+  Comment({
+    required this.userName,
+    required this.text,
+    required this.timeAgo,
+  });
+}
+
 class FeedPostModel {
   final String userName;
   final String profileImage;
@@ -5,7 +17,7 @@ class FeedPostModel {
   final String postImage;
   int likeCount;
   final String description;
-  final List<String> comments;
+  final List<Comment> comments;
   final String timeAgo;
 
   FeedPostModel({

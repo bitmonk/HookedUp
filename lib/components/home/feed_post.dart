@@ -3,7 +3,9 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hooked_up/components/form_input_field.dart';
 import 'package:hooked_up/model/dummy_data.dart';
+import 'package:hooked_up/model/feed_post_model.dart';
 
 class FeedPost extends StatefulWidget {
   const FeedPost({
@@ -18,62 +20,155 @@ class _FeedPostState extends State<FeedPost> {
   bool _viewMoreClicked = false;
   bool _isLiked = false;
 
-  void _showCommentBox() {
+  void _showCommentBox(List<Comment> comments) {
     showModalBottomSheet(
-        backgroundColor: const Color(0xFFFFFFFC),
-        context: context,
-        builder: (BuildContext context) {
-          return SizedBox(
-            height: 709.h,
-            child: Center(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: 20.h, right: 19.w),
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(left: 156.0.w),
-                          child: Text(
-                            'Comments',
-                            style: TextStyle(
-                              fontSize: 22.sp,
-                              fontWeight: FontWeight.w700,
-                              color: const Color(0xFFD88F48),
+      backgroundColor: const Color(0xFFFFFFFC),
+      context: context,
+      isScrollControlled:
+          true, // Allows bottom sheet to adapt to content height
+      builder: (BuildContext context) {
+        return Padding(
+          padding: EdgeInsets.only(
+            top: 20.h,
+            bottom: MediaQuery.of(context)
+                .viewInsets
+                .bottom, // Prevent overlap with keyboard
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min, // Allow dynamic size adjustment
+            children: [
+              // Header
+              Padding(
+                padding: EdgeInsets.only(right: 19.w),
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(left: 156.0.w),
+                      child: Text(
+                        'Comments',
+                        style: TextStyle(
+                          fontSize: 22.sp,
+                          fontWeight: FontWeight.w700,
+                          color: const Color(0xFFD88F48),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Align(
+                        alignment: Alignment.centerRight,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Container(
+                            padding: EdgeInsets.all(8.w),
+                            decoration: BoxDecoration(
+                              color: const Color(0xFF9FA482).withOpacity(0.42),
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Icon(
+                              Icons.close,
+                              color: Color(0xFF2B361C),
+                              size: 24,
                             ),
                           ),
                         ),
-                        Expanded(
-                          child: Align(
-                            alignment: Alignment.centerRight,
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.pop(context);
-                              },
-                              child: Container(
-                                padding: EdgeInsets.all(8.w),
-                                decoration: BoxDecoration(
-                                  color:
-                                      const Color(0xFF9FA482).withOpacity(0.42),
-                                  shape: BoxShape.circle,
-                                ),
-                                child: const Icon(
-                                  Icons.close,
-                                  color: Color(0xFF2B361C),
-                                  size: 24,
-                                ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20.h),
+              // Comment List (No Expanded, just use ListView)
+              Container(
+                constraints:
+                    BoxConstraints(maxHeight: 500.h), // Limit max height
+                child: ListView.builder(
+                  itemCount: comments.length,
+                  itemBuilder: (context, index) {
+                    final comment = comments[index];
+                    return Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 24.w, vertical: 12.h),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // User Name
+                          Expanded(
+                            child: RichText(
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: '${comment.userName} \n',
+                                    style: TextStyle(
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.w700,
+                                      color: const Color(0xFF000000),
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: comment.text,
+                                    style: TextStyle(
+                                      fontSize: 14.sp,
+                                      color: const Color(0xFF000000),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+                          SizedBox(width: 10.w),
+                          // Time Ago
+                          Text(
+                            comment.timeAgo,
+                            style: TextStyle(
+                              fontSize: 12.sp,
+                              color: const Color(0xFF212221).withOpacity(0.6),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
               ),
-            ),
-          );
-        });
+              // Text Field for comment input
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 12.h),
+                child: Row(
+                  children: [
+                    const CircleAvatar(
+                      backgroundImage:
+                          AssetImage('assets/images/explainer/profile.png'),
+                    ),
+                    SizedBox(width: 12.w),
+                    Expanded(
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: 'Add a comment...',
+                          hintStyle: TextStyle(
+                            fontSize: 16.sp,
+                            color: const Color(0xFF212221),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide: BorderSide.none,
+                          ),
+                          contentPadding: EdgeInsets.symmetric(
+                              vertical: 10.h, horizontal: 24.w),
+                          fillColor: const Color(0xFFF5F5F5),
+                          filled: true,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -262,57 +357,36 @@ class _FeedPostState extends State<FeedPost> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 12.0.h),
-                      child: RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: post.userName,
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w700,
-                                color: const Color(0xFF000000),
-                              ),
+                    if (post.comments.isNotEmpty) ...[
+                      for (var i = 0; i < post.comments.length && i < 2; i++)
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 12.h),
+                          child: RichText(
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: '${post.comments[i].userName} ',
+                                  style: TextStyle(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w700,
+                                    color: const Color(0xFF000000),
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: post.comments[i].text,
+                                  style: TextStyle(
+                                    fontSize: 14.sp,
+                                    color: const Color(0xFF000000),
+                                  ),
+                                ),
+                              ],
                             ),
-                            TextSpan(
-                              text: ' Lorem ipsum!',
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                color: const Color(0xFF000000),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 12.0.h),
-                      child: RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: post.userName,
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w700,
-                                color: const Color(0xFF000000),
-                              ),
-                            ),
-                            TextSpan(
-                              text: ' Lorem ipsum!',
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                color: const Color(0xFF000000),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    ],
                     GestureDetector(
                       onTap: () {
-                        _showCommentBox();
+                        _showCommentBox(post.comments);
                       },
                       child: Text(
                         'View all comments',
