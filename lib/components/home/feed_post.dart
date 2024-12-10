@@ -26,20 +26,16 @@ class _FeedPostState extends State<FeedPost> {
     showModalBottomSheet(
       backgroundColor: const Color(0xFFFFFFFC),
       context: context,
-      isScrollControlled:
-          true, // Allows bottom sheet to adapt to content height
+      isScrollControlled: true,
       builder: (BuildContext context) {
         return Padding(
           padding: EdgeInsets.only(
             top: 20.h,
-            bottom: MediaQuery.of(context)
-                .viewInsets
-                .bottom, // Prevent overlap with keyboard
+            bottom: MediaQuery.of(context).viewInsets.bottom,
           ),
           child: Column(
-            mainAxisSize: MainAxisSize.min, // Allow dynamic size adjustment
+            mainAxisSize: MainAxisSize.min,
             children: [
-              // Header
               Padding(
                 padding: EdgeInsets.only(right: 19.w),
                 child: Row(
@@ -81,10 +77,8 @@ class _FeedPostState extends State<FeedPost> {
                 ),
               ),
               SizedBox(height: 20.h),
-              // Comment List (No Expanded, just use ListView)
               Container(
-                constraints:
-                    BoxConstraints(maxHeight: 500.h), // Limit max height
+                constraints: BoxConstraints(maxHeight: 500.h),
                 child: ListView.builder(
                   itemCount: comments.length,
                   itemBuilder: (context, index) {
@@ -95,7 +89,6 @@ class _FeedPostState extends State<FeedPost> {
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // User Name
                           Expanded(
                             child: RichText(
                               text: TextSpan(
@@ -120,7 +113,6 @@ class _FeedPostState extends State<FeedPost> {
                             ),
                           ),
                           SizedBox(width: 10.w),
-                          // Time Ago
                           Text(
                             comment.timeAgo,
                             style: TextStyle(
@@ -134,7 +126,6 @@ class _FeedPostState extends State<FeedPost> {
                   },
                 ),
               ),
-              // Text Field for comment input
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 12.h),
                 child: Row(
@@ -235,14 +226,12 @@ class _FeedPostState extends State<FeedPost> {
                                 return Padding(
                                   padding: const EdgeInsets.only(),
                                   child: Container(
-                                    height: 200
-                                        .h, // Set the height of the container
+                                    height: 200.h,
                                     width: double.infinity,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(20),
                                       color: const Color(0xFFFFFFFC),
                                     ),
-
                                     child: Padding(
                                       padding: EdgeInsets.only(
                                           top: 21.0.h, right: 24.w),
@@ -297,7 +286,7 @@ class _FeedPostState extends State<FeedPost> {
                                           ),
                                         ],
                                       ),
-                                    ), // Your color or content goes here
+                                    ),
                                   ),
                                 );
                               },
@@ -331,7 +320,6 @@ class _FeedPostState extends State<FeedPost> {
               SizedBox(
                 height: 12.h,
               ),
-              // Action buttons -->
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 25.w),
                 child: Row(
@@ -459,7 +447,6 @@ class _FeedPostState extends State<FeedPost> {
                   ),
                 ),
               ),
-              // Comment section -->
               Padding(
                 padding: const EdgeInsets.only(left: 25.0, right: 18),
                 child: Column(

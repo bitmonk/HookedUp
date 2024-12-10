@@ -144,7 +144,6 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                                 width: 73.w,
                                 decoration: BoxDecoration(
                                   color: const Color(0xFFF5F5F5),
-                                  // ignore: prefer_const_constructors
                                   borderRadius: BorderRadius.circular(11.r),
                                   border: cardSelectedIndex == 0
                                       ? Border.all(
@@ -172,7 +171,6 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                                 width: 73.w,
                                 decoration: BoxDecoration(
                                   color: const Color(0xFFF5F5F5),
-                                  // ignore: prefer_const_constructors
                                   borderRadius: BorderRadius.circular(11.r),
                                   border: cardSelectedIndex == 1
                                       ? Border.all(
@@ -209,8 +207,8 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                             ),
                           ),
                           Positioned(
-                            left: 24.w, // Adjust horizontal position
-                            top: 10.h, // Adjust vertical position
+                            left: 24.w,
+                            top: 10.h,
                             child: Text(
                               'Name on Card',
                               style: TextStyle(
@@ -242,8 +240,8 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                             ),
                           ),
                           Positioned(
-                            left: 24.w, // Adjust horizontal position
-                            top: 10.h, // Adjust vertical position
+                            left: 24.w,
+                            top: 10.h,
                             child: Text(
                               'Card Number',
                               style: TextStyle(
@@ -254,25 +252,6 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                           ),
                         ],
                       ),
-                      // Row(
-                      //   children: [
-                      //     TextField(
-                      //       keyboardType: TextInputType.number,
-                      //       decoration: InputDecoration(
-                      //         border: OutlineInputBorder(
-                      //           borderRadius: BorderRadius.circular(20.r),
-                      //           borderSide: BorderSide.none,
-                      //         ),
-                      //         filled: true,
-                      //         fillColor: const Color(0xFFF5F5F5),
-                      //         contentPadding: EdgeInsets.symmetric(
-                      //           horizontal: 24.w,
-                      //           vertical: 18.h,
-                      //         ),
-                      //       ),
-                      //     ),
-                      //   ],
-                      // ),
                       SizedBox(height: 12.h),
                       Row(
                         children: [
