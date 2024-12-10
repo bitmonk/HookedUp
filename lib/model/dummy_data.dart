@@ -8,7 +8,7 @@ List<FeedPostModel> dummyFeedPosts = [
     postImage: 'assets/images/main/fishing_pic.png',
     likeCount: 200,
     description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit amet',
     comments: [
       Comment(
         userName: 'Jane Smith',

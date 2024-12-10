@@ -47,24 +47,56 @@ class _SocialFeedState extends State<HomeSocialFeed> {
             width: 12.w,
           ),
           SizedBox(
-            height: 48.h,
-            width: 48.h,
-            child: CircleAvatar(
-              backgroundColor: const Color(0xFFD7D9C9),
-              child: IconButton(
-                onPressed: () {},
-                icon: SvgPicture.asset(
-                  'assets/images/icons/hamburger.svg',
-                  height: 18.h,
-                  width: 23.w,
-                ),
-              ),
-            ),
-          ),
+              height: 48.h,
+              width: 48.h,
+              child: Builder(builder: (BuildContext context) {
+                return CircleAvatar(
+                  backgroundColor: const Color(0xFFD7D9C9),
+                  child: IconButton(
+                    onPressed: () {
+                      Scaffold.of(context).openDrawer();
+                    },
+                    icon: SvgPicture.asset(
+                      'assets/images/icons/hamburger.svg',
+                      height: 18.h,
+                      width: 23.w,
+                    ),
+                  ),
+                );
+              })),
           SizedBox(
             width: 24.w,
           ),
         ],
+      ),
+      //Drawer -->
+      drawer: Drawer(
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text('Drawer Header'),
+            ),
+            ListTile(
+              title: const Text('Item 1'),
+              onTap: () {
+                // Update the state of the app.
+                // ...
+              },
+            ),
+            ListTile(
+              title: const Text('Item 2'),
+              onTap: () {
+                // Update the state of the app.
+                // ...
+              },
+            ),
+          ],
+        ),
       ),
       // Feed Page Start -->
       body: const SizedBox(

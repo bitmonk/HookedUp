@@ -1,9 +1,6 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hooked_up/components/form_input_field.dart';
 import 'package:hooked_up/model/dummy_data.dart';
 import 'package:hooked_up/model/feed_post_model.dart';
 
@@ -19,6 +16,11 @@ class FeedPost extends StatefulWidget {
 class _FeedPostState extends State<FeedPost> {
   bool _viewMoreClicked = false;
   bool _isLiked = false;
+  bool _clickedSave = false;
+  final snackBar = const SnackBar(
+    content: Text('Post saved to collections..'),
+    showCloseIcon: true,
+  );
 
   void _showCommentBox(List<Comment> comments) {
     showModalBottomSheet(
@@ -221,10 +223,93 @@ class _FeedPostState extends State<FeedPost> {
                     Expanded(
                       child: Align(
                         alignment: Alignment.centerRight,
-                        child: SvgPicture.asset(
-                          'assets/images/icons/three_dots.svg',
-                          height: 5.h,
-                          width: 19.w,
+                        child: GestureDetector(
+                          onTap: () {
+                            showModalBottomSheet(
+                              context: context,
+                              constraints: BoxConstraints(
+                                maxHeight: 430.h,
+                                maxWidth: double.infinity,
+                              ),
+                              builder: (BuildContext context) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(),
+                                  child: Container(
+                                    height: 200
+                                        .h, // Set the height of the container
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: const Color(0xFFFFFFFC),
+                                    ),
+
+                                    child: Padding(
+                                      padding: EdgeInsets.only(
+                                          top: 21.0.h, right: 24.w),
+                                      child: Column(
+                                        children: [
+                                          Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Container(
+                                              padding: EdgeInsets.all(8.w),
+                                              decoration: BoxDecoration(
+                                                color: const Color(0xFF9FA482)
+                                                    .withOpacity(0.42),
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: GestureDetector(
+                                                onTap: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: const Icon(
+                                                  Icons.close,
+                                                  color: Color(0xFF2B361C),
+                                                  size: 24,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 34.h,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              SizedBox(
+                                                width: 25.w,
+                                              ),
+                                              SvgPicture.asset(
+                                                  'assets/images/icons/report.svg'),
+                                              SizedBox(
+                                                width: 17.w,
+                                              ),
+                                              Text(
+                                                'Report',
+                                                style: TextStyle(
+                                                  color:
+                                                      const Color(0xFF000000),
+                                                  fontSize: 16.sp,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ), // Your color or content goes here
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                          child: Container(
+                            color: const Color(0xFFFFFFFC),
+                            height: 30.h,
+                            child: SvgPicture.asset(
+                              'assets/images/icons/three_dots.svg',
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -276,11 +361,16 @@ class _FeedPostState extends State<FeedPost> {
                       ),
                     ),
                     SizedBox(width: 12.w),
-                    SizedBox(
-                      height: 25.h,
-                      width: 24.h,
-                      child:
-                          SvgPicture.asset('assets/images/icons/comment.svg'),
+                    GestureDetector(
+                      onTap: () {
+                        _showCommentBox(post.comments);
+                      },
+                      child: SizedBox(
+                        height: 25.h,
+                        width: 24.h,
+                        child:
+                            SvgPicture.asset('assets/images/icons/comment.svg'),
+                      ),
                     ),
                     SizedBox(width: 12.w),
                     SizedBox(
@@ -289,10 +379,28 @@ class _FeedPostState extends State<FeedPost> {
                       child: SvgPicture.asset('assets/images/icons/share.svg'),
                     ),
                     const Spacer(),
-                    SizedBox(
-                      height: 25.h,
-                      width: 24.h,
-                      child: SvgPicture.asset('assets/images/icons/save.svg'),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _clickedSave = !_clickedSave;
+                          if (_clickedSave) {
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                          }
+                        });
+                      },
+                      child: SizedBox(
+                        height: 25.h,
+                        width: 24.h,
+                        child: SvgPicture.asset(
+                          'assets/images/icons/save.svg',
+                          colorFilter: _clickedSave
+                              ? const ColorFilter.mode(
+                                  Color(0xFFD88F48), BlendMode.srcIn)
+                              : const ColorFilter.mode(
+                                  Colors.black, BlendMode.srcIn),
+                        ),
+                      ),
                     ),
                   ],
                 ),
