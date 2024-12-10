@@ -75,7 +75,6 @@ class _SocialFeedState extends State<HomeSocialFeed> {
         backgroundColor: const Color(0xFF2B361C),
         child: Stack(
           children: [
-            // Main content of the drawer
             ListView(
               padding: EdgeInsets.zero,
               children: [
@@ -162,19 +161,17 @@ class _SocialFeedState extends State<HomeSocialFeed> {
                 ),
               ],
             ),
-
-            // Stacked logo positioned at the bottom left
             Positioned(
-              bottom: 0.h, // Distance from the bottom of the drawer
-              left: 0.w, // Distance from the left of the drawer
+              bottom: 0.h,
+              left: 0.w,
               child: Row(
                 children: [
                   SvgPicture.asset(
                     'assets/images/icons/logo2.svg',
-                    height: 213.h, // Adjust logo height
-                    width: 206.w, // Adjust logo width
+                    height: 213.h,
+                    width: 206.w,
                   ),
-                  SizedBox(width: 10.w), // Space between logo and button
+                  SizedBox(width: 10.w),
                   GestureDetector(
                     onTap: () {
                       Navigator.push(

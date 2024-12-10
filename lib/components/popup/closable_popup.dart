@@ -46,6 +46,29 @@ Future<dynamic> showClosablePopup({
               SizedBox(
                 height: 14.h,
               ),
+              SizedBox(
+                height: 285.h, //     <-- TextField expands to this height.
+                child: TextField(
+                  maxLines: null, // Set this
+                  expands: true, // and this
+                  keyboardType: TextInputType.multiline,
+                  decoration: InputDecoration(
+                    hintText: 'Report Description...',
+                    hintStyle: TextStyle(
+                      fontSize: 16.sp,
+                      color: const Color(0xFF212221),
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide: BorderSide.none,
+                    ),
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 10.h, horizontal: 24.w),
+                    fillColor: const Color(0xFFFFFFFF),
+                    filled: true,
+                  ),
+                ),
+              )
             ],
           ),
           Positioned(

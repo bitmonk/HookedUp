@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hooked_up/components/popup/closable_popup.dart';
 import 'package:hooked_up/model/dummy_data.dart';
 import 'package:hooked_up/model/feed_post_model.dart';
+import 'package:hooked_up/screen/auth/reset_pass.dart';
 
 class FeedPost extends StatefulWidget {
   const FeedPost({
@@ -273,13 +275,24 @@ class _FeedPostState extends State<FeedPost> {
                                               SizedBox(
                                                 width: 17.w,
                                               ),
-                                              Text(
-                                                'Report',
-                                                style: TextStyle(
-                                                  color:
-                                                      const Color(0xFF000000),
-                                                  fontSize: 16.sp,
-                                                  fontWeight: FontWeight.w700,
+                                              GestureDetector(
+                                                onTap: () {
+                                                  showClosablePopup(
+                                                      context: context,
+                                                      title: 'Confirm Report',
+                                                      content:
+                                                          'Are you sure you want to report this user? This action will notify our team for review. Please provide details.',
+                                                      buttonText: 'SUBMIT',
+                                                      onPressed: () {});
+                                                },
+                                                child: Text(
+                                                  'Report',
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xFF000000),
+                                                    fontSize: 16.sp,
+                                                    fontWeight: FontWeight.w700,
+                                                  ),
                                                 ),
                                               ),
                                             ],
@@ -307,13 +320,25 @@ class _FeedPostState extends State<FeedPost> {
               ),
               Padding(
                 padding: EdgeInsets.only(top: 12.0.h),
-                child: Container(
-                  height: 343.h,
-                  width: double.infinity,
-                  color: Colors.green,
-                  child: Image.asset(
-                    post.postImage,
-                    fit: BoxFit.cover,
+                child: GestureDetector(
+                  onDoubleTap: () {
+                    setState(() {
+                      _isLiked = !_isLiked;
+                      if (_isLiked) {
+                        post.likeCount++;
+                      } else {
+                        post.likeCount--;
+                      }
+                    });
+                  },
+                  child: Container(
+                    height: 343.h,
+                    width: double.infinity,
+                    color: Colors.green,
+                    child: Image.asset(
+                      post.postImage,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),
