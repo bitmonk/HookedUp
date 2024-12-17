@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooked_up/components/green_button.dart';
 
-Future<dynamic> showClosablePopup({
+Future<dynamic> showClosableReportPopup({
   required BuildContext context,
   required String title,
   String? content,
@@ -13,6 +13,7 @@ Future<dynamic> showClosablePopup({
   return showDialog(
     context: context,
     builder: (context) => AlertDialog(
+      backgroundColor: const Color(0xFFF5F5F5),
       contentPadding: EdgeInsets.fromLTRB(26.w, 19.h, 32.w, 31.h),
       title: Stack(
         children: [
@@ -46,6 +47,29 @@ Future<dynamic> showClosablePopup({
               SizedBox(
                 height: 14.h,
               ),
+              SizedBox(
+                height: 285.h,
+                child: TextField(
+                  maxLines: null, // Set this
+                  expands: true, // and this
+                  keyboardType: TextInputType.multiline,
+                  decoration: InputDecoration(
+                    hintText: 'Report Description...',
+                    hintStyle: TextStyle(
+                      fontSize: 16.sp,
+                      color: const Color(0xFF212221),
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide: BorderSide.none,
+                    ),
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 10.h, horizontal: 24.w),
+                    fillColor: const Color(0xFFFFFFFF),
+                    filled: true,
+                  ),
+                ),
+              )
             ],
           ),
           Positioned(

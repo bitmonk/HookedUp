@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooked_up/components/popup/closable_popup.dart';
+import 'package:hooked_up/components/popup/report_closable_popup.dart';
 import 'package:hooked_up/model/dummy_data.dart';
 import 'package:hooked_up/model/feed_post_model.dart';
 import 'package:hooked_up/screen/auth/reset_pass.dart';
@@ -277,7 +278,7 @@ class _FeedPostState extends State<FeedPost> {
                                               ),
                                               GestureDetector(
                                                 onTap: () {
-                                                  showClosablePopup(
+                                                  showClosableReportPopup(
                                                       context: context,
                                                       title: 'Confirm Report',
                                                       content:
