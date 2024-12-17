@@ -5,7 +5,6 @@ import 'package:hooked_up/components/home/feed_post.dart';
 import 'package:hooked_up/screen/auth/login.dart';
 import 'package:hooked_up/screen/chat/chat_home.dart';
 import 'package:hooked_up/screen/create_post/create_post_home.dart';
-import 'package:hooked_up/screen/home/home_reel_feed.dart';
 import 'package:hooked_up/screen/profile/my_profile.dart';
 import 'package:hooked_up/screen/season/open_season.dart';
 
@@ -19,7 +18,6 @@ class HomeSocialFeed extends StatefulWidget {
 class _SocialFeedState extends State<HomeSocialFeed> {
   int _currentIndex = 0;
 
-  // Screens for each tab
   List<Widget> body = const [
     FeedPost(),
     OpenSeason(),
@@ -28,27 +26,20 @@ class _SocialFeedState extends State<HomeSocialFeed> {
     MyProfile(),
   ];
 
-  // Helper method to create BottomNavigationBar items
   BottomNavigationBarItem _buildNavItem(String iconPath, int index) {
     return BottomNavigationBarItem(
       icon: Container(
         decoration: BoxDecoration(
           color: _currentIndex == index
-              ? const Color(0xFFD7D9C9) // Grey background for selected item
+              ? const Color(0xFFD7D9C9)
               : Colors.transparent,
           shape: BoxShape.circle,
         ),
-        padding: EdgeInsets.all(10.w), // Padding for rounded appearance
+        padding: EdgeInsets.all(9.w),
         child: SvgPicture.asset(
           iconPath,
           height: 32.h,
           width: 32.w,
-          // colorFilter: ColorFilter.mode(
-          //   _currentIndex == index
-          //       ? const Color(0xFF2B361C) // Dark color for selected icon
-          //       : const Color(0xFF9FA482), // Light grey for unselected icon
-          //   BlendMode.srcIn,
-          // ), // Light grey for unselected icon
         ),
       ),
       label: '',

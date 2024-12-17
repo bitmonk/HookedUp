@@ -129,7 +129,7 @@ class _FeedPostState extends State<FeedPost> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 12.h),
+                padding: EdgeInsets.only(left: 44.w, right: 29.w, bottom: 28.h),
                 child: Row(
                   children: [
                     const CircleAvatar(
