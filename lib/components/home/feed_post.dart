@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hooked_up/components/popup/closable_popup.dart';
 import 'package:hooked_up/components/popup/report_closable_popup.dart';
 import 'package:hooked_up/model/dummy_data.dart';
 import 'package:hooked_up/model/feed_post_model.dart';
-import 'package:hooked_up/screen/auth/reset_pass.dart';
+import 'package:hooked_up/screen/home/home_reel_feed.dart';
 
 class FeedPost extends StatefulWidget {
   const FeedPost({
@@ -336,9 +335,19 @@ class _FeedPostState extends State<FeedPost> {
                     height: 343.h,
                     width: double.infinity,
                     color: Colors.green,
-                    child: Image.asset(
-                      post.postImage,
-                      fit: BoxFit.cover,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const HomeReelFeed(),
+                          ),
+                        );
+                      },
+                      child: Image.asset(
+                        post.postImage,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
