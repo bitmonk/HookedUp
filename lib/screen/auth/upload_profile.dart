@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooked_up/components/green_button.dart';
 import 'package:hooked_up/screen/auth/phone_verification.dart';
+import 'package:image_picker/image_picker.dart';
 // import 'package:image_picker/image_picker.dart';
 
 class UploadProfile extends StatefulWidget {
@@ -13,18 +16,18 @@ class UploadProfile extends StatefulWidget {
 }
 
 class _UploadProfileState extends State<UploadProfile> {
-  // File? _selectedImage;
-  // Future<void> uploadImage() async {
-  //   final ImagePicker picker = ImagePicker();
-  //   final XFile? pickedFile =
-  //       await picker.pickImage(source: ImageSource.gallery);
+  File? _selectedImage;
+  Future<void> uploadImage() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? pickedFile =
+        await picker.pickImage(source: ImageSource.gallery);
 
-  //   if (pickedFile != null) {
-  //     setState(() {
-  //       _selectedImage = File(pickedFile.path);
-  //     });
-  //   }
-  // }
+    if (pickedFile != null) {
+      setState(() {
+        _selectedImage = File(pickedFile.path);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -97,34 +100,37 @@ class _UploadProfileState extends State<UploadProfile> {
                           Padding(
                             padding: EdgeInsets.only(top: 73.h, bottom: 270.h),
                             child: Container(
-                                height: 217.h,
-                                width: 217.w,
-                                decoration: const BoxDecoration(
-                                  color: Color(0xFFCFD4D9),
-                                  shape: BoxShape.circle,
-                                  // image: _selectedImage != null
-                                  //     ? DecorationImage(
-                                  //         image: FileImage(_selectedImage!),
-                                  //         fit: BoxFit.cover,
-                                  //       )
-                                  //     : null,
-                                ),
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    'MJ',
-                                    style: TextStyle(
-                                        fontSize: 90.sp,
-                                        color: const Color(0xFFFFFFFF)),
-                                  ),
-                                )),
+                              height: 217.h,
+                              width: 217.w,
+                              decoration: BoxDecoration(
+                                color: Color(0xFFCFD4D9),
+                                shape: BoxShape.circle,
+                                image: _selectedImage != null
+                                    ? DecorationImage(
+                                        image: FileImage(_selectedImage!),
+                                        fit: BoxFit.cover,
+                                      )
+                                    : null,
+                              ),
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: _selectedImage == null
+                                    ? Text(
+                                        'MJ',
+                                        style: TextStyle(
+                                            fontSize: 90.sp,
+                                            color: const Color(0xFFFFFFFF)),
+                                      )
+                                    : SizedBox.shrink(),
+                              ),
+                            ),
                           ),
                           Positioned(
                             top: 80.h,
                             right: 15.w,
                             child: GestureDetector(
                               onTap: () {
-                                // uploadImage();
+                                uploadImage();
                                 print('clicked!');
                               },
                               child: Container(
