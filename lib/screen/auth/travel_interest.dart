@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooked_up/components/custom_checkbox_multiple.dart';
 import 'package:hooked_up/components/green_button.dart';
-import 'package:hooked_up/screen/auth/i_work_in_page.dart';
 import 'package:hooked_up/screen/subscription/select_plan.dart';
 
 class TravelInterest extends StatefulWidget {
@@ -37,7 +36,8 @@ class _TravelInterestState extends State<TravelInterest> {
                       },
                       child: Container(
                         decoration: BoxDecoration(
-                          color: const Color(0xFF9FA482).withOpacity(0.42),
+                          color:
+                              const Color(0xFF9FA482).withValues(alpha: 0.42),
                           shape: BoxShape.circle,
                         ),
                         child: const Icon(

@@ -22,8 +22,8 @@ class _ExplainerScreenState extends State<ExplainerScreen> {
 
   final List<Color> _backgroundColors = [
     const Color(0xFF091018),
-    const Color(0xFF2B361C).withOpacity(0.77),
-    const Color(0xFF2B361C).withOpacity(0.77)
+    const Color(0xFF2B361C).withValues(alpha: 0.77),
+    const Color(0xFF2B361C).withValues(alpha: 0.77)
   ];
 
   @override
@@ -130,7 +130,7 @@ class _ExplainerScreenState extends State<ExplainerScreen> {
                                         radius: 6.r,
                                         backgroundColor: _activePage == index
                                             ? const Color(0xFFFEF5CC)
-                                                .withOpacity(0.8)
+                                                .withValues(alpha: 0.8)
                                             : Colors.grey,
                                       ),
                                     ),

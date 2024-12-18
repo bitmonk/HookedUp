@@ -1,0 +1,29 @@
+{
+    "project_info": {
+        "project_number": "647721611130",
+        "project_id": "hookedup-814bc",
+        "storage_bucket": "hookedup-814bc.firebasestorage.app"
+    },
+    "client": [
+        {
+            "client_info": {
+                "mobilesdk_app_id": "1:647721611130:android:830d39a21ccdef930cb0c3",
+                "android_client_info": {
+                    "package_name": "com.uno.hookedup"
+                }
+            },
+            "oauth_client": [],
+            "api_key": [
+                {
+                    "current_key": "AIzaSyC52fglp0D3Jp6kJHl8q1eJZnVlNhDsDGQ"
+                }
+            ],
+            "services": {
+                "appinvite_service": {
+                    "other_platform_oauth_client": []
+                }
+            }
+        }
+    ],
+    "configuration_version": "1"
+}

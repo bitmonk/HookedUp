@@ -63,7 +63,8 @@ class _FeedPostState extends State<FeedPost> {
                           child: Container(
                             padding: EdgeInsets.all(8.w),
                             decoration: BoxDecoration(
-                              color: const Color(0xFF9FA482).withOpacity(0.42),
+                              color: const Color(0xFF9FA482)
+                                  .withValues(alpha: 0.42),
                               shape: BoxShape.circle,
                             ),
                             child: const Icon(
@@ -119,7 +120,8 @@ class _FeedPostState extends State<FeedPost> {
                             comment.timeAgo,
                             style: TextStyle(
                               fontSize: 12.sp,
-                              color: const Color(0xFF212221).withOpacity(0.6),
+                              color: const Color(0xFF212221)
+                                  .withValues(alpha: 0.6),
                             ),
                           ),
                         ],
@@ -208,7 +210,8 @@ class _FeedPostState extends State<FeedPost> {
                           post.location,
                           style: TextStyle(
                             fontSize: 12.sp,
-                            color: const Color(0xFF212221).withOpacity(0.6),
+                            color:
+                                const Color(0xFF212221).withValues(alpha: 0.6),
                           ),
                         ),
                       ],
@@ -245,7 +248,7 @@ class _FeedPostState extends State<FeedPost> {
                                               padding: EdgeInsets.all(8.w),
                                               decoration: BoxDecoration(
                                                 color: const Color(0xFF9FA482)
-                                                    .withOpacity(0.42),
+                                                    .withValues(alpha: 0.42),
                                                 shape: BoxShape.circle,
                                               ),
                                               child: GestureDetector(
@@ -477,7 +480,7 @@ class _FeedPostState extends State<FeedPost> {
                     _viewMoreClicked ? 'View less' : 'View more',
                     style: TextStyle(
                       fontSize: 12.sp,
-                      color: const Color(0xFF212221).withOpacity(0.6),
+                      color: const Color(0xFF212221).withValues(alpha: 0.6),
                     ),
                   ),
                 ),
@@ -522,7 +525,7 @@ class _FeedPostState extends State<FeedPost> {
                         'View all comments',
                         style: TextStyle(
                           fontSize: 12.sp,
-                          color: const Color(0xFF212221).withOpacity(0.6),
+                          color: const Color(0xFF212221).withValues(alpha: 0.6),
                         ),
                       ),
                     ),
@@ -532,7 +535,7 @@ class _FeedPostState extends State<FeedPost> {
                         post.timeAgo,
                         style: TextStyle(
                           fontSize: 12.sp,
-                          color: const Color(0xFF212221).withOpacity(0.6),
+                          color: const Color(0xFF212221).withValues(alpha: 0.6),
                         ),
                       ),
                     ),

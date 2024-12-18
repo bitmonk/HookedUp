@@ -29,7 +29,7 @@ class _ForgotPassState extends State<ForgotPass> {
           child: Container(
             margin: EdgeInsets.all(8.r),
             decoration: BoxDecoration(
-              color: const Color(0xFF9FA482).withOpacity(0.42),
+              color: const Color(0xFF9FA482).withValues(alpha: 0.42),
               shape: BoxShape.circle,
             ),
             child: const Icon(

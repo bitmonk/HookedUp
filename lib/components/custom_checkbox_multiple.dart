@@ -45,7 +45,7 @@ class CustomCheckBoxMultiple extends StatelessWidget {
                   Radius.circular(12),
                 ),
                 color: isChecked
-                    ? selectedColor.withOpacity(0.1)
+                    ? selectedColor.withValues(alpha: 0.1)
                     : const Color(0xFFF5F5F5),
               ),
               child: isChecked

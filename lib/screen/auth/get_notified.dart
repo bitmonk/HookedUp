@@ -61,7 +61,7 @@ class _GetNotifiedState extends State<GetNotified> {
                       text:
                           'You can manage your notifications through Settings anytime.',
                       style: TextStyle(
-                        color: const Color(0xFF212221).withOpacity(0.6),
+                        color: const Color(0xFF212221).withValues(alpha: 0.6),
                       ),
                     )
                   ],
@@ -169,7 +169,7 @@ class _GetNotifiedState extends State<GetNotified> {
                                             'Sent you a message',
                                             style: TextStyle(
                                               color: const Color(0xFF212221)
-                                                  .withOpacity(0.6),
+                                                  .withValues(alpha: 0.6),
                                               fontSize: 12.sp,
                                             ),
                                           ),
@@ -187,7 +187,7 @@ class _GetNotifiedState extends State<GetNotified> {
                                               style: TextStyle(
                                                   fontSize: 9.sp,
                                                   color: const Color(0xFF212221)
-                                                      .withOpacity(0.6)),
+                                                      .withValues(alpha: 0.6)),
                                             ),
                                           ),
                                         ),
@@ -271,7 +271,7 @@ class _GetNotifiedState extends State<GetNotified> {
                                             'Sent you a message',
                                             style: TextStyle(
                                               color: const Color(0xFF212221)
-                                                  .withOpacity(0.6),
+                                                  .withValues(alpha: 0.6),
                                               fontSize: 12.sp,
                                             ),
                                           ),
@@ -289,7 +289,7 @@ class _GetNotifiedState extends State<GetNotified> {
                                               style: TextStyle(
                                                   fontSize: 9.sp,
                                                   color: const Color(0xFF212221)
-                                                      .withOpacity(0.6)),
+                                                      .withValues(alpha: 0.6)),
                                             ),
                                           ),
                                         ),
@@ -373,7 +373,7 @@ class _GetNotifiedState extends State<GetNotified> {
                                             'Sent you a message',
                                             style: TextStyle(
                                               color: const Color(0xFF212221)
-                                                  .withOpacity(0.6),
+                                                  .withValues(alpha: 0.6),
                                               fontSize: 12.sp,
                                             ),
                                           ),
@@ -391,7 +391,7 @@ class _GetNotifiedState extends State<GetNotified> {
                                               style: TextStyle(
                                                   fontSize: 9.sp,
                                                   color: const Color(0xFF212221)
-                                                      .withOpacity(0.6)),
+                                                      .withValues(alpha: 0.6)),
                                             ),
                                           ),
                                         ),

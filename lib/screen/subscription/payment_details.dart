@@ -38,7 +38,8 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                       },
                       child: Container(
                         decoration: BoxDecoration(
-                          color: const Color(0xFF9FA482).withOpacity(0.42),
+                          color:
+                              const Color(0xFF9FA482).withValues(alpha: 0.42),
                           shape: BoxShape.circle,
                         ),
                         child: const Icon(
@@ -92,8 +93,8 @@ class _PaymentDetailsState extends State<PaymentDetails> {
                                 text: ' You can cancel anytime. ',
                                 style: TextStyle(
                                   fontSize: 14.sp,
-                                  color:
-                                      const Color(0xFF212221).withOpacity(0.6),
+                                  color: const Color(0xFF212221)
+                                      .withValues(alpha: 0.6),
                                 ),
                               ),
                             ],

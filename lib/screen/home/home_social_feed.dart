@@ -123,7 +123,7 @@ class _SocialFeedState extends State<HomeSocialFeed> {
                         height: 41.h,
                         width: 41.w,
                         decoration: BoxDecoration(
-                          color: const Color(0xFF9FA482).withOpacity(0.42),
+                          color: const Color(0xFF9FA482).withValues(alpha: 0.6),
                           shape: BoxShape.circle,
                         ),
                         child: Icon(
@@ -220,7 +220,7 @@ class _SocialFeedState extends State<HomeSocialFeed> {
                       style: TextStyle(
                         fontSize: 22.sp,
                         fontWeight: FontWeight.w700,
-                        color: const Color(0xFFFFFFFF).withOpacity(0.53),
+                        color: const Color(0xFFFFFFFF).withValues(alpha: 0.53),
                       ),
                     ),
                   ),

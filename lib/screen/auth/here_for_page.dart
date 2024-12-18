@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooked_up/components/custom_checkbox_multiple.dart';
-import 'package:hooked_up/components/custom_radio_button.dart';
-import 'package:hooked_up/components/cutom_check_box.dart';
 import 'package:hooked_up/components/green_button.dart';
 import 'package:hooked_up/screen/auth/i_work_in_page.dart';
 
@@ -37,7 +35,8 @@ class _HereForPageState extends State<HereForPage> {
                       },
                       child: Container(
                         decoration: BoxDecoration(
-                          color: const Color(0xFF9FA482).withOpacity(0.42),
+                          color:
+                              const Color(0xFF9FA482).withValues(alpha: 0.42),
                           shape: BoxShape.circle,
                         ),
                         child: const Icon(

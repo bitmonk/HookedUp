@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -48,7 +47,8 @@ class _UploadProfileState extends State<UploadProfile> {
                       },
                       child: Container(
                         decoration: BoxDecoration(
-                          color: const Color(0xFF9FA482).withOpacity(0.42),
+                          color:
+                              const Color(0xFF9FA482).withValues(alpha: 0.42),
                           shape: BoxShape.circle,
                         ),
                         child: const Icon(
@@ -97,28 +97,27 @@ class _UploadProfileState extends State<UploadProfile> {
                           Padding(
                             padding: EdgeInsets.only(top: 73.h, bottom: 270.h),
                             child: Container(
-                              height: 217.h,
-                              width: 217.w,
-                              decoration: const BoxDecoration(
-                                color: Color(0xFFCFD4D9),
-                                shape: BoxShape.circle,
-                                // image: _selectedImage != null
-                                //     ? DecorationImage(
-                                //         image: FileImage(_selectedImage!),
-                                //         fit: BoxFit.cover,
-                                //       )
-                                //     : null,
-                              ),
-                              child:Align(
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        'MJ',
-                                        style: TextStyle(
-                                            fontSize: 90.sp,
-                                            color: const Color(0xFFFFFFFF)),
-                                      ),
-                                    )
-                            ),
+                                height: 217.h,
+                                width: 217.w,
+                                decoration: const BoxDecoration(
+                                  color: Color(0xFFCFD4D9),
+                                  shape: BoxShape.circle,
+                                  // image: _selectedImage != null
+                                  //     ? DecorationImage(
+                                  //         image: FileImage(_selectedImage!),
+                                  //         fit: BoxFit.cover,
+                                  //       )
+                                  //     : null,
+                                ),
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    'MJ',
+                                    style: TextStyle(
+                                        fontSize: 90.sp,
+                                        color: const Color(0xFFFFFFFF)),
+                                  ),
+                                )),
                           ),
                           Positioned(
                             top: 80.h,

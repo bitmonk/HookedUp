@@ -36,7 +36,8 @@ class _ChooseInterestState extends State<ChooseInterest> {
                       },
                       child: Container(
                         decoration: BoxDecoration(
-                          color: const Color(0xFF9FA482).withOpacity(0.42),
+                          color:
+                              const Color(0xFF9FA482).withValues(alpha: 0.42),
                           shape: BoxShape.circle,
                         ),
                         child: const Icon(

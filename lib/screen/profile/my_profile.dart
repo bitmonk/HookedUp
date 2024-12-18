@@ -56,7 +56,8 @@ class _MyProfileState extends State<MyProfile> {
                               'Location, location',
                               style: TextStyle(
                                 fontSize: 12.sp,
-                                color: const Color(0xFF212221).withOpacity(0.6),
+                                color: const Color(0xFF212221)
+                                    .withValues(alpha: 50.6),
                               ),
                             ),
                             Text(
@@ -84,7 +85,8 @@ class _MyProfileState extends State<MyProfile> {
                               'Bucket List',
                               style: TextStyle(
                                 fontSize: 9.sp,
-                                color: const Color(0xFF212221).withOpacity(0.6),
+                                color: const Color(0xFF212221)
+                                    .withValues(alpha: 0.6),
                               ),
                             ),
                           ],
@@ -106,7 +108,8 @@ class _MyProfileState extends State<MyProfile> {
                               'Connections',
                               style: TextStyle(
                                 fontSize: 9.sp,
-                                color: const Color(0xFF212221).withOpacity(0.6),
+                                color: const Color(0xFF212221)
+                                    .withValues(alpha: 0.6),
                               ),
                             ),
                           ],
@@ -176,97 +179,222 @@ class _MyProfileState extends State<MyProfile> {
                   ],
                 ),
               ),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          SizedBox(
-                            height: 142.h,
-                            width: 142.w,
-                            child: ClipRRect(
-                              child: Image.asset(
-                                'assets/images/explainer/profile.png',
-                                fit: BoxFit.cover,
+              if (_selectedIndex == 0)
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            SizedBox(
+                              height: 142.h,
+                              width: 142.w,
+                              child: ClipRRect(
+                                child: Image.asset(
+                                  'assets/images/explainer/profile.png',
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            width: 1.w,
-                          ),
-                          SizedBox(
-                            height: 142.h,
-                            width: 142.w,
-                            child: ClipRRect(
-                              child: Image.asset(
-                                'assets/images/explainer/profile.png',
-                                fit: BoxFit.cover,
+                            SizedBox(
+                              width: 1.w,
+                            ),
+                            SizedBox(
+                              height: 142.h,
+                              width: 142.w,
+                              child: ClipRRect(
+                                child: Image.asset(
+                                  'assets/images/explainer/profile.png',
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            width: 1.w,
-                          ),
-                          SizedBox(
-                            height: 142.h,
-                            width: 142.w,
-                            child: ClipRRect(
-                              child: Image.asset(
-                                'assets/images/explainer/profile.png',
-                                fit: BoxFit.cover,
+                            SizedBox(
+                              width: 1.w,
+                            ),
+                            SizedBox(
+                              height: 142.h,
+                              width: 142.w,
+                              child: ClipRRect(
+                                child: Image.asset(
+                                  'assets/images/explainer/profile.png',
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 1.h,
-                      ),
-                      Row(
-                        children: [
-                          SizedBox(
-                            height: 142.h,
-                            width: 142.w,
-                            child: ClipRRect(
-                              child: Image.asset(
-                                'assets/images/explainer/profile.png',
-                                fit: BoxFit.cover,
+                          ],
+                        ),
+                        SizedBox(
+                          height: 1.h,
+                        ),
+                        Row(
+                          children: [
+                            SizedBox(
+                              height: 142.h,
+                              width: 142.w,
+                              child: ClipRRect(
+                                child: Image.asset(
+                                  'assets/images/explainer/profile.png',
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            width: 1.w,
-                          ),
-                          SizedBox(
-                            height: 142.h,
-                            width: 142.w,
-                            child: ClipRRect(
-                              child: Image.asset(
-                                'assets/images/explainer/profile.png',
-                                fit: BoxFit.cover,
+                            SizedBox(
+                              width: 1.w,
+                            ),
+                            SizedBox(
+                              height: 142.h,
+                              width: 142.w,
+                              child: ClipRRect(
+                                child: Image.asset(
+                                  'assets/images/explainer/profile.png',
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            width: 1.w,
-                          ),
-                          SizedBox(
-                            height: 142.h,
-                            width: 142.w,
-                            child: ClipRRect(
-                              child: Image.asset(
-                                'assets/images/explainer/profile.png',
-                                fit: BoxFit.cover,
+                            SizedBox(
+                              width: 1.w,
+                            ),
+                            SizedBox(
+                              height: 142.h,
+                              width: 142.w,
+                              child: ClipRRect(
+                                child: Image.asset(
+                                  'assets/images/explainer/profile.png',
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            SizedBox(
+                              height: 142.h,
+                              width: 142.w,
+                              child: ClipRRect(
+                                child: Image.asset(
+                                  'assets/images/explainer/profile.png',
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 1.w,
+                            ),
+                            SizedBox(
+                              height: 142.h,
+                              width: 142.w,
+                              child: ClipRRect(
+                                child: Image.asset(
+                                  'assets/images/explainer/profile.png',
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 1.w,
+                            ),
+                            SizedBox(
+                              height: 142.h,
+                              width: 142.w,
+                              child: ClipRRect(
+                                child: Image.asset(
+                                  'assets/images/explainer/profile.png',
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            SizedBox(
+                              height: 142.h,
+                              width: 142.w,
+                              child: ClipRRect(
+                                child: Image.asset(
+                                  'assets/images/explainer/profile.png',
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 1.w,
+                            ),
+                            SizedBox(
+                              height: 142.h,
+                              width: 142.w,
+                              child: ClipRRect(
+                                child: Image.asset(
+                                  'assets/images/explainer/profile.png',
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 1.w,
+                            ),
+                            SizedBox(
+                              height: 142.h,
+                              width: 142.w,
+                              child: ClipRRect(
+                                child: Image.asset(
+                                  'assets/images/explainer/profile.png',
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            SizedBox(
+                              height: 142.h,
+                              width: 142.w,
+                              child: ClipRRect(
+                                child: Image.asset(
+                                  'assets/images/explainer/profile.png',
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 1.w,
+                            ),
+                            SizedBox(
+                              height: 142.h,
+                              width: 142.w,
+                              child: ClipRRect(
+                                child: Image.asset(
+                                  'assets/images/explainer/profile.png',
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 1.w,
+                            ),
+                            SizedBox(
+                              height: 142.h,
+                              width: 142.w,
+                              child: ClipRRect(
+                                child: Image.asset(
+                                  'assets/images/explainer/profile.png',
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              )
+                )
+              else if (_selectedIndex == 1)
+                const Text('data')
+              else
+                const Text('dsdfsdfata'),
             ],
           ),
         ),

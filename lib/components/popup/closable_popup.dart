@@ -40,7 +40,7 @@ Future<dynamic> showClosablePopup({
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 14.sp,
-                    color: const Color(0xFF212221).withOpacity(0.6),
+                    color: const Color(0xFF212221).withValues(alpha: 0.6),
                   ),
                 ),
               SizedBox(
@@ -58,7 +58,7 @@ Future<dynamic> showClosablePopup({
               child: Container(
                 padding: EdgeInsets.all(8.w),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF9FA482).withOpacity(0.42),
+                  color: const Color(0xFF9FA482).withValues(alpha: 0.42),
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(

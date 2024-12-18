@@ -1,4 +1,4 @@
-package com.example.hooked_up
+package com.uno.hookedup
 
 import io.flutter.embedding.android.FlutterActivity
 
