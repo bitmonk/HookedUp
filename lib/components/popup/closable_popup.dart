@@ -13,6 +13,7 @@ Future<dynamic> showClosablePopup({
   return showDialog(
     context: context,
     builder: (context) => AlertDialog(
+      backgroundColor: Color(0xFFF5F5F5),
       contentPadding: EdgeInsets.fromLTRB(26.w, 19.h, 32.w, 31.h),
       title: Stack(
         children: [

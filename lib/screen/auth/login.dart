@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,6 +15,40 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  Future<void> loginUserWithEmailAndPassword() async {
+    try {
+      final userCredential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
+      );
+      if (userCredential.user != null) {
+        // Navigate to the home feed only if the user is authenticated
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HomeSocialFeed(),
+          ),
+        );
+      }
+      print(userCredential);
+    } on FirebaseAuthException catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(e.message ?? 'Login failed')),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final keyboardVisible = MediaQuery.of(context).viewInsets.bottom > 0;
@@ -51,6 +86,8 @@ class _LoginPageState extends State<LoginPage> {
                   height: keyboardVisible ? 10.h : 61.h,
                 ),
                 TextField(
+                  controller: _emailController,
+                  keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     labelText: 'Email',
                     labelStyle: TextStyle(fontSize: 16.sp), // Responsive label
@@ -70,6 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                   height: keyboardVisible ? 10.h : 12.h,
                 ),
                 TextField(
+                  controller: _passwordController,
                   obscureText: true,
                   decoration: InputDecoration(
                     labelText: 'Password',
@@ -93,13 +131,8 @@ class _LoginPageState extends State<LoginPage> {
                     width: double.infinity,
                     child: GreenButton(
                       text: 'CONFIRM',
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const HomeSocialFeed(),
-                          ),
-                        );
+                      onPressed: () async {
+                        await loginUserWithEmailAndPassword();
                       },
                     )),
                 TextButton(
