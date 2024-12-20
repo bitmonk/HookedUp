@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:hooked_up/components/form_input_field.dart';
 import 'package:hooked_up/components/green_button.dart';
+import 'package:hooked_up/controllers/auth_controller.dart';
 import 'package:hooked_up/screen/auth/upload_profile.dart';
 
 class CreateAccount extends StatefulWidget {
@@ -13,6 +15,7 @@ class CreateAccount extends StatefulWidget {
 }
 
 class _CreateAccountState extends State<CreateAccount> {
+  final authController = Get.put(AuthController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,8 +85,12 @@ class _CreateAccountState extends State<CreateAccount> {
                       SizedBox(
                         height: 12.h,
                       ),
-                      const FormInputField(
-                          labelText: 'Email', obscureText: false),
+                      FormInputField(
+                          onChanged: (value) {
+                            authController.email.value = value;
+                          },
+                          labelText: 'Email',
+                          obscureText: false),
                       SizedBox(
                         height: 12.h,
                       ),
@@ -107,12 +114,7 @@ class _CreateAccountState extends State<CreateAccount> {
                         child: GreenButton(
                             text: 'NEXT',
                             onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const UploadProfile(),
-                                ),
-                              );
+                              Get.to(UploadProfile());
                             }),
                       ),
                     ],

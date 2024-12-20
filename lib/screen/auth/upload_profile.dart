@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:hooked_up/components/green_button.dart';
 import 'package:hooked_up/screen/auth/phone_verification.dart';
 import 'package:image_picker/image_picker.dart';
@@ -154,12 +155,7 @@ class _UploadProfileState extends State<UploadProfile> {
                         child: GreenButton(
                           text: 'NEXT',
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const PhoneVerification()),
-                            );
+                            Get.to(PhoneVerification());
                           },
                         ),
                       ),

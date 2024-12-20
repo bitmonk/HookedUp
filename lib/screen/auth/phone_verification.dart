@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:hooked_up/components/green_button.dart';
 import 'package:hooked_up/screen/auth/create_password.dart';
 import 'package:pinput/pinput.dart';
@@ -110,12 +111,7 @@ class _PhoneVerificationState extends State<PhoneVerification> {
                         child: GreenButton(
                           text: 'NEXT',
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const CreatePassword(),
-                              ),
-                            );
+                            Get.to(CreatePassword());
                           },
                         ),
                       ),

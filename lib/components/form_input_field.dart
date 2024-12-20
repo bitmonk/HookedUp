@@ -4,8 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class FormInputField extends StatelessWidget {
   final String labelText;
   final bool obscureText;
-  const FormInputField(
-      {super.key, required this.labelText, required this.obscureText});
+  final Function(String)? onChanged;
+  const FormInputField({
+    super.key,
+    required this.labelText,
+    required this.obscureText,
+    this.onChanged,
+  });
 
   @override
   Widget build(BuildContext context) {

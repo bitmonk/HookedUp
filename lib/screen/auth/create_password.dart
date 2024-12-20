@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:hooked_up/components/form_input_field.dart';
 import 'package:hooked_up/components/green_button.dart';
-import 'package:hooked_up/screen/auth/i_am_a_page.dart';
+import 'package:hooked_up/controllers/auth_controller.dart';
 
 class CreatePassword extends StatefulWidget {
   const CreatePassword({super.key});
@@ -13,6 +14,7 @@ class CreatePassword extends StatefulWidget {
 }
 
 class _CreatePasswordState extends State<CreatePassword> {
+  final authController = Get.find<AuthController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -106,8 +108,12 @@ class _CreatePasswordState extends State<CreatePassword> {
                       SizedBox(
                         height: 24.h,
                       ),
-                      const FormInputField(
-                          labelText: 'Password', obscureText: true),
+                      FormInputField(
+                          onChanged: (value) {
+                            authController.password.value = value;
+                          },
+                          labelText: 'Password',
+                          obscureText: true),
                       SizedBox(
                         height: 12.h,
                       ),
@@ -121,12 +127,7 @@ class _CreatePasswordState extends State<CreatePassword> {
                         child: GreenButton(
                             text: 'NEXT',
                             onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const IAmAPage(),
-                                ),
-                              );
+                              authController.registerUser();
                             }),
                       ),
                     ],
