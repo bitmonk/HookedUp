@@ -189,13 +189,15 @@ class _MyProfileState extends State<MyProfile> {
                 ),
               )
             else if (_selectedIndex == 1)
+              const Text('data')
+            else
               Expanded(
                 child: ListView(
                   children: [
                     Padding(
                       padding:
                           EdgeInsets.only(left: 24.w, top: 24.h, right: 24.w),
-                      child: Container(
+                      child: SizedBox(
                         // height: 38.h,
                         width: double.infinity,
                         // color: Colors.grey,
@@ -231,6 +233,31 @@ class _MyProfileState extends State<MyProfile> {
                               title: "Item Title",
                               desctiption: 'Text description',
                             ),
+                            SizedBox(
+                              height: 12.h,
+                            ),
+                            CustomBucketListItem(
+                              title: "Item Title",
+                              desctiption: 'Text description',
+                            ),
+                            SizedBox(
+                              height: 12.h,
+                            ),
+                            CustomBucketListItem(
+                              title: "Item Title",
+                              desctiption: 'Text description',
+                            ),
+                            SizedBox(
+                              height: 12.h,
+                            ),
+                            CustomBucketListItem(
+                              title: "Item Title",
+                              desctiption: 'Text description',
+                              options: true,
+                            ),
+                            SizedBox(
+                              height: 12.h,
+                            ),
                           ],
                         ),
                       ),
@@ -238,8 +265,6 @@ class _MyProfileState extends State<MyProfile> {
                   ],
                 ),
               )
-            else
-              const Text('Bucket List'),
           ],
         ),
       ),
