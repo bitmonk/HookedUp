@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooked_up/components/profile/bucket_list_item.dart';
+import 'package:hooked_up/components/profile/event_card.dart';
 import 'package:hooked_up/model/dummy_data.dart';
 
 class MyProfile extends StatefulWidget {
@@ -189,7 +190,13 @@ class _MyProfileState extends State<MyProfile> {
                 ),
               )
             else if (_selectedIndex == 1)
-              const Text('data')
+              Expanded(
+                child: ListView(
+                  children: [
+                    EventCard(),
+                  ],
+                ),
+              )
             else
               Expanded(
                 child: ListView(
