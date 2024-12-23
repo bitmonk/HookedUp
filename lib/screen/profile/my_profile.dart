@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooked_up/components/profile/bucket_list_item.dart';
 import 'package:hooked_up/components/profile/event_card.dart';
 import 'package:hooked_up/model/dummy_data.dart';
+import 'package:hooked_up/screen/profile/my_connections.dart';
 
 class MyProfile extends StatefulWidget {
   const MyProfile({super.key});
@@ -59,7 +60,7 @@ class _MyProfileState extends State<MyProfile> {
                             'Location, location',
                             style: TextStyle(
                               fontSize: 12.sp,
-                              color: const Color(0xFF212221).withOpacity(0.5),
+                              color: const Color(0xFF212221).withAlpha(50),
                             ),
                           ),
                           Text(
@@ -74,45 +75,62 @@ class _MyProfileState extends State<MyProfile> {
                       SizedBox(
                         width: 43.w,
                       ),
-                      Column(
-                        children: [
-                          Text(
-                            '10',
-                            style: TextStyle(
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.w700,
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _selectedIndex = 2;
+                          });
+                        },
+                        child: Column(
+                          children: [
+                            Text(
+                              '10',
+                              style: TextStyle(
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w700,
+                              ),
                             ),
-                          ),
-                          Text(
-                            'Bucket List',
-                            style: TextStyle(
-                              fontSize: 9.sp,
-                              color: const Color(0xFF212221).withOpacity(0.6),
+                            Text(
+                              'Bucket List',
+                              style: TextStyle(
+                                fontSize: 9.sp,
+                                color: const Color(0xFF212221).withAlpha(60),
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                       SizedBox(
                         width: 29.w,
                       ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text(
-                            '210',
-                            style: TextStyle(
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.w700,
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const MyConnections(),
                             ),
-                          ),
-                          Text(
-                            'Connections',
-                            style: TextStyle(
-                              fontSize: 9.sp,
-                              color: const Color(0xFF212221).withOpacity(0.6),
+                          );
+                        },
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              '210',
+                              style: TextStyle(
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w700,
+                              ),
                             ),
-                          ),
-                        ],
+                            Text(
+                              'Connections',
+                              style: TextStyle(
+                                fontSize: 9.sp,
+                                color: const Color(0xFF212221).withAlpha(60),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -191,10 +209,10 @@ class _MyProfileState extends State<MyProfile> {
               )
             else if (_selectedIndex == 1)
               Expanded(
-                child: ListView(
-                  children: [
-                    EventCard(),
-                  ],
+                child: ListView.separated(
+                  itemCount: 8,
+                  itemBuilder: (context, index) => EventCard(),
+                  separatorBuilder: (context, index) => SizedBox(height: 12.h),
                 ),
               )
             else
@@ -261,6 +279,38 @@ class _MyProfileState extends State<MyProfile> {
                               title: "Item Title",
                               desctiption: 'Text description',
                               options: true,
+                            ),
+                            SizedBox(
+                              height: 12.h,
+                            ),
+                            CustomBucketListItem(
+                              title: "Item Title",
+                              desctiption: 'Text description',
+                              options: true,
+                            ),
+                            SizedBox(
+                              height: 12.h,
+                            ),
+                            CustomBucketListItem(
+                              title: "Item Title",
+                              desctiption: 'Text description',
+                              // options: true,
+                            ),
+                            SizedBox(
+                              height: 12.h,
+                            ),
+                            CustomBucketListItem(
+                              title: "Item Title",
+                              desctiption: 'Text description',
+                              options: true,
+                            ),
+                            SizedBox(
+                              height: 12.h,
+                            ),
+                            CustomBucketListItem(
+                              title: "Item Title",
+                              desctiption: 'Text description',
+                              // options: true,
                             ),
                             SizedBox(
                               height: 12.h,
