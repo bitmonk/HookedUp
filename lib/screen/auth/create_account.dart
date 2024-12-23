@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -16,6 +18,33 @@ class CreateAccount extends StatefulWidget {
 
 class _CreateAccountState extends State<CreateAccount> {
   final authController = Get.put(AuthController());
+  final TextEditingController _dobController = TextEditingController();
+  final TextEditingController _fullNameController = TextEditingController();
+  final TextEditingController _userHandle = TextEditingController();
+  final TextEditingController _phoneNumber = TextEditingController();
+  final TextEditingController _location = TextEditingController();
+
+  Future<void> uploadUserDetailsToDb() async {
+    try {
+      FirebaseFirestore.instance.collection("userDetails").add({});
+    } catch (e) {}
+  }
+
+  Future<void> _selectDate(BuildContext context) async {
+    DateTime? selectedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+    );
+
+    if (selectedDate != null && selectedDate != DateTime.now()) {
+      setState(() {
+        _dobController.text = '${selectedDate.toLocal()}'.split(' ')[0];
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,13 +104,17 @@ class _CreateAccountState extends State<CreateAccount> {
                       SizedBox(
                         height: 24.h,
                       ),
-                      const FormInputField(
-                          labelText: 'Full Name', obscureText: false),
+                      FormInputField(
+                          controller: _fullNameController,
+                          labelText: 'Full Name',
+                          obscureText: false),
                       SizedBox(
                         height: 12.h,
                       ),
-                      const FormInputField(
-                          labelText: 'Handle', obscureText: false),
+                      FormInputField(
+                          controller: _userHandle,
+                          labelText: 'Handle',
+                          obscureText: false),
                       SizedBox(
                         height: 12.h,
                       ),
@@ -94,13 +127,35 @@ class _CreateAccountState extends State<CreateAccount> {
                       SizedBox(
                         height: 12.h,
                       ),
-                      const FormInputField(
-                          labelText: 'Phone Number', obscureText: false),
+                      FormInputField(
+                          keyboardType: TextInputType.number,
+                          controller: _phoneNumber,
+                          labelText: 'Phone Number',
+                          obscureText: false),
                       SizedBox(
                         height: 12.h,
                       ),
-                      const FormInputField(
-                          labelText: 'Date of Birth', obscureText: false),
+                      GestureDetector(
+                        onTap: () => _selectDate(context),
+                        child: AbsorbPointer(
+                          child: TextFormField(
+                            controller: _dobController,
+                            decoration: InputDecoration(
+                              labelText: 'Date of Birth',
+                              fillColor: Color(0xFFF5F5F5),
+                              filled: true,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20.r),
+                                borderSide: BorderSide.none,
+                              ),
+                              contentPadding: EdgeInsets.symmetric(
+                                horizontal: 24.w,
+                                vertical: 18.h,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                       SizedBox(
                         height: 12.h,
                       ),

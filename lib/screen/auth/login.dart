@@ -26,6 +26,15 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future<void> loginUserWithEmailAndPassword() async {
+    if (_emailController.text.trim().isEmpty ||
+        _passwordController.text.trim().isEmpty) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Please enter both email and password')),
+        );
+      }
+      return;
+    }
     try {
       final userCredential =
           await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -33,19 +42,23 @@ class _LoginPageState extends State<LoginPage> {
         password: _passwordController.text.trim(),
       );
       if (userCredential.user != null) {
-        // Navigate to the home feed only if the user is authenticated
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => HomeSocialFeed(),
-          ),
-        );
+        if (mounted) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => HomeSocialFeed(),
+            ),
+          );
+        }
       }
       print(userCredential);
     } on FirebaseAuthException catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(e.message ?? 'Login failed')),
-      );
+      print('Error: ${e.message}');
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(e.message ?? 'Login failed')),
+        );
+      }
     }
   }
 
@@ -61,13 +74,13 @@ class _LoginPageState extends State<LoginPage> {
           child: Padding(
             padding: EdgeInsets.symmetric(
               horizontal: 45.w,
-            ), // Responsive padding
+            ),
             child: Column(
               children: [
-                SizedBox(height: 100.h), // Responsive vertical spacing
+                SizedBox(height: 100.h),
                 SvgPicture.asset(
                   'assets/images/splash/logo.svg',
-                  height: 141.h, // Adjusted logo size
+                  height: 141.h,
                   width: 145.w,
                 ),
                 SizedBox(
@@ -78,7 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                   style: TextStyle(
                     fontFamily: 'Chronograph',
                     color: const Color(0xFFD88F48),
-                    fontSize: 45.sp, // Responsive font size
+                    fontSize: 45.sp,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -90,7 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     labelText: 'Email',
-                    labelStyle: TextStyle(fontSize: 16.sp), // Responsive label
+                    labelStyle: TextStyle(fontSize: 16.sp),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.r),
                       borderSide: BorderSide.none,
@@ -111,7 +124,7 @@ class _LoginPageState extends State<LoginPage> {
                   obscureText: true,
                   decoration: InputDecoration(
                     labelText: 'Password',
-                    labelStyle: TextStyle(fontSize: 16.sp), // Responsive label
+                    labelStyle: TextStyle(fontSize: 16.sp),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.r),
                       borderSide: BorderSide.none,
@@ -152,10 +165,10 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 60.h), // Adjusted spacing
+                SizedBox(height: 60.h),
                 Text(
                   'Still don\'t have an account?',
-                  style: TextStyle(fontSize: 14.sp), // Responsive text
+                  style: TextStyle(fontSize: 14.sp),
                 ),
                 SizedBox(height: 10.h),
                 SizedBox(
@@ -180,7 +193,7 @@ class _LoginPageState extends State<LoginPage> {
                       'CREATE ACCOUNT',
                       style: TextStyle(
                         color: const Color(0xFFF3FAFE),
-                        fontSize: 22.sp, // Responsive font size
+                        fontSize: 22.sp,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
