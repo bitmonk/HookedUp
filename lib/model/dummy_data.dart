@@ -29,6 +29,114 @@ List<FeedPostModel> dummyFeedPosts = [
     timeAgo: '2 hours ago',
   ),
   FeedPostModel(
+    userName: 'j.williams',
+    location: 'New York, USA',
+    profileImage: 'assets/images/explainer/fishing.png',
+    postImage: 'assets/images/main/fishing_pic.png',
+    likeCount: 200,
+    description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit amet',
+    comments: [
+      Comment(
+        userName: 'Jane Smith',
+        text: 'Lorem ipsum!',
+        timeAgo: '5h',
+      ),
+      Comment(
+        userName: 'Bob Brown',
+        text: 'Great post!',
+        timeAgo: '10m',
+      ),
+      Comment(
+        userName: 'Alice Green',
+        text: 'Looking awesome!',
+        timeAgo: '15h',
+      ),
+    ],
+    timeAgo: '2 hours ago',
+  ),
+  FeedPostModel(
+    userName: 'j.williams',
+    location: 'New York, USA',
+    profileImage: 'assets/images/explainer/fishing.png',
+    postImage: 'assets/images/main/fishing_pic.png',
+    likeCount: 200,
+    description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit amet',
+    comments: [
+      Comment(
+        userName: 'Jane Smith',
+        text: 'Lorem ipsum!',
+        timeAgo: '5h',
+      ),
+      Comment(
+        userName: 'Bob Brown',
+        text: 'Great post!',
+        timeAgo: '10m',
+      ),
+      Comment(
+        userName: 'Alice Green',
+        text: 'Looking awesome!',
+        timeAgo: '15h',
+      ),
+    ],
+    timeAgo: '2 hours ago',
+  ),
+  FeedPostModel(
+    userName: 'j.williams',
+    location: 'New York, USA',
+    profileImage: 'assets/images/explainer/fishing.png',
+    postImage: 'assets/images/main/fishing_pic.png',
+    likeCount: 200,
+    description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit amet',
+    comments: [
+      Comment(
+        userName: 'Jane Smith',
+        text: 'Lorem ipsum!',
+        timeAgo: '5h',
+      ),
+      Comment(
+        userName: 'Bob Brown',
+        text: 'Great post!',
+        timeAgo: '10m',
+      ),
+      Comment(
+        userName: 'Alice Green',
+        text: 'Looking awesome!',
+        timeAgo: '15h',
+      ),
+    ],
+    timeAgo: '2 hours ago',
+  ),
+  FeedPostModel(
+    userName: 'j.williams',
+    location: 'New York, USA',
+    profileImage: 'assets/images/explainer/fishing.png',
+    postImage: 'assets/images/main/fishing_pic.png',
+    likeCount: 200,
+    description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit amet',
+    comments: [
+      Comment(
+        userName: 'Jane Smith',
+        text: 'Lorem ipsum!',
+        timeAgo: '5h',
+      ),
+      Comment(
+        userName: 'Bob Brown',
+        text: 'Great post!',
+        timeAgo: '10m',
+      ),
+      Comment(
+        userName: 'Alice Green',
+        text: 'Looking awesome!',
+        timeAgo: '15h',
+      ),
+    ],
+    timeAgo: '2 hours ago',
+  ),
+  FeedPostModel(
     userName: 'm.smith',
     location: 'Los Angeles, USA',
     profileImage: 'assets/images/explainer/profile.png',
@@ -54,6 +162,248 @@ List<FeedPostModel> dummyFeedPosts = [
       ),
     ],
     timeAgo: '4 hours ago',
+  ),
+  FeedPostModel(
+    userName: 'l.jones',
+    location: 'London, UK',
+    profileImage: 'assets/images/explainer/profile2.png',
+    postImage: 'assets/images/explainer/profile2.png',
+    likeCount: 350,
+    description:
+        'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    comments: [
+      Comment(
+        userName: 'Olivia Brown',
+        text: 'Incredible!',
+        timeAgo: '2h',
+      ),
+      Comment(
+        userName: 'Liam Black',
+        text: 'This is the best!',
+        timeAgo: '3d',
+      ),
+    ],
+    timeAgo: '1 day ago',
+  ),
+  FeedPostModel(
+    userName: 'l.jones',
+    location: 'London, UK',
+    profileImage: 'assets/images/explainer/profile2.png',
+    postImage: 'assets/images/explainer/profile2.png',
+    likeCount: 350,
+    description:
+        'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    comments: [
+      Comment(
+        userName: 'Olivia Brown',
+        text: 'Incredible!',
+        timeAgo: '2h',
+      ),
+      Comment(
+        userName: 'Liam Black',
+        text: 'This is the best!',
+        timeAgo: '3d',
+      ),
+    ],
+    timeAgo: '1 day ago',
+  ),
+  FeedPostModel(
+    userName: 'l.jones',
+    location: 'London, UK',
+    profileImage: 'assets/images/explainer/profile2.png',
+    postImage: 'assets/images/explainer/profile2.png',
+    likeCount: 350,
+    description:
+        'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    comments: [
+      Comment(
+        userName: 'Olivia Brown',
+        text: 'Incredible!',
+        timeAgo: '2h',
+      ),
+      Comment(
+        userName: 'Liam Black',
+        text: 'This is the best!',
+        timeAgo: '3d',
+      ),
+    ],
+    timeAgo: '1 day ago',
+  ),
+  FeedPostModel(
+    userName: 'l.jones',
+    location: 'London, UK',
+    profileImage: 'assets/images/explainer/profile2.png',
+    postImage: 'assets/images/explainer/profile2.png',
+    likeCount: 350,
+    description:
+        'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    comments: [
+      Comment(
+        userName: 'Olivia Brown',
+        text: 'Incredible!',
+        timeAgo: '2h',
+      ),
+      Comment(
+        userName: 'Liam Black',
+        text: 'This is the best!',
+        timeAgo: '3d',
+      ),
+    ],
+    timeAgo: '1 day ago',
+  ),
+  FeedPostModel(
+    userName: 'l.jones',
+    location: 'London, UK',
+    profileImage: 'assets/images/explainer/profile2.png',
+    postImage: 'assets/images/explainer/profile2.png',
+    likeCount: 350,
+    description:
+        'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    comments: [
+      Comment(
+        userName: 'Olivia Brown',
+        text: 'Incredible!',
+        timeAgo: '2h',
+      ),
+      Comment(
+        userName: 'Liam Black',
+        text: 'This is the best!',
+        timeAgo: '3d',
+      ),
+    ],
+    timeAgo: '1 day ago',
+  ),
+  FeedPostModel(
+    userName: 'l.jones',
+    location: 'London, UK',
+    profileImage: 'assets/images/explainer/profile2.png',
+    postImage: 'assets/images/explainer/profile2.png',
+    likeCount: 350,
+    description:
+        'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    comments: [
+      Comment(
+        userName: 'Olivia Brown',
+        text: 'Incredible!',
+        timeAgo: '2h',
+      ),
+      Comment(
+        userName: 'Liam Black',
+        text: 'This is the best!',
+        timeAgo: '3d',
+      ),
+    ],
+    timeAgo: '1 day ago',
+  ),
+  FeedPostModel(
+    userName: 'l.jones',
+    location: 'London, UK',
+    profileImage: 'assets/images/explainer/profile2.png',
+    postImage: 'assets/images/explainer/profile2.png',
+    likeCount: 350,
+    description:
+        'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    comments: [
+      Comment(
+        userName: 'Olivia Brown',
+        text: 'Incredible!',
+        timeAgo: '2h',
+      ),
+      Comment(
+        userName: 'Liam Black',
+        text: 'This is the best!',
+        timeAgo: '3d',
+      ),
+    ],
+    timeAgo: '1 day ago',
+  ),
+  FeedPostModel(
+    userName: 'l.jones',
+    location: 'London, UK',
+    profileImage: 'assets/images/explainer/profile2.png',
+    postImage: 'assets/images/explainer/profile2.png',
+    likeCount: 350,
+    description:
+        'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    comments: [
+      Comment(
+        userName: 'Olivia Brown',
+        text: 'Incredible!',
+        timeAgo: '2h',
+      ),
+      Comment(
+        userName: 'Liam Black',
+        text: 'This is the best!',
+        timeAgo: '3d',
+      ),
+    ],
+    timeAgo: '1 day ago',
+  ),
+  FeedPostModel(
+    userName: 'l.jones',
+    location: 'London, UK',
+    profileImage: 'assets/images/explainer/profile2.png',
+    postImage: 'assets/images/explainer/profile2.png',
+    likeCount: 350,
+    description:
+        'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    comments: [
+      Comment(
+        userName: 'Olivia Brown',
+        text: 'Incredible!',
+        timeAgo: '2h',
+      ),
+      Comment(
+        userName: 'Liam Black',
+        text: 'This is the best!',
+        timeAgo: '3d',
+      ),
+    ],
+    timeAgo: '1 day ago',
+  ),
+  FeedPostModel(
+    userName: 'l.jones',
+    location: 'London, UK',
+    profileImage: 'assets/images/explainer/profile2.png',
+    postImage: 'assets/images/explainer/profile2.png',
+    likeCount: 350,
+    description:
+        'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    comments: [
+      Comment(
+        userName: 'Olivia Brown',
+        text: 'Incredible!',
+        timeAgo: '2h',
+      ),
+      Comment(
+        userName: 'Liam Black',
+        text: 'This is the best!',
+        timeAgo: '3d',
+      ),
+    ],
+    timeAgo: '1 day ago',
+  ),
+  FeedPostModel(
+    userName: 'l.jones',
+    location: 'London, UK',
+    profileImage: 'assets/images/explainer/profile2.png',
+    postImage: 'assets/images/explainer/profile2.png',
+    likeCount: 350,
+    description:
+        'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    comments: [
+      Comment(
+        userName: 'Olivia Brown',
+        text: 'Incredible!',
+        timeAgo: '2h',
+      ),
+      Comment(
+        userName: 'Liam Black',
+        text: 'This is the best!',
+        timeAgo: '3d',
+      ),
+    ],
+    timeAgo: '1 day ago',
   ),
   FeedPostModel(
     userName: 'l.jones',

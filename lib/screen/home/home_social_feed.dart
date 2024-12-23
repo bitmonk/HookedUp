@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooked_up/components/home/feed_post.dart';
 import 'package:hooked_up/components/navigation/custom_drawer.dart';
-import 'package:hooked_up/screen/auth/login.dart';
 import 'package:hooked_up/screen/chat/chat_home.dart';
 import 'package:hooked_up/screen/create_post/create_post_home.dart';
 import 'package:hooked_up/screen/profile/my_profile.dart';

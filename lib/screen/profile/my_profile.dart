@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hooked_up/components/popup/add_bucket_item_list.dart';
 import 'package:hooked_up/components/profile/bucket_list_item.dart';
 import 'package:hooked_up/components/profile/event_card.dart';
 import 'package:hooked_up/model/dummy_data.dart';
 import 'package:hooked_up/screen/profile/my_connections.dart';
+import 'package:hooked_up/screen/profile/saved_posts.dart';
 
 class MyProfile extends StatefulWidget {
   const MyProfile({super.key});
@@ -63,11 +65,21 @@ class _MyProfileState extends State<MyProfile> {
                               color: const Color(0xFF212221).withAlpha(50),
                             ),
                           ),
-                          Text(
-                            'My saved posts',
-                            style: TextStyle(
-                              fontSize: 14.sp,
-                              decoration: TextDecoration.underline,
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const SavedPosts(),
+                                ),
+                              );
+                            },
+                            child: Text(
+                              'My saved posts',
+                              style: TextStyle(
+                                fontSize: 14.sp,
+                                decoration: TextDecoration.underline,
+                              ),
                             ),
                           ),
                         ],
@@ -223,9 +235,7 @@ class _MyProfileState extends State<MyProfile> {
                       padding:
                           EdgeInsets.only(left: 24.w, top: 24.h, right: 24.w),
                       child: SizedBox(
-                        // height: 38.h,
                         width: double.infinity,
-                        // color: Colors.grey,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -240,14 +250,23 @@ class _MyProfileState extends State<MyProfile> {
                                     color: Color(0xFFD88F48),
                                   ),
                                 ),
-                                Container(
-                                  height: 48.h,
-                                  width: 48.h,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(50.r),
-                                    color: Color(0xFFD7D9C9),
+                                GestureDetector(
+                                  onTap: () {
+                                    showAddBucketItemList(
+                                        context: context,
+                                        title: 'Add Bucket List Item',
+                                        buttonText: 'SAVE',
+                                        onPressed: () {});
+                                  },
+                                  child: Container(
+                                    height: 48.h,
+                                    width: 48.h,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(50.r),
+                                      color: Color(0xFFD7D9C9),
+                                    ),
+                                    child: Icon(Icons.add),
                                   ),
-                                  child: Icon(Icons.add),
                                 )
                               ],
                             ),
@@ -294,7 +313,6 @@ class _MyProfileState extends State<MyProfile> {
                             CustomBucketListItem(
                               title: "Item Title",
                               desctiption: 'Text description',
-                              // options: true,
                             ),
                             SizedBox(
                               height: 12.h,
@@ -310,7 +328,6 @@ class _MyProfileState extends State<MyProfile> {
                             CustomBucketListItem(
                               title: "Item Title",
                               desctiption: 'Text description',
-                              // options: true,
                             ),
                             SizedBox(
                               height: 12.h,
