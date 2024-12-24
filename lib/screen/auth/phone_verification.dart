@@ -111,7 +111,7 @@ class _PhoneVerificationState extends State<PhoneVerification> {
                         child: GreenButton(
                           text: 'NEXT',
                           onPressed: () {
-                            Get.to(CreatePassword());
+                            Get.to(() => CreatePassword());
                           },
                         ),
                       ),

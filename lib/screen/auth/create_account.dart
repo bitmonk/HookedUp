@@ -24,10 +24,23 @@ class _CreateAccountState extends State<CreateAccount> {
   final TextEditingController _phoneNumber = TextEditingController();
   final TextEditingController _location = TextEditingController();
 
-  Future<void> uploadUserDetailsToDb() async {
+  Future<bool> uploadUserDetailsToDb() async {
     try {
-      FirebaseFirestore.instance.collection("userDetails").add({});
-    } catch (e) {}
+      DateTime dob = DateTime.parse(_dobController.text.trim());
+      final data =
+          await FirebaseFirestore.instance.collection("userDetails").add({
+        "full_name": _fullNameController.text.trim(),
+        "user_handle": _userHandle.text.trim(),
+        "phone_number": _phoneNumber.text.trim(),
+        "dob": Timestamp.fromDate(dob),
+        "location": _location.text.trim(),
+      });
+      print(data.id);
+      return true;
+    } catch (e) {
+      print("Error uploading user details: $e");
+      return false;
+    }
   }
 
   Future<void> _selectDate(BuildContext context) async {
@@ -41,6 +54,7 @@ class _CreateAccountState extends State<CreateAccount> {
     if (selectedDate != null && selectedDate != DateTime.now()) {
       setState(() {
         _dobController.text = '${selectedDate.toLocal()}'.split(' ')[0];
+        print(_dobController.text);
       });
     }
   }
@@ -120,7 +134,15 @@ class _CreateAccountState extends State<CreateAccount> {
                       ),
                       FormInputField(
                           onChanged: (value) {
-                            authController.email.value = value;
+                            authController.email.value = value.trim();
+                            print(
+                                'Updated Email: ${authController.email.value}');
+                          },
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Email cannot be empty..';
+                            }
+                            return null;
                           },
                           labelText: 'Email',
                           obscureText: false),
@@ -159,8 +181,10 @@ class _CreateAccountState extends State<CreateAccount> {
                       SizedBox(
                         height: 12.h,
                       ),
-                      const FormInputField(
-                          labelText: 'Location', obscureText: false),
+                      FormInputField(
+                          controller: _location,
+                          labelText: 'Location',
+                          obscureText: false),
                       SizedBox(
                         height: 160.h,
                       ),
@@ -168,8 +192,14 @@ class _CreateAccountState extends State<CreateAccount> {
                         width: double.infinity,
                         child: GreenButton(
                             text: 'NEXT',
-                            onPressed: () {
-                              Get.to(UploadProfile());
+                            onPressed: () async {
+                              bool uploadSuccess =
+                                  await uploadUserDetailsToDb();
+                              if (uploadSuccess) {
+                                Get.snackbar('Success', 'Success',
+                                    snackPosition: SnackPosition.TOP);
+                                Get.to(() => UploadProfile());
+                              }
                             }),
                       ),
                     ],

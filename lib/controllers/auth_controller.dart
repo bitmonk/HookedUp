@@ -2,17 +2,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 class AuthController extends GetxController {
-  var email = ''.obs;
-  var password = ''.obs;
-
+  RxString email = ''.obs;
+  RxString password = ''.obs;
   Future<void> registerUser() async {
+    print('Email: ${email.value}, Password: ${password.value}');
+    final trimmedEmail = email.value.trim();
+    final trimmedPassword = password.value.trim();
     try {
-      final trimmedEmail = email.value.trim();
-      final trimmedPassword = password.value.trim();
-
-      if (trimmedEmail.isEmpty || trimmedPassword.isEmpty) {
-        throw Exception('Email or Password cannot be empty.');
-      }
+      print('Email: $trimmedEmail, Password: $trimmedPassword');
 
       UserCredential userCredential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -25,6 +22,9 @@ class AuthController extends GetxController {
       print('Firebase Auth Error: $e');
       Get.snackbar('Error', e.message ?? 'Something went wrong.');
     } catch (e) {
+      if (trimmedEmail.isEmpty || trimmedPassword.isEmpty) {
+        throw Exception('Email or Password cannot be empty.');
+      }
       print('Error: $e');
       Get.snackbar('Error', e.toString());
     }

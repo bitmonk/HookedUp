@@ -155,7 +155,7 @@ class _UploadProfileState extends State<UploadProfile> {
                         child: GreenButton(
                           text: 'NEXT',
                           onPressed: () {
-                            Get.to(PhoneVerification());
+                            Get.to(() => PhoneVerification());
                           },
                         ),
                       ),

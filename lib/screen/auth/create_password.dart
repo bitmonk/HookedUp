@@ -110,7 +110,9 @@ class _CreatePasswordState extends State<CreatePassword> {
                       ),
                       FormInputField(
                           onChanged: (value) {
-                            authController.password.value = value;
+                            authController.password.value = value.trim();
+                            print(
+                                'Updated Password: ${authController.password.value}');
                           },
                           labelText: 'Password',
                           obscureText: true),
