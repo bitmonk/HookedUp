@@ -49,10 +49,11 @@ class _FormInputFieldState extends State<FormInputField> {
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20.r),
-          borderSide: BorderSide(
-            color: _isValid ? Color(0xFFF5F5F5) : Colors.red,
-            width: 1,
-          ),
+          borderSide: BorderSide.none,
+          // borderSide: BorderSide(
+          //   color: _isValid ? Color(0xFFF5F5F5) : Colors.red,
+          //   // width: 1,
+          // ),
         ),
         filled: true,
         fillColor: const Color(0xFFF5F5F5),

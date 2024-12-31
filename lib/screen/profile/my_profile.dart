@@ -229,111 +229,133 @@ class _MyProfileState extends State<MyProfile> {
               )
             else
               Expanded(
-                child: ListView(
+                child: Column(
                   children: [
                     Padding(
-                      padding:
-                          EdgeInsets.only(left: 24.w, top: 24.h, right: 24.w),
-                      child: SizedBox(
-                        width: double.infinity,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'My Bucket List',
-                                  style: TextStyle(
-                                    fontSize: 22.sp,
-                                    fontWeight: FontWeight.w700,
-                                    color: Color(0xFFD88F48),
+                      padding: EdgeInsets.symmetric(horizontal: 24.h),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'My Bucket List',
+                            style: TextStyle(
+                              fontSize: 22.sp,
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFFD88F48),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              showAddBucketItemList(
+                                  context: context,
+                                  title: 'Add Bucket List Item',
+                                  buttonText: 'SAVE',
+                                  onPressed: () {});
+                            },
+                            child: Container(
+                              height: 48.h,
+                              width: 48.h,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50.r),
+                                color: Color(0xFFD7D9C9),
+                              ),
+                              child: Icon(Icons.add),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: ListView(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(left: 24.w, right: 24.w),
+                            child: SizedBox(
+                              width: double.infinity,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    height: 24.h,
                                   ),
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    showAddBucketItemList(
-                                        context: context,
-                                        title: 'Add Bucket List Item',
-                                        buttonText: 'SAVE',
-                                        onPressed: () {});
-                                  },
-                                  child: Container(
-                                    height: 48.h,
-                                    width: 48.h,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50.r),
-                                      color: Color(0xFFD7D9C9),
-                                    ),
-                                    child: Icon(Icons.add),
+                                  CustomBucketListItem(
+                                    title: "Item Title",
+                                    desctiption: 'Text description',
                                   ),
-                                )
-                              ],
+                                  SizedBox(
+                                    height: 12.h,
+                                  ),
+                                  CustomBucketListItem(
+                                    title: "Item Title",
+                                    desctiption: 'Text description',
+                                  ),
+                                  SizedBox(
+                                    height: 12.h,
+                                  ),
+                                  CustomBucketListItem(
+                                    title: "Item Title",
+                                    desctiption: 'Text description',
+                                  ),
+                                  SizedBox(
+                                    height: 12.h,
+                                  ),
+                                  CustomBucketListItem(
+                                    title: "Item Title",
+                                    desctiption: 'Text description',
+                                    options: true,
+                                  ),
+                                  SizedBox(
+                                    height: 12.h,
+                                  ),
+                                  CustomBucketListItem(
+                                    title: "Item Title",
+                                    desctiption: 'Text description',
+                                    options: true,
+                                  ),
+                                  SizedBox(
+                                    height: 12.h,
+                                  ),
+                                  CustomBucketListItem(
+                                    title: "Item Title",
+                                    desctiption: 'Text description',
+                                  ),
+                                  SizedBox(
+                                    height: 12.h,
+                                  ),
+                                  CustomBucketListItem(
+                                    title: "Item Title",
+                                    desctiption: 'Text description',
+                                    options: true,
+                                  ),
+                                  SizedBox(
+                                    height: 12.h,
+                                  ),
+                                  CustomBucketListItem(
+                                    title: "Item Title",
+                                    desctiption: 'Text description',
+                                  ),
+                                  SizedBox(
+                                    height: 12.h,
+                                  ),
+                                  CustomBucketListItem(
+                                    title: "Item Title",
+                                    desctiption: 'Text description',
+                                  ),
+                                  SizedBox(
+                                    height: 12.h,
+                                  ),
+                                  CustomBucketListItem(
+                                    title: "Item Title",
+                                    desctiption: 'Text description',
+                                  ),
+                                  SizedBox(
+                                    height: 12.h,
+                                  ),
+                                ],
+                              ),
                             ),
-                            SizedBox(
-                              height: 24.h,
-                            ),
-                            CustomBucketListItem(
-                              title: "Item Title",
-                              desctiption: 'Text description',
-                            ),
-                            SizedBox(
-                              height: 12.h,
-                            ),
-                            CustomBucketListItem(
-                              title: "Item Title",
-                              desctiption: 'Text description',
-                            ),
-                            SizedBox(
-                              height: 12.h,
-                            ),
-                            CustomBucketListItem(
-                              title: "Item Title",
-                              desctiption: 'Text description',
-                            ),
-                            SizedBox(
-                              height: 12.h,
-                            ),
-                            CustomBucketListItem(
-                              title: "Item Title",
-                              desctiption: 'Text description',
-                              options: true,
-                            ),
-                            SizedBox(
-                              height: 12.h,
-                            ),
-                            CustomBucketListItem(
-                              title: "Item Title",
-                              desctiption: 'Text description',
-                              options: true,
-                            ),
-                            SizedBox(
-                              height: 12.h,
-                            ),
-                            CustomBucketListItem(
-                              title: "Item Title",
-                              desctiption: 'Text description',
-                            ),
-                            SizedBox(
-                              height: 12.h,
-                            ),
-                            CustomBucketListItem(
-                              title: "Item Title",
-                              desctiption: 'Text description',
-                              options: true,
-                            ),
-                            SizedBox(
-                              height: 12.h,
-                            ),
-                            CustomBucketListItem(
-                              title: "Item Title",
-                              desctiption: 'Text description',
-                            ),
-                            SizedBox(
-                              height: 12.h,
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ],

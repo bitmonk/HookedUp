@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooked_up/components/home/feed_post.dart';
 import 'package:hooked_up/components/navigation/custom_drawer.dart';
+import 'package:hooked_up/components/popup/report_closable_popup.dart';
 import 'package:hooked_up/screen/chat/chat_home.dart';
 import 'package:hooked_up/screen/create_post/create_post_home.dart';
 import 'package:hooked_up/screen/profile/my_profile.dart';
@@ -21,7 +22,7 @@ class _SocialFeedState extends State<HomeSocialFeed> {
   List<Widget> body = const [
     FeedPost(),
     OpenSeason(),
-    CreatePostHome(),
+    SizedBox(),
     ChatHome(),
     MyProfile(),
   ];
@@ -43,6 +44,124 @@ class _SocialFeedState extends State<HomeSocialFeed> {
         ),
       ),
       label: '',
+    );
+  }
+
+  void _showAddPostBottomSheet() {
+    showModalBottomSheet(
+      backgroundColor: Color(0xFFFFFFFC),
+      context: context,
+      isScrollControlled: true,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(20.r),
+        ),
+      ),
+      builder: (BuildContext context) {
+        return Padding(
+          padding: EdgeInsets.all(16.w),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        'Create a Post',
+                        style: TextStyle(
+                          fontSize: 22.sp,
+                          fontWeight: FontWeight.w700,
+                          color: Color(0xFFD88F48),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 33.h),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(8.w),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF9FA482).withValues(alpha: 0.42),
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Icon(
+                        Icons.close,
+                        color: Color(0xFF2B361C),
+                        size: 24,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 12.h),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const CreatePostHome(),
+                    ),
+                  );
+                },
+                child: Padding(
+                  padding: EdgeInsets.only(left: 26.w),
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/images/main/camera.svg',
+                        height: 24.h,
+                        width: 30.w,
+                      ),
+                      SizedBox(
+                        width: 12.w,
+                      ),
+                      Text(
+                        'Camera',
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 24.h),
+              GestureDetector(
+                onTap: () {},
+                child: Padding(
+                  padding: EdgeInsets.only(left: 26.w),
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/images/main/gallery.svg',
+                        height: 28.h,
+                        width: 30.w,
+                      ),
+                      SizedBox(
+                        width: 12.w,
+                      ),
+                      Text(
+                        'Photo Gallery',
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 12.h),
+            ],
+          ),
+        );
+      },
     );
   }
 
@@ -69,7 +188,15 @@ class _SocialFeedState extends State<HomeSocialFeed> {
               backgroundColor: const Color(0xFFD7D9C9),
               child: IconButton(
                 iconSize: 22,
-                onPressed: () {},
+                onPressed: () {
+                  showClosableReportPopup(
+                      context: context,
+                      title: 'Confirm Report',
+                      content:
+                          'Are you sure you want to report this user? This action will notify our team for review. Please provide details.',
+                      buttonText: 'SUBMIT',
+                      onPressed: () {});
+                },
                 icon: SvgPicture.asset(
                   'assets/images/icons/notification.svg',
                   height: 22.h,
@@ -111,9 +238,13 @@ class _SocialFeedState extends State<HomeSocialFeed> {
         child: BottomNavigationBar(
           currentIndex: _currentIndex,
           onTap: (int newIndex) {
-            setState(() {
-              _currentIndex = newIndex;
-            });
+            if (newIndex == 2) {
+              _showAddPostBottomSheet();
+            } else {
+              setState(() {
+                _currentIndex = newIndex;
+              });
+            }
           },
           type: BottomNavigationBarType.fixed,
           backgroundColor: const Color(0xFFFFFFFF),
