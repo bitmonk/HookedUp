@@ -33,6 +33,7 @@ dependencies:
   flutter_svg: ^2.0.14
   image_picker: ^1.1.2
   pinput: ^5.0.0
+  flutter_slidable: ^3.1.2
   # chewie: ^1.8.5
   # video_player: ^2.8.2
 

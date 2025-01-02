@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hooked_up/components/form_input_field.dart';
 import 'package:hooked_up/components/green_button.dart';
+import 'package:hooked_up/components/home/feed_post.dart';
 import 'package:hooked_up/components/home/my_bucket_list_item.dart';
 import 'package:hooked_up/components/home/tag_connection.dart';
+import 'package:hooked_up/components/popup/closable_popup.dart';
+import 'package:hooked_up/screen/auth/reset_pass.dart';
+import 'package:hooked_up/screen/home/home_social_feed.dart';
 import 'package:hooked_up/utils/colors.dart';
 
 class CreatePostHome extends StatefulWidget {
@@ -30,14 +35,37 @@ class _CreatePostHomeState extends State<CreatePostHome> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      'My Bucket List',
-                      style: TextStyle(
-                        fontSize: 22.sp,
-                        fontWeight: FontWeight.w700,
-                        color: Color(0xFFD88F48),
+                    Expanded(
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          'Create a Post',
+                          style: TextStyle(
+                            fontSize: 22.sp,
+                            fontWeight: FontWeight.w700,
+                            color: Color(0xFFD88F48),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 33.h),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(8.w),
+                        decoration: BoxDecoration(
+                          color:
+                              const Color(0xFF9FA482).withValues(alpha: 0.42),
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(
+                          Icons.close,
+                          color: Color(0xFF2B361C),
+                          size: 24,
+                        ),
                       ),
                     ),
                   ],
@@ -86,7 +114,6 @@ class _CreatePostHomeState extends State<CreatePostHome> {
                 MyBucketListItem(
                   isSelected: false,
                 ),
-                // Add more content for the bottom sheet here if needed
               ],
             ),
           );
@@ -95,59 +122,83 @@ class _CreatePostHomeState extends State<CreatePostHome> {
     );
   }
 
-  // void _showConnectionsBottomSheet() {
-  //   showModalBottomSheet(
-  //     backgroundColor: Color(0xFFFFFFFC),
-  //     context: context,
-  //     isScrollControlled: true,
-  //     shape: RoundedRectangleBorder(
-  //       borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
-  //     ),
-  //     builder: (BuildContext context) {
-  //       return StatefulBuilder(
-  //         builder: (BuildContext context, setState) {
-  //           return Padding(
-  //             padding: EdgeInsets.all(16.w),
-  //             child: Column(
-  //               mainAxisSize: MainAxisSize.min,
-  //               children: [
-  //                 Row(
-  //                   mainAxisAlignment: MainAxisAlignment.center,
-  //                   children: [
-  //                     Text(
-  //                       'My Connections',
-  //                       style: TextStyle(
-  //                         fontSize: 22.sp,
-  //                         fontWeight: FontWeight.w700,
-  //                         color: Color(0xFFD88F48),
-  //                       ),
-  //                     ),
-  //                   ],
-  //                 ),
-  //                 SizedBox(height: 31.h),
-  //                 // Wrap the list of items inside a SingleChildScrollView or ListView
-  //                 Expanded(
-  //                   child: SingleChildScrollView(
-  //                     child: Column(
-  //                       children: List.generate(10, (index) {
-  //                         return Padding(
-  //                           padding: EdgeInsets.only(bottom: 12.h),
-  //                           child:
-  //                               TagConnection(), // Replace with actual connection widget
-  //                         );
-  //                       }),
-  //                     ),
-  //                   ),
-  //                 ),
-  //                 SizedBox(height: 12.h),
-  //               ],
-  //             ),
-  //           );
-  //         },
-  //       );
-  //     },
-  //   );
-  // }
+  void _showConnectionsBottomSheet() {
+    showModalBottomSheet(
+      backgroundColor: Color(0xFFFFFFFC),
+      context: context,
+      isScrollControlled: true,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
+      ),
+      builder: (BuildContext context) {
+        return StatefulBuilder(
+          builder: (BuildContext context, setState) {
+            return Container(
+              height: 709.h,
+              padding: EdgeInsets.all(16.w),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            'Create a Post',
+                            style: TextStyle(
+                              fontSize: 22.sp,
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFFD88F48),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 33.h),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(8.w),
+                          decoration: BoxDecoration(
+                            color:
+                                const Color(0xFF9FA482).withValues(alpha: 0.42),
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(
+                            Icons.close,
+                            color: Color(0xFF2B361C),
+                            size: 24,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 18.h),
+                  FormInputField(labelText: 'Search', obscureText: false),
+                  SizedBox(height: 31.h),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: List.generate(15, (index) {
+                          return Padding(
+                            padding: EdgeInsets.only(bottom: 12.h),
+                            child: TagConnection(),
+                          );
+                        }),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 12.h),
+                ],
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -260,7 +311,7 @@ class _CreatePostHomeState extends State<CreatePostHome> {
                       height: 58.h,
                       child: GestureDetector(
                         onTap: () {
-                          // _showConnectionsBottomSheet();
+                          _showConnectionsBottomSheet();
                         },
                         child: TextField(
                           enabled: false,
@@ -335,10 +386,29 @@ class _CreatePostHomeState extends State<CreatePostHome> {
                       height: 24.h,
                     ),
                     Center(
-                        child: SizedBox(
-                            width: double.infinity,
-                            child:
-                                GreenButton(text: "SHARE", onPressed: () {})))
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: GreenButton(
+                          text: "SHARE",
+                          onPressed: () {
+                            showClosablePopup(
+                              context: context,
+                              title: 'Post Shared Successfully',
+                              buttonText: 'Okay',
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const HomeSocialFeed(),
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ),

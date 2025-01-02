@@ -170,6 +170,7 @@ class _SocialFeedState extends State<HomeSocialFeed> {
     return Scaffold(
       backgroundColor: const Color(0xFFFFFFFC),
       appBar: AppBar(
+        surfaceTintColor: const Color(0xFFFFFFFC),
         backgroundColor: const Color(0xFFFFFFFC),
         automaticallyImplyLeading: false,
         title: Text(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hooked_up/components/form_input_field.dart';
 import 'package:hooked_up/utils/colors.dart';
 
 class TagConnection extends StatefulWidget {
@@ -12,6 +13,7 @@ class TagConnection extends StatefulWidget {
 }
 
 class _TagConnectionState extends State<TagConnection> {
+  bool _isSelected = false;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -50,18 +52,20 @@ class _TagConnectionState extends State<TagConnection> {
         Spacer(),
         GestureDetector(
           onTap: () {
-            print('Button clicked...');
+            setState(() {
+              _isSelected = !_isSelected;
+            });
           },
           child: Container(
             height: 27.h,
-            width: 85.w,
+            width: _isSelected ? 72.w : 58,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.r),
-              color: AppColors.disconnectButton,
+              color: _isSelected ? AppColors.greenButton : AppColors.heading,
             ),
             child: Center(
               child: Text(
-                "Disconnect",
+                _isSelected ? "Selected" : "Select",
                 style: TextStyle(
                   color: Color(0xFFF5F5F5),
                   fontSize: 12.sp,
