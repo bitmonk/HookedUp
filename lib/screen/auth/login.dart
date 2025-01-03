@@ -144,8 +144,16 @@ class _LoginPageState extends State<LoginPage> {
                     width: double.infinity,
                     child: GreenButton(
                       text: 'CONFIRM',
-                      onPressed: () async {
-                        await loginUserWithEmailAndPassword();
+                      // onPressed: () async {
+                      //   await loginUserWithEmailAndPassword();
+                      // },
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const HomeSocialFeed(),
+                          ),
+                        );
                       },
                     )),
                 TextButton(
