@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hooked_up/components/chat/sent_chat_message.dart';
+import 'package:hooked_up/components/chat/single_chat_message.dart';
 import 'package:hooked_up/utils/colors.dart';
 
 class ChatPage extends StatefulWidget {
@@ -10,6 +12,33 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
+  TextEditingController _controller = TextEditingController();
+  FocusNode _focusNode = FocusNode();
+  List<String> _messages = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _focusNode.addListener(() {
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
+  }
+
+  void _sendMessage() {
+    if (_controller.text.isNotEmpty) {
+      setState(() {
+        _messages.add(_controller.text);
+      });
+      _controller.clear();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,72 +115,71 @@ class _ChatPageState extends State<ChatPage> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24.h),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Divider(
-                height: 2,
-                color: Color(0xFFF5F5F5),
-              ),
-              SizedBox(
-                height: 36.h,
-              ),
-              Padding(
-                padding: EdgeInsets.only(bottom: 12.h),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
+      body: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24.h),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 23.h, right: 12.w),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(50.r),
-                        child: Image.asset(
-                          'assets/images/explainer/profile.png',
-                          width: 27,
-                          height: 27,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                    SizedBox(
+                      height: 36.h,
                     ),
-                    Flexible(
-                      child: Stack(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Color(0xFFF5F5F5),
-                              borderRadius: BorderRadius.circular(20.r),
-                            ),
-                            child: Padding(
-                              padding: EdgeInsets.fromLTRB(
-                                  19, 12, 56, 12), // increased right padding
-                              child: Text(
-                                'Excepteur sint occaecat cupida tat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum sint occaecat',
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            right: 18.w,
-                            bottom: 12.h,
-                            child: Text(
-                              '12:38',
-                              style: TextStyle(
-                                fontSize: 10.sp,
-                                color: Colors.grey,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    SingleChatMessage(
+                        message:
+                            'lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet'),
+                    ..._messages.map((message) {
+                      return SentChatMessage(message: message);
+                    }),
                   ],
                 ),
               ),
-            ],
+            ),
           ),
-        ),
+          Padding(
+            padding: EdgeInsets.only(left: 24.h, right: 24.h, bottom: 27.h),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
+              decoration: BoxDecoration(
+                color: Color(0xFFF5F5F5),
+                borderRadius: BorderRadius.circular(20.r),
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      focusNode: _focusNode,
+                      controller: _controller,
+                      decoration: InputDecoration(
+                        hintText: 'Write a message...',
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
+                        border: InputBorder.none,
+                      ),
+                    ),
+                  ),
+                  IconButton(
+                    icon: Icon(
+                      _focusNode.hasFocus
+                          ? Icons.send_rounded
+                          : Icons.camera_alt_outlined,
+                      color: Color(0xFF606C38),
+                      size: 30.h,
+                    ),
+                    onPressed: () {
+                      if (_focusNode.hasFocus) {
+                        _sendMessage();
+                      } else {
+                        print('Camera button tapped');
+                      }
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

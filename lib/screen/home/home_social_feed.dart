@@ -6,6 +6,7 @@ import 'package:hooked_up/components/navigation/custom_drawer.dart';
 import 'package:hooked_up/components/popup/report_closable_popup.dart';
 import 'package:hooked_up/screen/chat/chat_home.dart';
 import 'package:hooked_up/screen/create_post/create_post_home.dart';
+import 'package:hooked_up/screen/home/activity_feed.dart';
 import 'package:hooked_up/screen/profile/my_profile.dart';
 import 'package:hooked_up/screen/season/open_season.dart';
 
@@ -190,13 +191,12 @@ class _SocialFeedState extends State<HomeSocialFeed> {
               child: IconButton(
                 iconSize: 22,
                 onPressed: () {
-                  showClosableReportPopup(
-                      context: context,
-                      title: 'Confirm Report',
-                      content:
-                          'Are you sure you want to report this user? This action will notify our team for review. Please provide details.',
-                      buttonText: 'SUBMIT',
-                      onPressed: () {});
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ActivityFeed(),
+                    ),
+                  );
                 },
                 icon: SvgPicture.asset(
                   'assets/images/icons/notification.svg',
