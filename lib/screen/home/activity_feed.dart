@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hooked_up/components/home/connection_requests.dart';
 import 'package:hooked_up/utils/colors.dart';
 
 class ActivityFeed extends StatefulWidget {
@@ -16,6 +17,7 @@ class _ActivityFeedState extends State<ActivityFeed> {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
+        surfaceTintColor: const Color(0xFFFFFFFC),
         backgroundColor: const Color(0xFFFFFFFC),
         automaticallyImplyLeading: false,
         leading: Padding(
@@ -100,19 +102,29 @@ class _ActivityFeedState extends State<ActivityFeed> {
                 ),
                 Row(
                   children: [
-                    Container(
-                      height: 48.h,
-                      width: 48.w,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          width: 2.w,
-                          color: Color(0xFFD7D9C9),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ConnectionRequests(),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        height: 48.h,
+                        width: 48.w,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            width: 2.w,
+                            color: Color(0xFFD7D9C9),
+                          ),
+                          borderRadius: BorderRadius.circular(50.r),
                         ),
-                        borderRadius: BorderRadius.circular(50.r),
-                      ),
-                      child: Icon(
-                        Icons.add_rounded,
-                        color: Color(0xFF9FA482),
+                        child: Icon(
+                          Icons.add_rounded,
+                          color: Color(0xFF9FA482),
+                        ),
                       ),
                     ),
                     SizedBox(
@@ -165,37 +177,66 @@ class _ActivityFeedState extends State<ActivityFeed> {
           SizedBox(
             height: 7.h,
           ),
-          Padding(
-            padding: EdgeInsets.only(left: 25.w),
-            child: Text(
-              'Yesterday',
-              style: TextStyle(
-                color: Color(0xFF212221).withAlpha(60),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: 25.w),
+                    child: Text(
+                      'Yesterday',
+                      style: TextStyle(
+                        color: Color(0xFF212221).withAlpha(60),
+                      ),
+                    ),
+                  ),
+                  NotificationListItem(
+                    read: true,
+                  ),
+                  NotificationListItem(
+                    read: false,
+                  ),
+                  NotificationListItem(
+                    read: false,
+                  ),
+                  NotificationListItem(
+                    read: false,
+                  ),
+                  SizedBox(
+                    height: 12.h,
+                  ),
+                  Divider(
+                    height: 1,
+                    indent: 0,
+                    color: Color(0xFFF5F5F5),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.only(left: 25.w, top: 17.h, bottom: 12.h),
+                    child: Text(
+                      'Monday',
+                      style: TextStyle(
+                        color: Color(0xFF212221).withAlpha(60),
+                      ),
+                    ),
+                  ),
+                  NotificationListItem(
+                    read: false,
+                  ),
+                  NotificationListItem(
+                    read: false,
+                  ),
+                  NotificationListItem(
+                    read: false,
+                  ),
+                  NotificationListItem(
+                    read: false,
+                  ),
+                ],
               ),
             ),
-          ),
-          NotificationListItem(),
-          NotificationListItem(),
-          NotificationListItem(),
-          SizedBox(
-            height: 12.h,
-          ),
-          Divider(
-            height: 1,
-            indent: 0,
-            color: Color(0xFFF5F5F5),
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 25.w, top: 17.h, bottom: 12.h),
-            child: Text(
-              'Monday',
-              style: TextStyle(
-                color: Color(0xFF212221).withAlpha(60),
-              ),
-            ),
-          ),
-          NotificationListItem(),
-          NotificationListItem(),
+          )
         ],
       ),
     );
@@ -203,9 +244,11 @@ class _ActivityFeedState extends State<ActivityFeed> {
 }
 
 class NotificationListItem extends StatelessWidget {
-  final bool read = false;
+  final bool read;
+
   const NotificationListItem({
     super.key,
+    required this.read, // Mark it as a required parameter
   });
 
   @override
@@ -216,7 +259,9 @@ class NotificationListItem extends StatelessWidget {
         children: [
           Container(
             height: 80.h,
-            color: read ? Color(0xFFFFFFFC) : Color(0xFFD7D9C9).withAlpha(26),
+            color: read
+                ? const Color(0xFFFFFFFC)
+                : const Color(0xFFD7D9C9).withAlpha(26),
             child: Row(
               children: [
                 Padding(
@@ -225,8 +270,8 @@ class NotificationListItem extends StatelessWidget {
                     height: 53.h,
                     width: 53.w,
                     child: CircleAvatar(
-                      backgroundImage:
-                          AssetImage('assets/images/explainer/profile2.png'),
+                      backgroundImage: const AssetImage(
+                          'assets/images/explainer/profile2.png'),
                     ),
                   ),
                 ),
@@ -253,7 +298,7 @@ class NotificationListItem extends StatelessWidget {
                               'Has commented on your post',
                               style: TextStyle(
                                 fontSize: 14.sp,
-                                color: Color(0xFF212221).withAlpha(60),
+                                color: const Color(0xFF212221).withAlpha(60),
                               ),
                             ),
                           ],
@@ -264,7 +309,7 @@ class NotificationListItem extends StatelessWidget {
                         child: Text(
                           '20 mins ago',
                           style: TextStyle(
-                              color: Color(0XFF212221).withAlpha(60),
+                              color: const Color(0XFF212221).withAlpha(60),
                               fontSize: 9.sp),
                         ),
                       ),
