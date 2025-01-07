@@ -692,6 +692,23 @@ class _UserProfileState extends State<UserProfile> {
                           ),
                         ),
                       ),
+                      Center(
+                        child: Column(
+                          children: [
+                            Container(
+                                height: 86.h,
+                                width: 86.w,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFD7D9C9),
+                                  borderRadius: BorderRadius.circular(50.r),
+                                ),
+                                child: SvgPicture.asset(
+                                    'assets/images/icons/lock.svg')),
+                            Text('data'),
+                            Text('data'),
+                          ],
+                        ),
+                      )
                     ],
                   )),
           ],
