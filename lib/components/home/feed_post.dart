@@ -5,6 +5,7 @@ import 'package:hooked_up/components/popup/report_closable_popup.dart';
 import 'package:hooked_up/model/dummy_data.dart';
 import 'package:hooked_up/model/feed_post_model.dart';
 import 'package:hooked_up/screen/home/home_reel_feed.dart';
+import 'package:hooked_up/screen/profile/user_profile/user_profile.dart';
 
 class FeedPost extends StatefulWidget {
   const FeedPost({
@@ -183,11 +184,21 @@ class _FeedPostState extends State<FeedPost> {
                 padding: EdgeInsets.symmetric(horizontal: 24.0.w),
                 child: Row(
                   children: [
-                    SizedBox(
-                      height: 35.h,
-                      width: 35.h,
-                      child: CircleAvatar(
-                        backgroundImage: AssetImage(post.profileImage),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const UserProfile(),
+                          ),
+                        );
+                      },
+                      child: SizedBox(
+                        height: 35.h,
+                        width: 35.h,
+                        child: CircleAvatar(
+                          backgroundImage: AssetImage(post.profileImage),
+                        ),
                       ),
                     ),
                     SizedBox(
