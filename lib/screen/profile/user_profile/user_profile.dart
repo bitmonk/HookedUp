@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hooked_up/components/green_button.dart';
 import 'package:hooked_up/components/home/feed_post.dart';
+import 'package:hooked_up/components/home/profile_connected.dart';
 import 'package:hooked_up/components/popup/add_bucket_item_list.dart';
 import 'package:hooked_up/components/profile/bucket_list_item.dart';
 import 'package:hooked_up/components/profile/event_card.dart';
@@ -23,7 +25,7 @@ class UserProfile extends StatefulWidget {
 
 class _UserProfileState extends State<UserProfile> {
   int _selectedIndex = 0;
-  bool _connected = false;
+  bool _connected = true;
 
   final Color _selectedColor = const Color(0xFF9FA482);
   final Color _unselectedColor = const Color(0xFFD9D9D9);
@@ -252,9 +254,16 @@ class _UserProfileState extends State<UserProfile> {
                   SizedBox(
                     height: 77.h,
                     width: 77.h,
-                    child: const CircleAvatar(
-                      backgroundImage:
-                          AssetImage('assets/images/explainer/profile.png'),
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _connected = !_connected;
+                        });
+                      },
+                      child: const CircleAvatar(
+                        backgroundImage:
+                            AssetImage('assets/images/explainer/profile.png'),
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -364,226 +373,327 @@ class _UserProfileState extends State<UserProfile> {
                 ],
               ),
             ),
-            Container(
-              height: 33.h,
-              width: 173.w,
-              color: Color(0xFFD7D9C9),
-              child: Center(
-                child: Text('CHAT'),
-              ),
+            SizedBox(
+              height: 17.h,
             ),
-            Padding(
-              padding: EdgeInsets.only(
-                  top: 40.0.h, right: 51.w, left: 71.w, bottom: 24.h),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        _selectedIndex = 0;
-                      });
-                    },
-                    child: SvgPicture.asset(
-                      'assets/images/icons/profile_post.svg',
-                      colorFilter: ColorFilter.mode(
-                        _selectedIndex == 0 ? _selectedColor : _unselectedColor,
-                        BlendMode.srcIn,
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        _selectedIndex = 1;
-                      });
-                    },
-                    child: SvgPicture.asset(
-                      'assets/images/icons/recommended_events.svg',
-                      colorFilter: ColorFilter.mode(
-                        _selectedIndex == 1 ? _selectedColor : _unselectedColor,
-                        BlendMode.srcIn,
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        _selectedIndex = 2;
-                      });
-                    },
-                    child: SvgPicture.asset(
-                      'assets/images/icons/profile_bucketlist.svg',
-                      colorFilter: ColorFilter.mode(
-                        _selectedIndex == 2 ? _selectedColor : _unselectedColor,
-                        BlendMode.srcIn,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            if (_selectedIndex == 0)
-              Expanded(
-                child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 1.w,
-                    mainAxisSpacing: 1.h,
-                  ),
-                  itemCount: dummyFeedPosts.length,
-                  itemBuilder: (context, index) {
-                    return ClipRRect(
-                      child: Image.asset(
-                        dummyFeedPosts[index].postImage,
-                        fit: BoxFit.cover,
-                      ),
-                    );
-                  },
-                ),
-              )
-            else if (_selectedIndex == 1)
-              Expanded(
-                child: ListView.separated(
-                  itemCount: 8,
-                  itemBuilder: (context, index) => EventCard(),
-                  separatorBuilder: (context, index) => SizedBox(height: 12.h),
-                ),
-              )
-            else
-              Expanded(
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 24.h),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'My Bucket List',
-                            style: TextStyle(
-                              fontSize: 22.sp,
-                              fontWeight: FontWeight.w700,
-                              color: Color(0xFFD88F48),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              showAddBucketItemList(
-                                  context: context,
-                                  title: 'Add Bucket List Item',
-                                  buttonText: 'SAVE',
-                                  onPressed: () {});
-                            },
-                            child: Container(
-                              height: 48.h,
-                              width: 48.h,
+            _connected
+                ? Expanded(
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              height: 33.h,
+                              width: 173.w,
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(50.r),
                                 color: Color(0xFFD7D9C9),
+                                borderRadius: BorderRadius.circular(20.r),
                               ),
-                              child: Icon(Icons.add),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: ListView(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(left: 24.w, right: 24.w),
-                            child: SizedBox(
-                              width: double.infinity,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  SizedBox(
-                                    height: 24.h,
-                                  ),
-                                  CustomBucketListItem(
-                                    title: "Item Title",
-                                    desctiption: 'Text description',
-                                  ),
-                                  SizedBox(
+                                  SvgPicture.asset(
+                                    'assets/images/icons/chat.svg',
                                     height: 12.h,
-                                  ),
-                                  CustomBucketListItem(
-                                    title: "Item Title",
-                                    desctiption: 'Text description',
+                                    width: 12.w,
                                   ),
                                   SizedBox(
-                                    height: 12.h,
+                                    width: 10.w,
                                   ),
-                                  CustomBucketListItem(
-                                    title: "Item Title",
-                                    desctiption: 'Text description',
-                                  ),
-                                  SizedBox(
-                                    height: 12.h,
-                                  ),
-                                  CustomBucketListItem(
-                                    title: "Item Title",
-                                    desctiption: 'Text description',
-                                    options: true,
-                                  ),
-                                  SizedBox(
-                                    height: 12.h,
-                                  ),
-                                  CustomBucketListItem(
-                                    title: "Item Title",
-                                    desctiption: 'Text description',
-                                    options: true,
-                                  ),
-                                  SizedBox(
-                                    height: 12.h,
-                                  ),
-                                  CustomBucketListItem(
-                                    title: "Item Title",
-                                    desctiption: 'Text description',
-                                  ),
-                                  SizedBox(
-                                    height: 12.h,
-                                  ),
-                                  CustomBucketListItem(
-                                    title: "Item Title",
-                                    desctiption: 'Text description',
-                                    options: true,
-                                  ),
-                                  SizedBox(
-                                    height: 12.h,
-                                  ),
-                                  CustomBucketListItem(
-                                    title: "Item Title",
-                                    desctiption: 'Text description',
-                                  ),
-                                  SizedBox(
-                                    height: 12.h,
-                                  ),
-                                  CustomBucketListItem(
-                                    title: "Item Title",
-                                    desctiption: 'Text description',
-                                  ),
-                                  SizedBox(
-                                    height: 12.h,
-                                  ),
-                                  CustomBucketListItem(
-                                    title: "Item Title",
-                                    desctiption: 'Text description',
-                                  ),
-                                  SizedBox(
-                                    height: 12.h,
+                                  Text(
+                                    'CHAT',
+                                    style: TextStyle(
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w700,
+                                      color: Color(0xFF2B361C),
+                                    ),
                                   ),
                                 ],
                               ),
                             ),
+                            SizedBox(width: 12.w),
+                            Container(
+                              height: 33.h,
+                              width: 173.w,
+                              decoration: BoxDecoration(
+                                color: Color(0xFFD7D9C9),
+                                borderRadius: BorderRadius.circular(20.r),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'DISCONNECT',
+                                    style: TextStyle(
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w700,
+                                      color: Color(0xFFF3FAFE),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                              top: 40.0.h,
+                              right: 51.w,
+                              left: 71.w,
+                              bottom: 24.h),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    _selectedIndex = 0;
+                                  });
+                                },
+                                child: SvgPicture.asset(
+                                  'assets/images/icons/profile_post.svg',
+                                  colorFilter: ColorFilter.mode(
+                                    _selectedIndex == 0
+                                        ? _selectedColor
+                                        : _unselectedColor,
+                                    BlendMode.srcIn,
+                                  ),
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    _selectedIndex = 1;
+                                  });
+                                },
+                                child: SvgPicture.asset(
+                                  'assets/images/icons/recommended_events.svg',
+                                  colorFilter: ColorFilter.mode(
+                                    _selectedIndex == 1
+                                        ? _selectedColor
+                                        : _unselectedColor,
+                                    BlendMode.srcIn,
+                                  ),
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    _selectedIndex = 2;
+                                  });
+                                },
+                                child: SvgPicture.asset(
+                                  'assets/images/icons/profile_bucketlist.svg',
+                                  colorFilter: ColorFilter.mode(
+                                    _selectedIndex == 2
+                                        ? _selectedColor
+                                        : _unselectedColor,
+                                    BlendMode.srcIn,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                        if (_selectedIndex == 0)
+                          Expanded(
+                            child: GridView.builder(
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 3,
+                                crossAxisSpacing: 1.w,
+                                mainAxisSpacing: 1.h,
+                              ),
+                              itemCount: dummyFeedPosts.length,
+                              itemBuilder: (context, index) {
+                                return ClipRRect(
+                                  child: Image.asset(
+                                    dummyFeedPosts[index].postImage,
+                                    fit: BoxFit.cover,
+                                  ),
+                                );
+                              },
+                            ),
+                          )
+                        else if (_selectedIndex == 1)
+                          Expanded(
+                            child: ListView.separated(
+                              itemCount: 8,
+                              itemBuilder: (context, index) => EventCard(),
+                              separatorBuilder: (context, index) =>
+                                  SizedBox(height: 12.h),
+                            ),
+                          )
+                        else
+                          Expanded(
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 24.h),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        'My Bucket List',
+                                        style: TextStyle(
+                                          fontSize: 22.sp,
+                                          fontWeight: FontWeight.w700,
+                                          color: Color(0xFFD88F48),
+                                        ),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          showAddBucketItemList(
+                                              context: context,
+                                              title: 'Add Bucket List Item',
+                                              buttonText: 'SAVE',
+                                              onPressed: () {});
+                                        },
+                                        child: Container(
+                                          height: 48.h,
+                                          width: 48.h,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(50.r),
+                                            color: Color(0xFFD7D9C9),
+                                          ),
+                                          child: Icon(Icons.add),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                Expanded(
+                                  child: ListView(
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            left: 24.w, right: 24.w),
+                                        child: SizedBox(
+                                          width: double.infinity,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              SizedBox(
+                                                height: 24.h,
+                                              ),
+                                              CustomBucketListItem(
+                                                title: "Item Title",
+                                                desctiption: 'Text description',
+                                              ),
+                                              SizedBox(
+                                                height: 12.h,
+                                              ),
+                                              CustomBucketListItem(
+                                                title: "Item Title",
+                                                desctiption: 'Text description',
+                                              ),
+                                              SizedBox(
+                                                height: 12.h,
+                                              ),
+                                              CustomBucketListItem(
+                                                title: "Item Title",
+                                                desctiption: 'Text description',
+                                              ),
+                                              SizedBox(
+                                                height: 12.h,
+                                              ),
+                                              CustomBucketListItem(
+                                                title: "Item Title",
+                                                desctiption: 'Text description',
+                                                options: true,
+                                              ),
+                                              SizedBox(
+                                                height: 12.h,
+                                              ),
+                                              CustomBucketListItem(
+                                                title: "Item Title",
+                                                desctiption: 'Text description',
+                                                options: true,
+                                              ),
+                                              SizedBox(
+                                                height: 12.h,
+                                              ),
+                                              CustomBucketListItem(
+                                                title: "Item Title",
+                                                desctiption: 'Text description',
+                                              ),
+                                              SizedBox(
+                                                height: 12.h,
+                                              ),
+                                              CustomBucketListItem(
+                                                title: "Item Title",
+                                                desctiption: 'Text description',
+                                                options: true,
+                                              ),
+                                              SizedBox(
+                                                height: 12.h,
+                                              ),
+                                              CustomBucketListItem(
+                                                title: "Item Title",
+                                                desctiption: 'Text description',
+                                              ),
+                                              SizedBox(
+                                                height: 12.h,
+                                              ),
+                                              CustomBucketListItem(
+                                                title: "Item Title",
+                                                desctiption: 'Text description',
+                                              ),
+                                              SizedBox(
+                                                height: 12.h,
+                                              ),
+                                              CustomBucketListItem(
+                                                title: "Item Title",
+                                                desctiption: 'Text description',
+                                              ),
+                                              SizedBox(
+                                                height: 12.h,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                      ],
                     ),
-                  ],
-                ),
-              )
+                  )
+                : Expanded(
+                    child: Column(
+                    children: [
+                      SizedBox(
+                        height: 30.h,
+                      ),
+                      TextButton(
+                        style: TextButton.styleFrom(
+                          backgroundColor: const Color(0xFF606C38),
+                          padding: EdgeInsets.symmetric(
+                              vertical: 12.h, horizontal: 117.w),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.r),
+                          ),
+                        ),
+                        onPressed: () {},
+                        child: Text(
+                          'CONNECT',
+                          style: TextStyle(
+                            fontSize: 22.sp,
+                            color: const Color(0xFFF3FAFE),
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ),
+                    ],
+                  )),
           ],
         ),
       ),
