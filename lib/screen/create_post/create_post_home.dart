@@ -2,13 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooked_up/components/form_input_field.dart';
 import 'package:hooked_up/components/green_button.dart';
-import 'package:hooked_up/components/home/feed_post.dart';
 import 'package:hooked_up/components/home/my_bucket_list_item.dart';
 import 'package:hooked_up/components/home/tag_connection.dart';
 import 'package:hooked_up/components/popup/closable_popup.dart';
-import 'package:hooked_up/screen/auth/reset_pass.dart';
 import 'package:hooked_up/screen/home/home_social_feed.dart';
-import 'package:hooked_up/utils/colors.dart';
 
 class CreatePostHome extends StatefulWidget {
   const CreatePostHome({super.key});

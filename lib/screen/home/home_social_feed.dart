@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooked_up/components/home/feed_post.dart';
 import 'package:hooked_up/components/navigation/custom_drawer.dart';
-import 'package:hooked_up/components/popup/report_closable_popup.dart';
 import 'package:hooked_up/screen/chat/chat_home.dart';
 import 'package:hooked_up/screen/create_post/create_post_home.dart';
 import 'package:hooked_up/screen/home/activity_feed.dart';
@@ -18,6 +17,8 @@ class HomeSocialFeed extends StatefulWidget {
 }
 
 class _SocialFeedState extends State<HomeSocialFeed> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   int _currentIndex = 0;
 
   List<Widget> body = const [
@@ -169,6 +170,7 @@ class _SocialFeedState extends State<HomeSocialFeed> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: const Color(0xFFFFFFFC),
       appBar: AppBar(
         surfaceTintColor: const Color(0xFFFFFFFC),

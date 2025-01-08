@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hooked_up/components/green_button.dart';
+import 'package:hooked_up/components/popup/closable_connection_sent_popup.dart';
 import 'package:hooked_up/utils/colors.dart';
 
-Future<dynamic> showLinkConnectionPopup({
+Future<dynamic> showSendNotePopup({
   required BuildContext context,
   required String title,
   String? content,
@@ -28,48 +30,11 @@ Future<dynamic> showLinkConnectionPopup({
               SizedBox(
                 height: 24.h,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: 51.h,
-                    width: 51.w,
-                    child: CircleAvatar(
-                      backgroundImage:
-                          AssetImage('assets/images/explainer/profile.png'),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 16.w,
-                  ),
-                  Container(
-                    height: 26.h,
-                    width: 26.w,
-                    padding: EdgeInsets.all(8.w),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF9FA482).withValues(alpha: 0.42),
-                      shape: BoxShape.circle,
-                    ),
-                    child: Center(
-                      child: const Icon(
-                        Icons.add_rounded,
-                        color: Color(0xFF2B361C),
-                        size: 10,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 16.w,
-                  ),
-                  SizedBox(
-                    height: 51.h,
-                    width: 51.w,
-                    child: CircleAvatar(
-                      backgroundImage:
-                          AssetImage('assets/images/explainer/profile2.png'),
-                    ),
-                  ),
-                ],
+              Text(
+                'Let them know why you’re connecting them! Share a quick message to explain the purpose of this introduction.',
+                style: TextStyle(
+                  fontSize: 14.sp,
+                ),
               ),
               SizedBox(
                 height: 24.h,
@@ -78,13 +43,6 @@ Future<dynamic> showLinkConnectionPopup({
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text(
-                    'From:',
-                    style: TextStyle(
-                      fontSize: 14.sp,
-                      color: Color(0xFF212221).withAlpha(60),
-                    ),
-                  ),
                   SizedBox(
                     width: 11.w,
                   ),
@@ -97,38 +55,82 @@ Future<dynamic> showLinkConnectionPopup({
                     ),
                   ),
                   SizedBox(
-                    width: 11.w,
+                    width: 6.w,
                   ),
                   Text(
                     'Sarah Smith',
                     style: TextStyle(
                       fontSize: 14.sp,
-                      color: Color(0xFF2B361C),
-                      fontWeight: FontWeight.w700,
+                      color: Color(0xFF212221),
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 36.w,
+                  ),
+                  SizedBox(
+                    height: 29.h,
+                    width: 29.w,
+                    child: CircleAvatar(
+                      backgroundImage:
+                          AssetImage('assets/images/explainer/profile2.png'),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 6.w,
+                  ),
+                  Text(
+                    'Sarah Smith',
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      color: Color(0xFF212221),
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 12.h),
+              SizedBox(
+                height: 24.h,
+              ),
               Container(
-                decoration: BoxDecoration(
-                  color: Color(0xFFF5F5F5),
-                  borderRadius: BorderRadius.circular(20.r),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(24.w, 18.h, 16.w, 18.h),
-                  child: Text(
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud. \n \n Lorem ipsum dolor sit amet. consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud', // Display content if provided
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      fontSize: 12.sp,
-                      color: const Color(0xFF212221).withValues(alpha: 0.6),
+                color: Color(0xFFFFFFFC),
+                height: 116.h,
+                child: TextField(
+                  maxLines: null,
+                  expands: true,
+                  keyboardType: TextInputType.multiline,
+                  decoration: InputDecoration(
+                    hintText: 'Add Note',
+                    hintStyle: TextStyle(
+                      fontSize: 16.sp,
+                      color: const Color(0xFF212221),
                     ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide: BorderSide.none,
+                    ),
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 10.h, horizontal: 24.w),
+                    fillColor: const Color(0xF5F5F5F5),
+                    filled: true,
                   ),
                 ),
               ),
               SizedBox(
-                height: 14.h,
+                height: 24,
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: GreenButton(
+                    text: 'SEND',
+                    onPressed: () {
+                      Navigator.pop(context);
+                      showClosableConnectionSentPopup(
+                          context: context,
+                          title: 'Connection Sent Successfully.',
+                          buttonText: 'OKAY',
+                          onPressed: () {});
+                    }),
               ),
             ],
           ),

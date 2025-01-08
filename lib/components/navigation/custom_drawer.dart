@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:hooked_up/screen/auth/login.dart';
+import 'package:hooked_up/screen/connections/link_connections.dart';
+import 'package:hooked_up/screen/home/home_social_feed.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({
@@ -58,7 +61,9 @@ class CustomDrawer extends StatelessWidget {
                           color: const Color(0xFFFFFFFF),
                         ),
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        Get.to(() => HomeSocialFeed());
+                      },
                     ),
                     ListTile(
                       title: Text(
@@ -70,7 +75,9 @@ class CustomDrawer extends StatelessWidget {
                           color: const Color(0xFFFFFFFF),
                         ),
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        // Handle forum navigation here
+                      },
                     ),
                     ListTile(
                       title: Text(
@@ -82,7 +89,9 @@ class CustomDrawer extends StatelessWidget {
                           color: const Color(0xFFFFFFFF),
                         ),
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        Get.to(() => LinkConnections());
+                      },
                     ),
                     ListTile(
                       title: Text(
@@ -94,7 +103,9 @@ class CustomDrawer extends StatelessWidget {
                           color: const Color(0xFFFFFFFF),
                         ),
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        // Handle settings navigation here
+                      },
                     ),
                   ],
                 ),
@@ -114,12 +125,8 @@ class CustomDrawer extends StatelessWidget {
                 SizedBox(width: 10.w),
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const LoginPage(),
-                      ),
-                    );
+                    // Use Get.to() to navigate to LoginPage
+                    Get.to(() => const LoginPage());
                   },
                   child: Text(
                     'Log Out',

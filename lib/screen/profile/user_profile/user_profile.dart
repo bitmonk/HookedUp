@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hooked_up/components/green_button.dart';
+import 'package:get/get.dart';
 import 'package:hooked_up/components/home/feed_post.dart';
-import 'package:hooked_up/components/home/profile_connected.dart';
 import 'package:hooked_up/components/popup/add_bucket_item_list.dart';
 import 'package:hooked_up/components/profile/bucket_list_item.dart';
 import 'package:hooked_up/components/profile/event_card.dart';
@@ -11,10 +10,12 @@ import 'package:hooked_up/model/dummy_data.dart';
 import 'package:hooked_up/screen/chat/chat_home.dart';
 import 'package:hooked_up/screen/create_post/create_post_home.dart';
 import 'package:hooked_up/screen/home/activity_feed.dart';
+import 'package:hooked_up/screen/home/home_reel_feed.dart';
 import 'package:hooked_up/screen/profile/my_connections.dart';
 import 'package:hooked_up/screen/profile/my_profile.dart';
 import 'package:hooked_up/screen/profile/saved_posts.dart';
 import 'package:hooked_up/screen/season/open_season.dart';
+import 'package:hooked_up/utils/colors.dart';
 
 class UserProfile extends StatefulWidget {
   const UserProfile({super.key});
@@ -25,7 +26,7 @@ class UserProfile extends StatefulWidget {
 
 class _UserProfileState extends State<UserProfile> {
   int _selectedIndex = 0;
-  bool _connected = true;
+  bool _connected = false;
 
   final Color _selectedColor = const Color(0xFF9FA482);
   final Color _unselectedColor = const Color(0xFFD9D9D9);
@@ -383,55 +384,67 @@ class _UserProfileState extends State<UserProfile> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Container(
-                              height: 33.h,
-                              width: 173.w,
-                              decoration: BoxDecoration(
-                                color: Color(0xFFD7D9C9),
-                                borderRadius: BorderRadius.circular(20.r),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  SvgPicture.asset(
-                                    'assets/images/icons/chat.svg',
-                                    height: 12.h,
-                                    width: 12.w,
-                                  ),
-                                  SizedBox(
-                                    width: 10.w,
-                                  ),
-                                  Text(
-                                    'CHAT',
-                                    style: TextStyle(
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.w700,
-                                      color: Color(0xFF2B361C),
+                            GestureDetector(
+                              onTap: () {
+                                // Get.to(ChatHome());
+                              },
+                              child: Container(
+                                height: 33.h,
+                                width: 173.w,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFD7D9C9),
+                                  borderRadius: BorderRadius.circular(20.r),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    SvgPicture.asset(
+                                      'assets/images/icons/chat.svg',
+                                      height: 12.h,
+                                      width: 12.w,
                                     ),
-                                  ),
-                                ],
+                                    SizedBox(
+                                      width: 10.w,
+                                    ),
+                                    Text(
+                                      'CHAT',
+                                      style: TextStyle(
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w700,
+                                        color: Color(0xFF2B361C),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                             SizedBox(width: 12.w),
-                            Container(
-                              height: 33.h,
-                              width: 173.w,
-                              decoration: BoxDecoration(
-                                color: Color(0xFFD7D9C9),
-                                borderRadius: BorderRadius.circular(20.r),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'DISCONNECT',
-                                    style: TextStyle(
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.w700,
-                                      color: Color(0xFFF3FAFE),
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _connected = !_connected;
+                                });
+                              },
+                              child: Container(
+                                height: 33.h,
+                                width: 173.w,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFD7D9C9),
+                                  borderRadius: BorderRadius.circular(20.r),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'DISCONNECT',
+                                      style: TextStyle(
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w700,
+                                        color: Color(0xFFF3FAFE),
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ],
@@ -682,7 +695,11 @@ class _UserProfileState extends State<UserProfile> {
                             borderRadius: BorderRadius.circular(20.r),
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          setState(() {
+                            _connected = !_connected;
+                          });
+                        },
                         child: Text(
                           'CONNECT',
                           style: TextStyle(
@@ -692,20 +709,43 @@ class _UserProfileState extends State<UserProfile> {
                           ),
                         ),
                       ),
+                      SizedBox(
+                        height: 182.h,
+                      ),
                       Center(
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Container(
-                                height: 86.h,
-                                width: 86.w,
-                                decoration: BoxDecoration(
-                                  color: Color(0xFFD7D9C9),
-                                  borderRadius: BorderRadius.circular(50.r),
-                                ),
-                                child: SvgPicture.asset(
-                                    'assets/images/icons/lock.svg')),
-                            Text('data'),
-                            Text('data'),
+                            CircleAvatar(
+                              radius: 43.r,
+                              backgroundColor: Color(0xFFD7D9C9),
+                              child: SvgPicture.asset(
+                                'assets/images/icons/lock.svg',
+                                height: 50.h,
+                                width: 39.w,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 24.h,
+                            ),
+                            Text(
+                              'This account is private',
+                              style: TextStyle(
+                                fontSize: 22.sp,
+                                fontWeight: FontWeight.w700,
+                                color: AppColors.heading,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 6.h,
+                            ),
+                            Text(
+                              'Connect with this account to view more.',
+                              style: TextStyle(
+                                fontSize: 14.sp,
+                              ),
+                            ),
                           ],
                         ),
                       )

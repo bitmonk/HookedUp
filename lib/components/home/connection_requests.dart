@@ -179,7 +179,9 @@ class LinkConnectionReqListItem extends StatelessWidget {
                     Text(
                       'Sarah Smith',
                       style: TextStyle(
-                          fontSize: 14.sp, fontWeight: FontWeight.w700),
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                     Text(
                       'View Note from Jake Williams',
@@ -197,7 +199,7 @@ class LinkConnectionReqListItem extends StatelessWidget {
                       onTap: () {
                         showLinkConnectionPopup(
                           context: context,
-                          title: '',
+                          title: 'Link Connection',
                         );
                       },
                       child: Container(
