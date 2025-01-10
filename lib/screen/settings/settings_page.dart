@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:hooked_up/components/green_button.dart';
 import 'package:hooked_up/components/home/heading_text_orange.dart';
 import 'package:hooked_up/components/popup/closable_popup.dart';
+import 'package:hooked_up/screen/settings/community_guidelines.dart';
 import 'package:hooked_up/screen/settings/privacy_policy.dart';
 import 'package:hooked_up/screen/settings/terms_conditions.dart';
 import 'package:hooked_up/utils/colors.dart';
@@ -109,7 +110,9 @@ class _SettingsPageState extends State<SettingsPage> {
                       title: 'Change Password',
                     ),
                     SettingsListTile(
-                      onTap: () {},
+                      onTap: () {
+                        Get.to(CommunityGuidelines());
+                      },
                       title: 'Community Guidelines',
                     ),
                     SettingsListTile(
