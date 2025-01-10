@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooked_up/components/green_button.dart';
 import 'package:hooked_up/components/home/heading_text_orange.dart';
+import 'package:hooked_up/components/popup/closable_popup.dart';
 import 'package:hooked_up/utils/colors.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -134,7 +135,15 @@ class _SettingsPageState extends State<SettingsPage> {
                   SizedBox(height: 24.h),
                   SizedBox(
                     width: double.infinity,
-                    child: GreenButton(text: 'LOG OUT', onPressed: () {}),
+                    child: GreenButton(
+                        text: 'LOG OUT',
+                        onPressed: () {
+                          showClosablePopup(
+                              context: context,
+                              title: 'Are you sure you want to log out?',
+                              buttonText: 'YES',
+                              onPressed: () {});
+                        }),
                   ),
                   SizedBox(height: 11.h),
                   Container(
