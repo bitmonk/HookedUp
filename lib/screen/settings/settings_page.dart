@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:hooked_up/components/green_button.dart';
 import 'package:hooked_up/components/home/heading_text_orange.dart';
 import 'package:hooked_up/components/popup/closable_popup.dart';
+import 'package:hooked_up/screen/settings/privacy_policy.dart';
+import 'package:hooked_up/screen/settings/terms_conditions.dart';
 import 'package:hooked_up/utils/colors.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -82,102 +85,114 @@ class _SettingsPageState extends State<SettingsPage> {
           SizedBox(width: 24.w),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(left: 23.w),
-              child: HeadTextOrange(
-                title: 'Settings',
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.only(left: 23.w),
+            child: HeadTextOrange(
+              title: 'Settings',
+            ),
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(24.w, 25.h, 25.w, 0.h),
+                child: Column(
+                  children: [
+                    SettingsListTile(
+                      onTap: () {},
+                      title: 'Edit Profile',
+                    ),
+                    SettingsListTile(
+                      onTap: () {},
+                      title: 'Change Password',
+                    ),
+                    SettingsListTile(
+                      onTap: () {},
+                      title: 'Community Guidelines',
+                    ),
+                    SettingsListTile(
+                      onTap: () {},
+                      title: 'Subscription Manager',
+                    ),
+                    SettingsListTile(
+                      onTap: () {},
+                      title: 'FAQ’s',
+                    ),
+                    SettingsListTile(
+                      onTap: () {},
+                      title: 'Help',
+                    ),
+                    SettingsListTile(
+                      onTap: () {
+                        Get.to(TermsAndConditions());
+                      },
+                      title: 'Terms & Conditions',
+                    ),
+                    SettingsListTile(
+                      onTap: () {
+                        Get.to(PrivacyPolicy());
+                      },
+                      title: 'Privacy Policy',
+                    ),
+                    SettingsListTile(
+                      onTap: () {},
+                      title: 'Invite Friends',
+                    ),
+                  ],
+                ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(24.w, 25.h, 25.w, 36.h),
-              child: Column(
-                children: [
-                  SettingsListTile(
-                    onTap: () {},
-                    title: 'Edit Profile',
-                  ),
-                  SettingsListTile(
-                    onTap: () {},
-                    title: 'Change Password',
-                  ),
-                  SettingsListTile(
-                    onTap: () {},
-                    title: 'Community Guidelines',
-                  ),
-                  SettingsListTile(
-                    onTap: () {},
-                    title: 'Subscription Manager',
-                  ),
-                  SettingsListTile(
-                    onTap: () {},
-                    title: 'FAQ’s',
-                  ),
-                  SettingsListTile(
-                    onTap: () {},
-                    title: 'Help',
-                  ),
-                  SettingsListTile(
-                    onTap: () {},
-                    title: 'Terms & Conditions',
-                  ),
-                  SettingsListTile(
-                    onTap: () {},
-                    title: 'Privacy Policy',
-                  ),
-                  SettingsListTile(
-                    onTap: () {},
-                    title: 'Invite Friends',
-                  ),
-                  SizedBox(height: 24.h),
-                  SizedBox(
-                    width: double.infinity,
-                    child: GreenButton(
-                        text: 'LOG OUT',
-                        onPressed: () {
-                          showClosablePopup(
-                              context: context,
-                              title: 'Are you sure you want to log out?',
-                              buttonText: 'YES',
-                              onPressed: () {});
-                        }),
-                  ),
-                  SizedBox(height: 11.h),
-                  GestureDetector(
-                    onTap: () {
-                      showClosablePopup(
-                          context: context,
-                          title:
-                              'Are you sure you want to delete your account?',
-                          buttonText: 'No, log out instead',
-                          showExtraOption: true,
-                          onPressed: () {});
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: Color(0xFF2B361C),
-                            width: 0.5.w,
-                          ),
-                        ),
-                      ),
-                      child: Text(
-                        'Delete Account',
-                        style: TextStyle(
-                          color: AppColors.thickGreen,
-                        ),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(24.w, 25.h, 25.w, 0.h),
+            child: SizedBox(
+              width: double.infinity,
+              child: GreenButton(
+                  text: 'LOG OUT',
+                  onPressed: () {
+                    showClosablePopup(
+                        context: context,
+                        title: 'Are you sure you want to log out?',
+                        buttonText: 'YES',
+                        onPressed: () {});
+                  }),
+            ),
+          ),
+          SizedBox(height: 11.h),
+          Padding(
+            padding: EdgeInsets.only(bottom: 25.h),
+            child: GestureDetector(
+              onTap: () {
+                showClosablePopup(
+                    context: context,
+                    title: 'Are you sure you want to delete your account?',
+                    buttonText: 'No, log out instead',
+                    showExtraOption: true,
+                    onPressed: () {});
+              },
+              child: Center(
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(
+                        color: Color(0xFF2B361C),
+                        width: 0.5.w,
                       ),
                     ),
                   ),
-                ],
+                  child: Text(
+                    'Delete Account',
+                    style: TextStyle(
+                      color: AppColors.thickGreen,
+                    ),
+                  ),
+                ),
               ),
-            )
-          ],
-        ),
+            ),
+          ),
+        ],
       ),
     );
   }
