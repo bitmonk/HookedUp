@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:hooked_up/screen/auth/login.dart';
 import 'package:hooked_up/screen/connections/link_connections.dart';
 import 'package:hooked_up/screen/home/home_social_feed.dart';
+import 'package:hooked_up/screen/settings/settings_page.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({
@@ -104,7 +105,7 @@ class CustomDrawer extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
-                        // Handle settings navigation here
+                        Get.to(SettingsPage());
                       },
                     ),
                   ],

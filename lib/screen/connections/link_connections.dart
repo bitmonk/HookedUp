@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooked_up/components/form_input_field.dart';
+import 'package:hooked_up/components/home/heading_text_orange.dart';
 import 'package:hooked_up/components/home/tag_connection.dart';
 import 'package:hooked_up/components/popup/report_closable_popup.dart';
 import 'package:hooked_up/components/popup/send_note.dart';
@@ -166,13 +167,8 @@ class _LinkConnectionsState extends State<LinkConnections> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Link Connections',
-              style: TextStyle(
-                fontSize: 22.sp,
-                fontWeight: FontWeight.w700,
-                color: AppColors.heading,
-              ),
+            HeadTextOrange(
+              title: 'Link Connections',
             ),
             SizedBox(height: 12.h),
             Text(
