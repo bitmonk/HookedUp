@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooked_up/components/green_button.dart';
+import 'package:hooked_up/utils/colors.dart';
 
 Future<dynamic> showClosablePopup({
   required BuildContext context,
@@ -9,6 +10,7 @@ Future<dynamic> showClosablePopup({
   String? content,
   required String buttonText,
   required VoidCallback onPressed,
+  bool? showExtraOption,
 }) {
   return showDialog(
     context: context,
@@ -24,7 +26,7 @@ Future<dynamic> showClosablePopup({
                 'assets/images/splash/logo.svg',
                 height: 46.h,
                 width: 45.w,
-              ), // Show icon if path is provided
+              ),
               SizedBox(height: 24.h),
               Text(
                 title,
@@ -37,16 +39,14 @@ Future<dynamic> showClosablePopup({
               SizedBox(height: 12.h),
               if (content != null)
                 Text(
-                  content, // Display content if provided
+                  content,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 14.sp,
-                    color: const Color(0xFF212221).withValues(alpha: 0.6),
+                    color: const Color(0xFF212221).withAlpha(153),
                   ),
                 ),
-              SizedBox(
-                height: 14.h,
-              ),
+              SizedBox(height: 14.h),
             ],
           ),
           Positioned(
@@ -59,7 +59,7 @@ Future<dynamic> showClosablePopup({
               child: Container(
                 padding: EdgeInsets.all(8.w),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF9FA482).withValues(alpha: 0.42),
+                  color: const Color(0xFF9FA482).withAlpha(107),
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(
@@ -72,9 +72,36 @@ Future<dynamic> showClosablePopup({
           ),
         ],
       ),
-      content: GreenButton(
-        text: buttonText,
-        onPressed: onPressed,
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(
+            width: double.infinity,
+            child: GreenButton(
+              text: buttonText,
+              onPressed: onPressed,
+            ),
+          ),
+          if (showExtraOption == true) // Conditionally render extra option
+            Container(
+              margin: EdgeInsets.only(top: 10.h),
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    color: Color(0xFF2B361C),
+                    width: 0.5.w,
+                  ),
+                ),
+              ),
+              child: Text(
+                'Delete Account',
+                style: TextStyle(
+                  fontSize: 14.sp,
+                  color: AppColors.thickGreen,
+                ),
+              ),
+            ),
+        ],
       ),
     ),
   );

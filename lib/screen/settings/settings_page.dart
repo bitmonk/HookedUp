@@ -146,16 +146,32 @@ class _SettingsPageState extends State<SettingsPage> {
                         }),
                   ),
                   SizedBox(height: 11.h),
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                          color: Color(0xFF2B361C),
-                          width: 0.5.w,
+                  GestureDetector(
+                    onTap: () {
+                      showClosablePopup(
+                          context: context,
+                          title:
+                              'Are you sure you want to delete your account?',
+                          buttonText: 'No, log out instead',
+                          showExtraOption: true,
+                          onPressed: () {});
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(
+                            color: Color(0xFF2B361C),
+                            width: 0.5.w,
+                          ),
+                        ),
+                      ),
+                      child: Text(
+                        'Delete Account',
+                        style: TextStyle(
+                          color: AppColors.thickGreen,
                         ),
                       ),
                     ),
-                    child: Text('Delete Account'),
                   ),
                 ],
               ),

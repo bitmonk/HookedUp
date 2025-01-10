@@ -105,7 +105,9 @@ class CustomDrawer extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
-                        Get.to(SettingsPage());
+                        Get.to(
+                          SettingsPage(),
+                        );
                       },
                     ),
                   ],
