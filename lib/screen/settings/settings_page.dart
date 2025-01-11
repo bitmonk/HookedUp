@@ -9,6 +9,7 @@ import 'package:hooked_up/screen/settings/change_password.dart';
 import 'package:hooked_up/screen/settings/community_guidelines.dart';
 import 'package:hooked_up/screen/settings/edit_profile.dart';
 import 'package:hooked_up/screen/settings/privacy_policy.dart';
+import 'package:hooked_up/screen/settings/subscription_manager.dart';
 import 'package:hooked_up/screen/settings/terms_conditions.dart';
 import 'package:hooked_up/utils/colors.dart';
 
@@ -105,24 +106,26 @@ class _SettingsPageState extends State<SettingsPage> {
                   children: [
                     SettingsListTile(
                       onTap: () {
-                        Get.to(EditProfile());
+                        Get.to(()=>EditProfile());
                       },
                       title: 'Edit Profile',
                     ),
                     SettingsListTile(
                       onTap: () {
-                        Get.to(ChangePassword());
+                        Get.to(()=>ChangePassword());
                       },
                       title: 'Change Password',
                     ),
                     SettingsListTile(
                       onTap: () {
-                        Get.to(CommunityGuidelines());
+                        Get.to(()=>CommunityGuidelines());
                       },
                       title: 'Community Guidelines',
                     ),
                     SettingsListTile(
-                      onTap: () {},
+                      onTap: () {
+                        Get.to(()=>SubscriptionManager());
+                      },
                       title: 'Subscription Manager',
                     ),
                     SettingsListTile(
@@ -135,13 +138,13 @@ class _SettingsPageState extends State<SettingsPage> {
                     ),
                     SettingsListTile(
                       onTap: () {
-                        Get.to(TermsAndConditions());
+                        Get.to(()=>TermsAndConditions());
                       },
                       title: 'Terms & Conditions',
                     ),
                     SettingsListTile(
                       onTap: () {
-                        Get.to(PrivacyPolicy());
+                        Get.to(()=>PrivacyPolicy());
                       },
                       title: 'Privacy Policy',
                     ),
