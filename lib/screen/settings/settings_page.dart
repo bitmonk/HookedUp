@@ -6,6 +6,7 @@ import 'package:hooked_up/components/green_button.dart';
 import 'package:hooked_up/components/home/heading_text_orange.dart';
 import 'package:hooked_up/components/popup/closable_popup.dart';
 import 'package:hooked_up/screen/settings/community_guidelines.dart';
+import 'package:hooked_up/screen/settings/edit_profile.dart';
 import 'package:hooked_up/screen/settings/privacy_policy.dart';
 import 'package:hooked_up/screen/settings/terms_conditions.dart';
 import 'package:hooked_up/utils/colors.dart';
@@ -102,7 +103,9 @@ class _SettingsPageState extends State<SettingsPage> {
                 child: Column(
                   children: [
                     SettingsListTile(
-                      onTap: () {},
+                      onTap: () {
+                        Get.to(EditProfile());
+                      },
                       title: 'Edit Profile',
                     ),
                     SettingsListTile(
