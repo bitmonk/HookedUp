@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:hooked_up/components/form_input_field.dart';
 import 'package:hooked_up/components/green_button.dart';
 import 'package:hooked_up/components/home/heading_text_orange.dart';
-import 'package:hooked_up/components/popup/closable_popup.dart';
+import 'package:hooked_up/screen/settings/new_password.dart';
 import 'package:hooked_up/utils/colors.dart';
 
 class ChangePassword extends StatefulWidget {
@@ -83,17 +83,9 @@ class _ChangePasswordState extends State<ChangePassword> {
               child: SizedBox(
                 width: double.infinity,
                 child: GreenButton(
-                    text: 'SAVE',
+                    text: 'CONFIRM',
                     onPressed: () {
-                      showClosablePopup(
-                          context: context,
-                          title: 'Changes saved!',
-                          buttonText: 'OKAY',
-                          content:
-                              'Your profile inforamtion has been updated successfully.',
-                          onPressed: () {
-                            Get.back();
-                          });
+                      Get.to(() => NewPassword());
                     }),
               ),
             )

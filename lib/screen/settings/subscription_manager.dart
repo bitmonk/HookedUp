@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:hooked_up/components/green_button.dart';
 import 'package:hooked_up/components/popup/closable_popup.dart';
 import 'package:hooked_up/components/subscription/subscription_card.dart';
 import 'package:hooked_up/screen/auth/get_notified.dart';
+import 'package:hooked_up/screen/settings/subscription_select_plan.dart';
 
 class SubscriptionManager extends StatefulWidget {
   const SubscriptionManager({super.key});
@@ -51,7 +53,6 @@ class _SubscriptionManagerState extends State<SubscriptionManager> {
             padding: EdgeInsets.symmetric(horizontal: 24.w),
             child: Column(
               children: [
-                SizedBox(height: 31.h),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 14.w),
                   child: Column(
@@ -311,20 +312,21 @@ class _SubscriptionManagerState extends State<SubscriptionManager> {
                         child: GreenButton(
                           text: 'CHANGE SUBSCRIPTION',
                           onPressed: () {
-                            showClosablePopup(
-                                context: context,
-                                title: "Welcome to Your Free Trial!",
-                                content:
-                                    "Your 7-day free trial is now active. Make the most of it and explore Hooked Up!",
-                                buttonText: "Get Started",
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => const GetNotified(),
-                                    ),
-                                  );
-                                });
+                            // showClosablePopup(
+                            //     context: context,
+                            //     title: "Welcome to Your Free Trial!",
+                            //     content:
+                            //         "Your 7-day free trial is now active. Make the most of it and explore Hooked Up!",
+                            //     buttonText: "Get Started",
+                            //     onPressed: () {
+                            //       Navigator.push(
+                            //         context,
+                            //         MaterialPageRoute(
+                            //           builder: (context) => const GetNotified(),
+                            //         ),
+                            //       );
+                            //     });
+                            Get.to(() => SubscriptionSelectPlan());
                           },
                         ),
                       ),
