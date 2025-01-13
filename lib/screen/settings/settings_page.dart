@@ -5,11 +5,13 @@ import 'package:get/get.dart';
 import 'package:hooked_up/components/green_button.dart';
 import 'package:hooked_up/components/home/heading_text_orange.dart';
 import 'package:hooked_up/components/popup/closable_popup.dart';
+import 'package:hooked_up/screen/settings/faq_page.dart';
 import 'package:hooked_up/screen/settings/change_password.dart';
 import 'package:hooked_up/screen/settings/community_guidelines.dart';
 import 'package:hooked_up/screen/settings/edit_profile.dart';
 import 'package:hooked_up/screen/settings/help_page.dart';
 import 'package:hooked_up/screen/settings/invite_friends.dart';
+import 'package:hooked_up/screen/settings/notification_center.dart';
 import 'package:hooked_up/screen/settings/privacy_policy.dart';
 import 'package:hooked_up/screen/settings/subscription_manager.dart';
 import 'package:hooked_up/screen/settings/terms_conditions.dart';
@@ -131,8 +133,16 @@ class _SettingsPageState extends State<SettingsPage> {
                       title: 'Subscription Manager',
                     ),
                     SettingsListTile(
-                      onTap: () {},
+                      onTap: () {
+                        Get.to(() => FaqPage());
+                      },
                       title: 'FAQ’s',
+                    ),
+                    SettingsListTile(
+                      onTap: () {
+                        Get.to(() => NotificationCenter());
+                      },
+                      title: 'Notification Centre',
                     ),
                     SettingsListTile(
                       onTap: () {
