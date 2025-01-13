@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hooked_up/components/form_input_field.dart';
 import 'package:hooked_up/components/green_button.dart';
+import 'package:hooked_up/components/popup/closable_popup.dart';
 import 'package:hooked_up/controllers/auth_controller.dart';
 
 class NewPassword extends StatefulWidget {
@@ -41,69 +42,85 @@ class _NewPasswordState extends State<NewPassword> {
         ),
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24.w),
-            child: Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 25.w),
-                  child: Column(
-                    children: [
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'Change your Password',
-                          style: TextStyle(
-                            fontFamily: 'Manrope',
-                            fontSize: 22.sp,
-                            fontWeight: FontWeight.w700,
-                            color: const Color(0xFFD88F48),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24.w),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 25.w),
+                      child: Column(
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Change your Password',
+                              style: TextStyle(
+                                fontFamily: 'Manrope',
+                                fontSize: 22.sp,
+                                fontWeight: FontWeight.w700,
+                                color: const Color(0xFFD88F48),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      SizedBox(height: 12.h),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'Please select your new password.  ',
-                          style: TextStyle(
-                            fontSize: 14.sp,
+                          SizedBox(height: 12.h),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Please select your new password.  ',
+                              style: TextStyle(
+                                fontSize: 14.sp,
+                              ),
+                            ),
                           ),
-                        ),
+                          SizedBox(
+                            height: 24.h,
+                          ),
+                          FormInputField(
+                              onChanged: (value) {
+                                authController.password.value = value.trim();
+                                print(
+                                    'Updated Password: ${authController.password.value}');
+                              },
+                              labelText: 'Password',
+                              obscureText: true),
+                          SizedBox(
+                            height: 12.h,
+                          ),
+                          const FormInputField(
+                            labelText: 'Confirm Password',
+                            obscureText: true,
+                          ),
+                        ],
                       ),
-                      SizedBox(
-                        height: 24.h,
-                      ),
-                      FormInputField(
-                          onChanged: (value) {
-                            authController.password.value = value.trim();
-                            print(
-                                'Updated Password: ${authController.password.value}');
-                          },
-                          labelText: 'Password',
-                          obscureText: true),
-                      SizedBox(
-                        height: 12.h,
-                      ),
-                      const FormInputField(
-                        labelText: 'Confirm Password',
-                        obscureText: true,
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        child: GreenButton(
-                            text: 'NEXT',
-                            onPressed: () {
-                              // authController.registerUser();
-                            }),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
-          ),
+            Padding(
+              padding: EdgeInsets.only(left: 45.w, right: 44.w, bottom: 42.h),
+              child: SizedBox(
+                width: double.infinity,
+                child: GreenButton(
+                    text: 'CONFIRM',
+                    onPressed: () {
+                      showClosablePopup(
+                          context: context,
+                          title: 'Password Updated',
+                          buttonText: 'OKAY',
+                          content:
+                              'Your password has been updated successfully.',
+                          onPressed: () {
+                            Get.back();
+                          });
+                    }),
+              ),
+            ),
+          ],
         ),
       ),
     );

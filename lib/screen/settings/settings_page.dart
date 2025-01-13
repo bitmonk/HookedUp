@@ -8,6 +8,8 @@ import 'package:hooked_up/components/popup/closable_popup.dart';
 import 'package:hooked_up/screen/settings/change_password.dart';
 import 'package:hooked_up/screen/settings/community_guidelines.dart';
 import 'package:hooked_up/screen/settings/edit_profile.dart';
+import 'package:hooked_up/screen/settings/help_page.dart';
+import 'package:hooked_up/screen/settings/invite_friends.dart';
 import 'package:hooked_up/screen/settings/privacy_policy.dart';
 import 'package:hooked_up/screen/settings/subscription_manager.dart';
 import 'package:hooked_up/screen/settings/terms_conditions.dart';
@@ -106,25 +108,25 @@ class _SettingsPageState extends State<SettingsPage> {
                   children: [
                     SettingsListTile(
                       onTap: () {
-                        Get.to(()=>EditProfile());
+                        Get.to(() => EditProfile());
                       },
                       title: 'Edit Profile',
                     ),
                     SettingsListTile(
                       onTap: () {
-                        Get.to(()=>ChangePassword());
+                        Get.to(() => ChangePassword());
                       },
                       title: 'Change Password',
                     ),
                     SettingsListTile(
                       onTap: () {
-                        Get.to(()=>CommunityGuidelines());
+                        Get.to(() => CommunityGuidelines());
                       },
                       title: 'Community Guidelines',
                     ),
                     SettingsListTile(
                       onTap: () {
-                        Get.to(()=>SubscriptionManager());
+                        Get.to(() => SubscriptionManager());
                       },
                       title: 'Subscription Manager',
                     ),
@@ -133,23 +135,27 @@ class _SettingsPageState extends State<SettingsPage> {
                       title: 'FAQ’s',
                     ),
                     SettingsListTile(
-                      onTap: () {},
+                      onTap: () {
+                        Get.to(() => HelpPage());
+                      },
                       title: 'Help',
                     ),
                     SettingsListTile(
                       onTap: () {
-                        Get.to(()=>TermsAndConditions());
+                        Get.to(() => TermsAndConditions());
                       },
                       title: 'Terms & Conditions',
                     ),
                     SettingsListTile(
                       onTap: () {
-                        Get.to(()=>PrivacyPolicy());
+                        Get.to(() => PrivacyPolicy());
                       },
                       title: 'Privacy Policy',
                     ),
                     SettingsListTile(
-                      onTap: () {},
+                      onTap: () {
+                        Get.to(() => InviteFriends());
+                      },
                       title: 'Invite Friends',
                     ),
                   ],
