@@ -6,4 +6,5 @@ class AppColors {
   static const Color greenButton = Color(0xFF606C38);
   static const Color backgroundColor = Color(0xFFFFFFFC);
   static const Color thickGreen = Color(0xFF2B361C);
+  static const Color fadedText = Color(0xFF212221);
 }

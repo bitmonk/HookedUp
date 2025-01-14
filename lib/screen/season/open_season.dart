@@ -100,10 +100,28 @@ class _OpenSeasonState extends State<OpenSeason> {
                 ],
               ),
             ),
-            SizedBox(
-              height: 40.h,
-            ),
-            OpenSeasonCard(),
+            SizedBox(height: 10.h),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 30.h,
+                    ),
+                    OpenSeasonCard(),
+                    SizedBox(height: 12.h),
+                    OpenSeasonCard(),
+                    SizedBox(height: 12.h),
+                    OpenSeasonCard(),
+                    SizedBox(height: 12.h),
+                    OpenSeasonCard(),
+                    SizedBox(height: 12.h),
+                    OpenSeasonCard(),
+                    SizedBox(height: 12.h),
+                  ],
+                ),
+              ),
+            )
           ],
         ),
       ),
