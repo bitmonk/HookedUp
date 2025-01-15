@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hooked_up/components/form_input_field.dart';
@@ -17,20 +18,23 @@ class CreateForum extends StatefulWidget {
 }
 
 class _CreateForumState extends State<CreateForum> {
-  File? _selectedImage;
+  // File? _selectedImage;
+  List<File> selectedImages = [];
+
   Future<void> _selectForumPics() async {
     final ImagePicker picker = ImagePicker();
-    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+    final List<XFile>? images = await picker.pickMultiImage();
 
-    if (image != null) {
+    if (images != null) {
       setState(() {
-        _selectedImage = File(image.path);
+        selectedImages.addAll(images.map((image) => File(image.path)));
       });
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    print(selectedImages);
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
@@ -122,83 +126,107 @@ class _CreateForumState extends State<CreateForum> {
                       ),
                       Container(
                         width: double.infinity,
-                        height: _selectedImage != null ? null : 58.h,
+                        height: selectedImages.isNotEmpty ? null : 58.h,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color: Color(0xFFF5F5F5),
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            _selectedImage != null
-                                ? Padding(
-                                    padding: EdgeInsets.only(
-                                        top: 11.h,
-                                        bottom: 10.h,
-                                        left: 9.h,
-                                        right: 13.w),
-                                    child: Stack(
-                                      children: [
-                                        Container(
-                                          width: 84.w,
-                                          height: 68.h,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                          ),
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(12),
-                                            child: Image.file(_selectedImage!,
-                                                fit: BoxFit.cover),
-                                          ),
+                        child: Expanded(
+                          child: SingleChildScrollView(
+                            scrollDirection:
+                                Axis.horizontal, // Allow horizontal scrolling
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                selectedImages.isEmpty
+                                    ? Padding(
+                                        padding: EdgeInsets.only(
+                                          left: 24.w,
                                         ),
-                                        Positioned(
-                                          right: 7.w,
-                                          top: 8.h,
-                                          child: GestureDetector(
-                                            onTap: () {
-                                              setState(() {
-                                                _selectedImage = null;
-                                              });
-                                            },
-                                            child: Icon(
-                                              Icons.close,
-                                              color: Color(0xFFFFFFFC),
+                                        child: Text('Add Media',
+                                            style: TextStyle(
+                                              fontSize: 16.sp,
+                                            )),
+                                      )
+                                    : SizedBox.shrink(),
+                                Wrap(
+                                  children: [
+                                    ...selectedImages.map(
+                                      (imageFile) => Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 8.w, vertical: 10.h),
+                                        child: Stack(
+                                          children: [
+                                            Container(
+                                              width: 84.w,
+                                              height: 68.h,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(12),
+                                              ),
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(12),
+                                                child: Image.file(
+                                                  imageFile,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
                                             ),
-                                          ),
+                                            Positioned(
+                                              top: 4.h,
+                                              right: 4.w,
+                                              child: GestureDetector(
+                                                onTap: () {
+                                                  setState(() {
+                                                    selectedImages.remove(
+                                                        imageFile); // Remove image
+                                                  });
+                                                },
+                                                child: Container(
+                                                  width: 24.w,
+                                                  height: 24.h,
+                                                  child: Icon(
+                                                    Icons.close,
+                                                    color: Colors.white,
+                                                    size: 16.sp,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                      ],
+                                      ),
                                     ),
-                                  ) // Show the selected image
-                                : Padding(
-                                    padding: EdgeInsets.only(left: 24.w),
-                                    child: Text(
-                                      'Add Media',
-                                      style: TextStyle(fontSize: 16.sp),
+                                  ],
+                                ),
+                                selectedImages.isEmpty
+                                    ? SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.40,
+                                      )
+                                    : SizedBox.shrink(),
+                                GestureDetector(
+                                  onTap: () {
+                                    _selectForumPics();
+                                  },
+                                  child: Container(
+                                    height: 48.h,
+                                    width: 48.w,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(50.r),
+                                      color: Color(0xFFD7D9C9),
                                     ),
-                                  ),
-                            Padding(
-                              padding: EdgeInsets.only(right: 15.h),
-                              child: GestureDetector(
-                                onTap: () {
-                                  _selectForumPics();
-                                },
-                                child: Container(
-                                  height: 48.h,
-                                  width: 48.w,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Color(0xFFD7D9C9),
-                                  ),
-                                  child: Icon(
-                                    Icons.add_rounded,
-                                    size: 24.sp,
+                                    child: Icon(
+                                      Icons.add_rounded,
+                                      size: 24.sp,
+                                    ),
                                   ),
                                 ),
-                              ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
                       ),
                     ],
