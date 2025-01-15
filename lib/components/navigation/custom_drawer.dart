@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:hooked_up/screen/auth/login.dart';
 import 'package:hooked_up/screen/connections/link_connections.dart';
+import 'package:hooked_up/screen/forum/forum_home.dart';
 import 'package:hooked_up/screen/home/home_social_feed.dart';
 import 'package:hooked_up/screen/settings/settings_page.dart';
 
@@ -77,7 +78,7 @@ class CustomDrawer extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
-                        // Handle forum navigation here
+                        Get.to(() => ForumHome());
                       },
                     ),
                     ListTile(
