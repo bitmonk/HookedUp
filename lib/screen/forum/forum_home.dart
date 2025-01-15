@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:hooked_up/components/form_input_field.dart';
 import 'package:hooked_up/components/forum/forum_event_card.dart';
+import 'package:hooked_up/screen/forum/create_forum.dart';
 import 'package:hooked_up/screen/home/activity_feed.dart';
 import 'package:hooked_up/utils/colors.dart';
 
@@ -99,16 +101,21 @@ class _ForumHomeState extends State<ForumHome> {
                   ),
                 ),
                 SizedBox(width: 12.w), // Add spacing between widgets
-                Container(
-                  height: 48.h,
-                  width: 48.w,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color(0xFFD7D9C9),
-                  ),
-                  child: Icon(
-                    Icons.add_rounded,
-                    size: 24.sp,
+                GestureDetector(
+                  onTap: () {
+                    Get.to(() => CreateForum());
+                  },
+                  child: Container(
+                    height: 48.h,
+                    width: 48.w,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color(0xFFD7D9C9),
+                    ),
+                    child: Icon(
+                      Icons.add_rounded,
+                      size: 24.sp,
+                    ),
                   ),
                 ),
               ],
