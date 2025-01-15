@@ -122,7 +122,7 @@ class _CreateForumState extends State<CreateForum> {
                       ),
                       Container(
                         width: double.infinity,
-                        // height: 58.h,
+                        height: _selectedImage != null ? null : 58.h,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color: Color(0xFFF5F5F5),
@@ -137,17 +137,38 @@ class _CreateForumState extends State<CreateForum> {
                                         bottom: 10.h,
                                         left: 9.h,
                                         right: 13.w),
-                                    child: Container(
-                                      width: 84.w,
-                                      height: 68.h,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(12),
-                                        child: Image.file(_selectedImage!,
-                                            fit: BoxFit.cover),
-                                      ),
+                                    child: Stack(
+                                      children: [
+                                        Container(
+                                          width: 84.w,
+                                          height: 68.h,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                          ),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(12),
+                                            child: Image.file(_selectedImage!,
+                                                fit: BoxFit.cover),
+                                          ),
+                                        ),
+                                        Positioned(
+                                          right: 7.w,
+                                          top: 8.h,
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              setState(() {
+                                                _selectedImage = null;
+                                              });
+                                            },
+                                            child: Icon(
+                                              Icons.close,
+                                              color: Color(0xFFFFFFFC),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ) // Show the selected image
                                 : Padding(
