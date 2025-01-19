@@ -132,13 +132,16 @@ class CustomDrawer extends StatelessWidget {
                     // Use Get.to() to navigate to LoginPage
                     Get.to(() => const LoginPage());
                   },
-                  child: Text(
-                    'Log Out',
-                    textAlign: TextAlign.end,
-                    style: TextStyle(
-                      fontSize: 22.sp,
-                      fontWeight: FontWeight.w700,
-                      color: const Color(0xFFFFFFFF).withValues(alpha: 0.53),
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 45.h),
+                    child: Text(
+                      'Log Out',
+                      textAlign: TextAlign.end,
+                      style: TextStyle(
+                        fontSize: 22.sp,
+                        fontWeight: FontWeight.w700,
+                        color: const Color(0xFFFFFFFF).withValues(alpha: 0.53),
+                      ),
                     ),
                   ),
                 ),

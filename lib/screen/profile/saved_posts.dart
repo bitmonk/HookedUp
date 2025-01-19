@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hooked_up/components/form_input_field.dart';
 import 'package:hooked_up/components/navigation/custom_drawer.dart';
-import 'package:hooked_up/components/profile/connection_list_card.dart';
 import 'package:hooked_up/model/dummy_data.dart';
 import 'package:hooked_up/utils/colors.dart';
 

@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:hooked_up/components/form_input_field.dart';
-import 'package:hooked_up/components/green_button.dart';
-import 'package:hooked_up/components/popup/closable_popup.dart';
 import 'package:hooked_up/components/settings/invite_box.dart';
 import 'package:hooked_up/utils/colors.dart';
 

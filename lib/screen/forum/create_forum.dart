@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:hooked_up/components/form_input_field.dart';
 import 'package:hooked_up/components/green_button.dart';
 import 'package:hooked_up/components/home/heading_text_orange.dart';
+import 'package:hooked_up/components/popup/closable_popup.dart';
 import 'package:hooked_up/utils/colors.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -23,7 +24,7 @@ class _CreateForumState extends State<CreateForum> {
 
   Future<void> _selectForumPics() async {
     final ImagePicker picker = ImagePicker();
-    final List<XFile>? images = await picker.pickMultiImage();
+    final List<XFile> images = await picker.pickMultiImage();
 
     if (images != null) {
       setState(() {
@@ -183,7 +184,7 @@ class _CreateForumState extends State<CreateForum> {
                                                         imageFile); // Remove image
                                                   });
                                                 },
-                                                child: Container(
+                                                child: SizedBox(
                                                   width: 24.w,
                                                   height: 24.h,
                                                   child: Icon(
@@ -237,7 +238,17 @@ class _CreateForumState extends State<CreateForum> {
                 padding: EdgeInsets.only(bottom: 56.h),
                 child: SizedBox(
                   width: double.infinity,
-                  child: GreenButton(text: 'SHARE', onPressed: () {}),
+                  child: GreenButton(
+                      text: 'SHARE',
+                      onPressed: () {
+                        showClosablePopup(
+                            context: context,
+                            title: 'Forum Shared Successfully',
+                            buttonText: 'OKAY',
+                            onPressed: () {
+                              Get.back();
+                            });
+                      }),
                 ),
               ),
             ],

@@ -3,9 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:hooked_up/components/green_button.dart';
-import 'package:hooked_up/components/popup/closable_popup.dart';
 import 'package:hooked_up/components/subscription/subscription_card.dart';
-import 'package:hooked_up/screen/auth/get_notified.dart';
 import 'package:hooked_up/screen/settings/subscription_select_plan.dart';
 
 class SubscriptionManager extends StatefulWidget {

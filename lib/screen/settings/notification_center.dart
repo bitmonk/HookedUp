@@ -13,7 +13,7 @@ class NotificationCenter extends StatefulWidget {
 }
 
 class _NotificationCenterState extends State<NotificationCenter> {
-  bool _isToggled = false;
+  final bool _isToggled = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

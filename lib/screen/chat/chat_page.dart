@@ -12,9 +12,9 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
-  TextEditingController _controller = TextEditingController();
-  FocusNode _focusNode = FocusNode();
-  List<String> _messages = [];
+  final TextEditingController _controller = TextEditingController();
+  final FocusNode _focusNode = FocusNode();
+  final List<String> _messages = [];
 
   @override
   void initState() {

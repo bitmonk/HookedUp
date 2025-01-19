@@ -4,7 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooked_up/components/form_input_field.dart';
 import 'package:hooked_up/components/home/heading_text_orange.dart';
 import 'package:hooked_up/components/home/tag_connection.dart';
-import 'package:hooked_up/components/popup/report_closable_popup.dart';
 import 'package:hooked_up/components/popup/send_note.dart';
 import 'package:hooked_up/utils/colors.dart';
 

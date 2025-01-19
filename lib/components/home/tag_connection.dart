@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hooked_up/components/form_input_field.dart';
 import 'package:hooked_up/utils/colors.dart';
 
 class TagConnection extends StatefulWidget {
