@@ -75,40 +75,43 @@ class _CreateAccountState extends State<CreateAccount> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color.fromRGBO(255, 255, 252, 1),
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: Transform.translate(
-          offset: Offset(24.w, 0),
-          child: GestureDetector(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: Container(
-              height: 41.h,
-              width: 41.w,
-              decoration: BoxDecoration(
-                color: const Color(0xFF9FA482).withAlpha(42),
-                shape: BoxShape.circle,
-              ),
-              child: Icon(
-                Icons.arrow_back,
-                color: Color(0xFF2B361C),
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        resizeToAvoidBottomInset: true,
+        backgroundColor: const Color.fromRGBO(255, 255, 252, 1),
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          surfaceTintColor: Colors.transparent,
+          elevation: 0,
+          leading: Transform.translate(
+            offset: Offset(24.w, 0),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Container(
+                height: 41.h,
+                width: 41.w,
+                decoration: BoxDecoration(
+                  color: const Color(0xFF9FA482).withAlpha(42),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  Icons.arrow_back,
+                  color: Color(0xFF2B361C),
+                ),
               ),
             ),
           ),
+          title: SvgPicture.asset(
+            'assets/images/splash/logo.svg',
+            height: 54.h,
+            width: 52.w,
+          ),
+          centerTitle: true,
         ),
-        title: SvgPicture.asset(
-          'assets/images/splash/logo.svg',
-          height: 54.h,
-          width: 52.w,
-        ),
-        centerTitle: true,
-      ),
-      body: SafeArea(
-        child: SingleChildScrollView(
+        body: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 24.w),
             child: Form(
@@ -246,28 +249,27 @@ class _CreateAccountState extends State<CreateAccount> {
                         SizedBox(height: 160.h),
 
                         // Submit Button
-                        SizedBox(
-                          width: double.infinity,
-                          child: GreenButton(
-                            text: 'NEXT',
-                            onPressed: () async {
-                              if (formKey.currentState?.validate() ?? false) {
-                                bool uploadSuccess =
-                                    await uploadUserDetailsToDb();
-                                if (uploadSuccess) {
-                                  Get.snackbar('Success', 'Success',
-                                      snackPosition: SnackPosition.TOP);
-                                  Get.to(() => UploadProfile());
-                                }
-                              } else {
-                                Get.snackbar('Error',
-                                    'Please fill in all fields correctly',
-                                    snackPosition: SnackPosition.TOP);
-                              }
-                            },
-                          ),
-                        ),
                       ],
+                    ),
+                  ),
+                  SizedBox(
+                    width: double.infinity,
+                    child: GreenButton(
+                      text: 'NEXT',
+                      onPressed: () async {
+                        if (formKey.currentState?.validate() ?? false) {
+                          bool uploadSuccess = await uploadUserDetailsToDb();
+                          if (uploadSuccess) {
+                            Get.snackbar('Success', 'Success',
+                                snackPosition: SnackPosition.TOP);
+                            Get.to(() => UploadProfile());
+                          }
+                        } else {
+                          Get.snackbar(
+                              'Error', 'Please fill in all fields correctly',
+                              snackPosition: SnackPosition.TOP);
+                        }
+                      },
                     ),
                   ),
                 ],

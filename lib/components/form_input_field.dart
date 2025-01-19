@@ -27,6 +27,14 @@ bool _isValid = true;
 class _FormInputFieldState extends State<FormInputField> {
   @override
   Widget build(BuildContext context) {
+    var outlineInputBorder = OutlineInputBorder(
+      borderRadius: BorderRadius.circular(20.r),
+      borderSide: BorderSide.none,
+      // borderSide: BorderSide(
+      //   color: _isValid ? Color(0xFFF5F5F5) : Colors.red,
+      //   // width: 1,
+      // ),
+    );
     return TextFormField(
       validator: widget.validator,
       onChanged: (value) {
@@ -46,20 +54,22 @@ class _FormInputFieldState extends State<FormInputField> {
         labelStyle: TextStyle(
           fontSize: 16.sp,
           color: const Color(0xFF212221),
+          height: 0.2.h,
         ),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20.r),
-          borderSide: BorderSide.none,
-          // borderSide: BorderSide(
-          //   color: _isValid ? Color(0xFFF5F5F5) : Colors.red,
-          //   // width: 1,
-          // ),
+        // alignLabelWithHint: true,
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.white),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.white),
+          borderRadius: BorderRadius.circular(20),
         ),
         filled: true,
         fillColor: const Color(0xFFF5F5F5),
         contentPadding: EdgeInsets.symmetric(
           horizontal: 24.w,
-          vertical: 18.h,
+          vertical: 12.h,
         ),
       ),
     );
