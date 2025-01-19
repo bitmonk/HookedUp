@@ -216,7 +216,7 @@ class _SubscriptionManagerState extends State<SubscriptionManager> {
                           ),
                           Positioned(
                             left: 24.w,
-                            top: 10.h,
+                            top: 4.h,
                             child: Text(
                               'Name on Card',
                               style: TextStyle(
@@ -249,7 +249,7 @@ class _SubscriptionManagerState extends State<SubscriptionManager> {
                           ),
                           Positioned(
                             left: 24.w,
-                            top: 10.h,
+                            top: 4.h,
                             child: Text(
                               'Card Number',
                               style: TextStyle(
