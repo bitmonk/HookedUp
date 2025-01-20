@@ -221,10 +221,32 @@ class _MyProfileState extends State<MyProfile> {
               )
             else if (_selectedIndex == 1)
               Expanded(
-                child: ListView.separated(
-                  itemCount: 8,
-                  itemBuilder: (context, index) => EventCard(),
-                  separatorBuilder: (context, index) => SizedBox(height: 12.h),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(left: 24.w, bottom: 24.h),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            'Recommended Events',
+                            style: TextStyle(
+                              fontSize: 22.sp,
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFFD88F48),
+                            ),
+                          ),
+                        ),
+                      ),
+                      EventCard(),
+                      EventCard(),
+                      EventCard(),
+                      EventCard(),
+                      EventCard(),
+                      EventCard(),
+                      EventCard(),
+                    ],
+                  ),
                 ),
               )
             else

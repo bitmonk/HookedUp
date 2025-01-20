@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:form_validator/form_validator.dart';
 
 class FormInputField extends StatefulWidget {
   final String labelText;
@@ -8,6 +9,7 @@ class FormInputField extends StatefulWidget {
   final TextEditingController? controller;
   final TextInputType? keyboardType;
   final String? Function(String?)? validator;
+  final FocusNode? focusNode;
   const FormInputField({
     super.key,
     required this.labelText,
@@ -16,47 +18,46 @@ class FormInputField extends StatefulWidget {
     this.controller,
     this.keyboardType,
     this.validator,
+    this.focusNode,
   });
 
   @override
   State<FormInputField> createState() => _FormInputFieldState();
 }
 
-bool _isValid = true;
-
 class _FormInputFieldState extends State<FormInputField> {
+  bool _isValid = true;
   @override
   Widget build(BuildContext context) {
-    var outlineInputBorder = OutlineInputBorder(
-      borderRadius: BorderRadius.circular(20.r),
-      borderSide: BorderSide.none,
-      // borderSide: BorderSide(
-      //   color: _isValid ? Color(0xFFF5F5F5) : Colors.red,
-      //   // width: 1,
-      // ),
-    );
     return TextFormField(
-      validator: widget.validator,
-      onChanged: (value) {
-        if (widget.onChanged != null) {
-          widget.onChanged!(value);
+      validator: (value) {
+        final error = widget.validator?.call(value);
+        if (error != null) {
+          setState(() {
+            _isValid = false; // Set invalid state if there's an error
+          });
+        } else {
+          setState(() {
+            _isValid = true; // Set valid state if there's no error
+          });
         }
-
-        setState(() {
-          _isValid = widget.validator?.call(value) == null;
-        });
+        return error;
       },
+      // validator: widget.validator,
       keyboardType: widget.keyboardType ?? TextInputType.text,
       controller: widget.controller,
       obscureText: widget.obscureText,
+      focusNode: widget.focusNode,
       decoration: InputDecoration(
         labelText: widget.labelText,
-        labelStyle: TextStyle(
-          fontSize: 16.sp,
-          color: const Color(0xFF212221),
-          height: 0.2.h,
+        fillColor: Color(0xFFF5F5F5),
+        filled: true,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20.r),
+          borderSide: BorderSide(
+            color: _isValid ? Colors.black54 : Colors.red,
+          ),
         ),
-        // alignLabelWithHint: true,
         focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.white),
           borderRadius: BorderRadius.circular(20),
@@ -65,11 +66,9 @@ class _FormInputFieldState extends State<FormInputField> {
           borderSide: BorderSide(color: Colors.white),
           borderRadius: BorderRadius.circular(20),
         ),
-        filled: true,
-        fillColor: const Color(0xFFF5F5F5),
         contentPadding: EdgeInsets.symmetric(
           horizontal: 24.w,
-          vertical: 12.h,
+          vertical: 15.h,
         ),
       ),
     );

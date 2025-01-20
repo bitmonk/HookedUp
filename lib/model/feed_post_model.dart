@@ -19,6 +19,7 @@ class FeedPostModel {
   final String description;
   final List<Comment> comments;
   final String timeAgo;
+  bool isLiked;
 
   FeedPostModel({
     required this.userName,
@@ -29,5 +30,6 @@ class FeedPostModel {
     required this.description,
     required this.comments,
     required this.timeAgo,
+    this.isLiked = false,
   });
 }

@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:form_validator/form_validator.dart';
+import 'package:get/get.dart';
 import 'package:hooked_up/components/form_input_field.dart';
 import 'package:hooked_up/components/green_button.dart';
 import 'package:hooked_up/screen/auth/create_account.dart';
@@ -18,165 +20,140 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final FocusNode _emailFocusNode = FocusNode();
+  final FocusNode _passwordFocusNode = FocusNode();
 
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+    _emailFocusNode.dispose();
+    _passwordFocusNode.dispose();
     super.dispose();
   }
 
-  Future<void> loginUserWithEmailAndPassword() async {
-    if (_emailController.text.trim().isEmpty ||
-        _passwordController.text.trim().isEmpty) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Please enter both email and password')),
-        );
-      }
-      return;
-    }
-    try {
-      final userCredential =
-          await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim(),
-      );
-      if (userCredential.user != null) {
-        if (mounted) {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => HomeSocialFeed(),
-            ),
-          );
-        }
-      }
-      print(userCredential);
-    } on FirebaseAuthException catch (e) {
-      print('Error: ${e.message}');
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(e.message ?? 'Login failed')),
-        );
-      }
-    }
-  }
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     final keyboardVisible = MediaQuery.of(context).viewInsets.bottom > 0;
 
-    return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        backgroundColor: const Color.fromRGBO(255, 255, 252, 1),
-        resizeToAvoidBottomInset: true,
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 45.w,
-              ),
-              child: Column(
-                children: [
-                  SizedBox(height: 100.h),
-                  SvgPicture.asset(
-                    'assets/images/splash/logo.svg',
-                    height: 141.h,
-                    width: 145.w,
-                  ),
-                  SizedBox(
-                    height: keyboardVisible ? 10.h : 27.h,
-                  ),
-                  Text(
-                    'Hooked Up',
-                    style: TextStyle(
-                      fontFamily: 'Chronograph',
-                      color: const Color(0xFFD88F48),
-                      fontSize: 45.sp,
-                      fontWeight: FontWeight.w400,
+    return Form(
+      key: _formKey,
+      child: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: Scaffold(
+          backgroundColor: const Color.fromRGBO(255, 255, 252, 1),
+          resizeToAvoidBottomInset: true,
+          body: SafeArea(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 45.w,
+                ),
+                child: Column(
+                  children: [
+                    SizedBox(height: 100.h),
+                    SvgPicture.asset(
+                      'assets/images/splash/logo.svg',
+                      height: 141.h,
+                      width: 145.w,
                     ),
-                  ),
-                  SizedBox(
-                    height: keyboardVisible ? 10.h : 61.h,
-                  ),
-                  FormInputField(labelText: 'Email', obscureText: false),
-                  SizedBox(
-                    height: keyboardVisible ? 10.h : 12.h,
-                  ),
-                  FormInputField(labelText: 'Password', obscureText: true),
-                  SizedBox(
-                    height: keyboardVisible ? 10.h : 42.h,
-                  ),
-                  SizedBox(
-                      width: double.infinity,
-                      child: GreenButton(
-                        text: 'CONFIRM',
-                        // onPressed: () async {
-                        //   await loginUserWithEmailAndPassword();
-                        // },
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const HomeSocialFeed(),
-                            ),
-                          );
-                        },
-                      )),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const ForgotPass(),
-                        ),
-                      );
-                    },
-                    child: Text(
-                      'Forgot Password?',
+                    SizedBox(
+                      height: 27.h,
+                    ),
+                    Text(
+                      'Hooked Up',
                       style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        fontSize: 14.sp,
+                        fontFamily: 'Chronograph',
+                        color: const Color(0xFFD88F48),
+                        fontSize: 45.sp,
+                        fontWeight: FontWeight.w400,
                       ),
                     ),
-                  ),
-                  SizedBox(height: 60.h),
-                  Text(
-                    'Still don\'t have an account?',
-                    style: TextStyle(fontSize: 14.sp),
-                  ),
-                  SizedBox(height: 10.h),
-                  SizedBox(
-                    width: double.infinity,
-                    child: TextButton(
-                      style: TextButton.styleFrom(
-                        backgroundColor: const Color(0xFFD88F48),
-                        padding: EdgeInsets.symmetric(vertical: 14.h),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.r),
-                        ),
-                      ),
+                    SizedBox(
+                      height: 61.h,
+                    ),
+                    FormInputField(
+                      controller: _emailController,
+                      focusNode: _emailFocusNode,
+                      validator: ValidationBuilder().email().build(),
+                      labelText: 'Email',
+                      obscureText: false,
+                    ),
+                    SizedBox(
+                      height: 12.h,
+                    ),
+                    FormInputField(
+                      controller: _passwordController,
+                      focusNode: _passwordFocusNode,
+                      validator: ValidationBuilder().build(),
+                      labelText: 'Password',
+                      obscureText: true,
+                    ),
+                    SizedBox(
+                      height: 42.h,
+                    ),
+                    SizedBox(
+                        width: double.infinity,
+                        child: GreenButton(
+                          text: 'CONFIRM',
+                          onPressed: () async {
+                            // Unfocus the text fields before navigating
+                            _emailFocusNode.unfocus();
+                            _passwordFocusNode.unfocus();
+                            // Proceed to the next page
+                            Get.to(() => HomeSocialFeed());
+                          },
+                        )),
+                    TextButton(
                       onPressed: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const CreateAccount(),
+                            builder: (context) => const ForgotPass(),
                           ),
                         );
                       },
                       child: Text(
-                        'CREATE ACCOUNT',
+                        'Forgot Password?',
                         style: TextStyle(
-                          color: const Color(0xFFF3FAFE),
-                          fontSize: 22.sp,
-                          fontWeight: FontWeight.w700,
+                          decoration: TextDecoration.underline,
+                          fontSize: 14.sp,
                         ),
                       ),
                     ),
-                  ),
-                ],
+                    SizedBox(height: 60.h),
+                    Text(
+                      'Still don\'t have an account?',
+                      style: TextStyle(fontSize: 14.sp),
+                    ),
+                    SizedBox(height: 10.h),
+                    SizedBox(
+                      width: double.infinity,
+                      child: TextButton(
+                        style: TextButton.styleFrom(
+                          backgroundColor: const Color(0xFFD88F48),
+                          padding: EdgeInsets.symmetric(vertical: 14.h),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.r),
+                          ),
+                        ),
+                        onPressed: () {
+                          Get.to(() => CreateAccount());
+                        },
+                        child: Text(
+                          'CREATE ACCOUNT',
+                          style: TextStyle(
+                            color: const Color(0xFFF3FAFE),
+                            fontSize: 22.sp,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

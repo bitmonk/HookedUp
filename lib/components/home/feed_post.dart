@@ -18,7 +18,7 @@ class FeedPost extends StatefulWidget {
 
 class _FeedPostState extends State<FeedPost> {
   bool _viewMoreClicked = false;
-  bool _isLiked = false;
+
   bool _clickedSave = false;
   final snackBar = const SnackBar(
     content: Text('Post saved to collections..'),
@@ -277,39 +277,31 @@ class _FeedPostState extends State<FeedPost> {
                                           SizedBox(
                                             height: 34.h,
                                           ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              SizedBox(
-                                                width: 25.w,
+                                          ListTile(
+                                            contentPadding:
+                                                EdgeInsets.symmetric(
+                                                    horizontal: 25.w),
+                                            leading: SvgPicture.asset(
+                                              'assets/images/icons/report.svg',
+                                              width: 25.w,
+                                            ),
+                                            title: Text(
+                                              'Report',
+                                              style: TextStyle(
+                                                color: const Color(0xFF000000),
+                                                fontSize: 16.sp,
+                                                fontWeight: FontWeight.w700,
                                               ),
-                                              SvgPicture.asset(
-                                                  'assets/images/icons/report.svg'),
-                                              SizedBox(
-                                                width: 17.w,
-                                              ),
-                                              GestureDetector(
-                                                onTap: () {
-                                                  showClosableReportPopup(
-                                                      context: context,
-                                                      title: 'Confirm Report',
-                                                      content:
-                                                          'Are you sure you want to report this user? This action will notify our team for review. Please provide details.',
-                                                      buttonText: 'SUBMIT',
-                                                      onPressed: () {});
-                                                },
-                                                child: Text(
-                                                  'Report',
-                                                  style: TextStyle(
-                                                    color:
-                                                        const Color(0xFF000000),
-                                                    fontSize: 16.sp,
-                                                    fontWeight: FontWeight.w700,
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
+                                            ),
+                                            onTap: () {
+                                              showClosableReportPopup(
+                                                  context: context,
+                                                  title: 'Confirm Report',
+                                                  content:
+                                                      'Are you sure you want to report this user? This action will notify our team for review. Please provide details.',
+                                                  buttonText: 'SUBMIT',
+                                                  onPressed: () {});
+                                            },
                                           ),
                                         ],
                                       ),
@@ -337,8 +329,8 @@ class _FeedPostState extends State<FeedPost> {
                 child: GestureDetector(
                   onDoubleTap: () {
                     setState(() {
-                      _isLiked = !_isLiked;
-                      if (_isLiked) {
+                      post.isLiked = !post.isLiked;
+                      if (post.isLiked) {
                         post.likeCount++;
                       } else {
                         post.likeCount--;
@@ -376,8 +368,8 @@ class _FeedPostState extends State<FeedPost> {
                     GestureDetector(
                       onTap: () {
                         setState(() {
-                          _isLiked = !_isLiked;
-                          if (_isLiked) {
+                          post.isLiked = !post.isLiked;
+                          if (post.isLiked) {
                             post.likeCount++;
                           } else {
                             post.likeCount--;
@@ -389,7 +381,7 @@ class _FeedPostState extends State<FeedPost> {
                         width: 24.h,
                         child: SvgPicture.asset(
                           'assets/images/icons/heart.svg',
-                          colorFilter: _isLiked
+                          colorFilter: post.isLiked
                               ? const ColorFilter.mode(
                                   Color(0xFFD88F48), BlendMode.srcIn)
                               : const ColorFilter.mode(
@@ -410,10 +402,14 @@ class _FeedPostState extends State<FeedPost> {
                       ),
                     ),
                     SizedBox(width: 12.w),
-                    SizedBox(
-                      height: 25.h,
-                      width: 24.h,
-                      child: SvgPicture.asset('assets/images/icons/share.svg'),
+                    GestureDetector(
+                      onTap: () {},
+                      child: SizedBox(
+                        height: 25.h,
+                        width: 24.h,
+                        child:
+                            SvgPicture.asset('assets/images/icons/share.svg'),
+                      ),
                     ),
                     const Spacer(),
                     GestureDetector(
@@ -446,7 +442,7 @@ class _FeedPostState extends State<FeedPost> {
                 padding:
                     EdgeInsets.symmetric(horizontal: 25.0.w, vertical: 12.h),
                 child: Text(
-                  '${post.likeCount}',
+                  '${post.likeCount} Likes',
                   style: TextStyle(
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w700,
@@ -460,7 +456,7 @@ class _FeedPostState extends State<FeedPost> {
                   text: TextSpan(
                     children: [
                       TextSpan(
-                        text: post.userName,
+                        text: '${post.userName} ',
                         style: TextStyle(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w700,
