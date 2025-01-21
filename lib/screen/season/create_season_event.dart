@@ -237,11 +237,18 @@ class _CreateSeasonEventState extends State<CreateSeasonEvent> {
                       text: 'SHARE',
                       onPressed: () {
                         showClosablePopup(
+                            closeBtnRoute: () {
+                              Get.back();
+                              Get.back();
+                              Get.back();
+                            },
                             context: context,
                             title: 'Event Shared \nSuccessfully',
                             buttonText: 'OKAY',
                             onPressed: () {
-                              Get.to(() => OpenSeason());
+                              Get.back();
+                              Get.back();
+                              Get.back();
                             });
                       }),
                 ),
