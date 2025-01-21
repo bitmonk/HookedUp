@@ -75,30 +75,11 @@ class _CreateSeasonEventState extends State<CreateSeasonEvent> {
                       SizedBox(
                         height: 24.h,
                       ),
-                      FormInputField(
-                          labelText: 'Event Title', obscureText: false),
-                      SizedBox(height: 12.h),
-                      Container(
-                        height: 371.h,
-                        decoration: BoxDecoration(
-                          color: Color(0xFFF5F5F5),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 24.w, vertical: 18.h),
-                          child: TextField(
-                            decoration: InputDecoration(
-                              hintText: 'Event Description',
-                              enabledBorder: InputBorder.none,
-                              focusedBorder: InputBorder.none,
-                            ),
-                            maxLines: null,
-                            expands: true,
-                            keyboardType: TextInputType.multiline,
-                          ),
-                        ),
+                      FormInputField(labelText: 'Location', obscureText: false),
+                      SizedBox(
+                        height: 12.h,
                       ),
+                      FormInputField(labelText: 'Date', obscureText: false),
                       SizedBox(
                         height: 12.h,
                       ),
@@ -119,6 +100,30 @@ class _CreateSeasonEventState extends State<CreateSeasonEvent> {
                           filled: true,
                           suffixIcon: Icon(Icons.arrow_forward_rounded,
                               color: const Color(0xFF212221), size: 20.sp),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 12.h,
+                      ),
+                      Container(
+                        height: 251.h,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFF5F5F5),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 24.w, vertical: 18.h),
+                          child: TextField(
+                            decoration: InputDecoration(
+                              hintText: 'Event Description',
+                              enabledBorder: InputBorder.none,
+                              focusedBorder: InputBorder.none,
+                            ),
+                            maxLines: null,
+                            expands: true,
+                            keyboardType: TextInputType.multiline,
+                          ),
                         ),
                       ),
                       SizedBox(

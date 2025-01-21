@@ -40,16 +40,21 @@ class _OpenSeasonState extends State<OpenSeason> {
                   ),
                 ),
                 SizedBox(width: 12.w),
-                Container(
-                  height: 48.h,
-                  width: 48.w,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color(0xFFD7D9C9),
-                  ),
-                  child: Icon(
-                    Icons.add_rounded,
-                    size: 24.sp,
+                GestureDetector(
+                  onTap: () {
+                    Get.to(() => CreateSeasonEvent());
+                  },
+                  child: Container(
+                    height: 48.h,
+                    width: 48.w,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color(0xFFD7D9C9),
+                    ),
+                    child: Icon(
+                      Icons.add_rounded,
+                      size: 24.sp,
+                    ),
                   ),
                 ),
               ],
@@ -165,7 +170,9 @@ class _OpenSeasonState extends State<OpenSeason> {
                                   ),
                                 ),
                                 TextButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    
+                                  },
                                   child: Text(
                                     'View all',
                                     style: TextStyle(
