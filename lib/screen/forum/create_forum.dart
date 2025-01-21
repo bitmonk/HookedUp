@@ -79,27 +79,27 @@ class _CreateForumState extends State<CreateForum> {
                       FormInputField(
                           labelText: 'Forum Title', obscureText: false),
                       SizedBox(height: 12.h),
-                      Container(
-                        height: 371.h,
-                        decoration: BoxDecoration(
-                          color: Color(0xFFF5F5F5),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 24.w, vertical: 18.h),
-                          child: TextField(
-                            decoration: InputDecoration(
-                              hintText: 'Forum Description',
-                              enabledBorder: InputBorder.none,
-                              focusedBorder: InputBorder.none,
+                        Container(
+                          height: 371.h,
+                          decoration: BoxDecoration(
+                            color: Color(0xFFF5F5F5),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 24.w, vertical: 18.h),
+                            child: TextField(
+                              decoration: InputDecoration(
+                                hintText: 'Forum Description',
+                                enabledBorder: InputBorder.none,
+                                focusedBorder: InputBorder.none,
+                              ),
+                              maxLines: null,
+                              expands: true,
+                              keyboardType: TextInputType.multiline,
                             ),
-                            maxLines: null,
-                            expands: true,
-                            keyboardType: TextInputType.multiline,
                           ),
                         ),
-                      ),
                       SizedBox(
                         height: 12.h,
                       ),

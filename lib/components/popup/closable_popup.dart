@@ -11,50 +11,59 @@ Future<dynamic> showClosablePopup({
   required String buttonText,
   required VoidCallback onPressed,
   bool? showExtraOption,
+  VoidCallback? closeBtnRoute,
 }) {
   return showDialog(
     context: context,
+    barrierDismissible: false,
     builder: (context) => AlertDialog(
       backgroundColor: Color(0xFFF5F5F5),
-      contentPadding: EdgeInsets.fromLTRB(26.w, 19.h, 32.w, 31.h),
+      contentPadding: EdgeInsets.fromLTRB(26.w, 34.h, 32.w, 31.h),
       title: Stack(
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SvgPicture.asset(
-                'assets/images/splash/logo.svg',
-                height: 46.h,
-                width: 45.w,
-              ),
-              SizedBox(height: 24.h),
-              Text(
-                title,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 22.sp,
-                  fontWeight: FontWeight.w700,
+          Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset(
+                  'assets/images/splash/logo.svg',
+                  height: 46.h,
+                  width: 45.w,
                 ),
-              ),
-              SizedBox(height: 12.h),
-              if (content != null)
+                SizedBox(height: 24.h),
                 Text(
-                  content,
+                  title,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 14.sp,
-                    color: const Color(0xFF212221).withAlpha(153),
+                    fontSize: 22.sp,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
-              SizedBox(height: 14.h),
-            ],
+                SizedBox(height: 12.h),
+                if (content != null)
+                  Text(
+                    content,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      color: const Color(0xFF212221).withAlpha(153),
+                    ),
+                  ),
+                // SizedBox(height: 14.h),
+              ],
+            ),
           ),
           Positioned(
             right: 0,
             top: 0,
             child: GestureDetector(
               onTap: () {
-                Navigator.pop(context);
+                if (closeBtnRoute != null) {
+                  closeBtnRoute();
+                } else {
+                  Navigator.pop(context);
+                }
               },
               child: Container(
                 padding: EdgeInsets.all(8.w),

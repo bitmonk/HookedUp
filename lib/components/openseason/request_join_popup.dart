@@ -1,57 +1,79 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooked_up/components/green_button.dart';
+import 'package:hooked_up/utils/colors.dart';
 
-Future<dynamic> showClosableReportPopup({
+Future<dynamic> requestJoinPopup({
   required BuildContext context,
   required String title,
+  final VoidCallback? onPressed,
   String? content,
-  required String buttonText,
-  required VoidCallback onPressed,
 }) {
   return showDialog(
-    barrierDismissible: false,
     context: context,
     builder: (context) => AlertDialog(
-      backgroundColor: const Color(0xFFF5F5F5),
+      backgroundColor: const Color(0xFFFFFFFC),
       contentPadding: EdgeInsets.fromLTRB(26.w, 19.h, 32.w, 31.h),
       title: Stack(
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SvgPicture.asset(
-                'assets/images/splash/logo.svg',
-                height: 46.h,
-                width: 45.w,
-              ), // Show icon if path is provided
-              SizedBox(height: 24.h),
               Text(
                 title,
-                textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 22.sp,
                   fontWeight: FontWeight.w700,
+                  color: AppColors.heading,
                 ),
               ),
-              SizedBox(height: 12.h),
-              if (content != null)
-                Text(
-                  content, // Display content if provided
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    color: const Color(0xFF212221).withValues(alpha: 0.6),
-                  ),
-                ),
               SizedBox(
-                height: 14.h,
+                height: 24.h,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  SizedBox(
+                    width: 11.w,
+                  ),
+                  Text(
+                    'Send request to:',
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      color: Color(0xFF212221).withAlpha(60),
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 29.h,
+                    width: 29.w,
+                    child: CircleAvatar(
+                      backgroundImage:
+                          AssetImage('assets/images/explainer/profile2.png'),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 6.w,
+                  ),
+                  Text(
+                    'Sarah Smith',
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      color: Color(0xFF212221),
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 24.h,
               ),
               Container(
-                height: 285.h,
+                height: 116.h,
+                width: 295.w,
                 decoration: BoxDecoration(
-                  color: Color(0xFFFFFFFF),
+                  color: Color(0xFFF5F5F5),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Padding(
@@ -59,7 +81,7 @@ Future<dynamic> showClosableReportPopup({
                       EdgeInsets.symmetric(horizontal: 24.w, vertical: 18.h),
                   child: TextField(
                     decoration: InputDecoration(
-                      hintText: 'Report Description',
+                      hintText: 'Add Note',
                       enabledBorder: InputBorder.none,
                       focusedBorder: InputBorder.none,
                     ),
@@ -67,6 +89,16 @@ Future<dynamic> showClosableReportPopup({
                     expands: true,
                     keyboardType: TextInputType.multiline,
                   ),
+                ),
+              ),
+              SizedBox(
+                height: 24,
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: GreenButton(
+                  text: 'SEND',
+                  onPressed: onPressed,
                 ),
               ),
             ],
@@ -93,10 +125,6 @@ Future<dynamic> showClosableReportPopup({
             ),
           ),
         ],
-      ),
-      content: GreenButton(
-        text: buttonText,
-        onPressed: onPressed,
       ),
     ),
   );

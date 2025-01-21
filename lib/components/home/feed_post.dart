@@ -36,133 +36,136 @@ class _FeedPostState extends State<FeedPost> {
             top: 20.h,
             bottom: MediaQuery.of(context).viewInsets.bottom,
           ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(right: 19.w),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(left: 156.0.w),
-                      child: Text(
-                        'Comments',
-                        style: TextStyle(
-                          fontSize: 22.sp,
-                          fontWeight: FontWeight.w700,
-                          color: const Color(0xFFD88F48),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Align(
-                        alignment: Alignment.centerRight,
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Container(
-                            padding: EdgeInsets.all(8.w),
-                            decoration: BoxDecoration(
-                              color: const Color(0xFF9FA482)
-                                  .withValues(alpha: 0.42),
-                              shape: BoxShape.circle,
-                            ),
-                            child: const Icon(
-                              Icons.close,
-                              color: Color(0xFF2B361C),
-                              size: 24,
-                            ),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(right: 19.w),
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(left: 156.0.w),
+                        child: Text(
+                          'Comments',
+                          style: TextStyle(
+                            fontSize: 22.sp,
+                            fontWeight: FontWeight.w700,
+                            color: const Color(0xFFD88F48),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 20.h),
-              Container(
-                constraints: BoxConstraints(maxHeight: 500.h),
-                child: ListView.builder(
-                  itemCount: comments.length,
-                  itemBuilder: (context, index) {
-                    final comment = comments[index];
-                    return Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 24.w, vertical: 12.h),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: RichText(
-                              text: TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: '${comment.userName} \n',
-                                    style: TextStyle(
-                                      fontSize: 14.sp,
-                                      fontWeight: FontWeight.w700,
-                                      color: const Color(0xFF000000),
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text: comment.text,
-                                    style: TextStyle(
-                                      fontSize: 14.sp,
-                                      color: const Color(0xFF000000),
-                                    ),
-                                  ),
-                                ],
+                      Expanded(
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
+                            child: Container(
+                              padding: EdgeInsets.all(8.w),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF9FA482)
+                                    .withValues(alpha: 0.42),
+                                shape: BoxShape.circle,
+                              ),
+                              child: const Icon(
+                                Icons.close,
+                                color: Color(0xFF2B361C),
+                                size: 24,
                               ),
                             ),
                           ),
-                          SizedBox(width: 10.w),
-                          Text(
-                            comment.timeAgo,
-                            style: TextStyle(
-                              fontSize: 12.sp,
-                              color: const Color(0xFF212221)
-                                  .withValues(alpha: 0.6),
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 44.w, right: 29.w, bottom: 28.h),
-                child: Row(
-                  children: [
-                    const CircleAvatar(
-                      backgroundImage:
-                          AssetImage('assets/images/explainer/profile.png'),
-                    ),
-                    SizedBox(width: 12.w),
-                    Expanded(
-                      child: TextField(
-                        decoration: InputDecoration(
-                          hintText: 'Add a comment...',
-                          hintStyle: TextStyle(
-                            fontSize: 16.sp,
-                            color: const Color(0xFF212221),
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            borderSide: BorderSide.none,
-                          ),
-                          contentPadding: EdgeInsets.symmetric(
-                              vertical: 10.h, horizontal: 24.w),
-                          fillColor: const Color(0xFFF5F5F5),
-                          filled: true,
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+                SizedBox(height: 20.h),
+                Container(
+                  constraints: BoxConstraints(maxHeight: 500.h),
+                  child: ListView.builder(
+                    itemCount: comments.length,
+                    itemBuilder: (context, index) {
+                      final comment = comments[index];
+                      return Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 24.w, vertical: 12.h),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: RichText(
+                                text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: '${comment.userName} \n',
+                                      style: TextStyle(
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.w700,
+                                        color: const Color(0xFF000000),
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: comment.text,
+                                      style: TextStyle(
+                                        fontSize: 14.sp,
+                                        color: const Color(0xFF000000),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            SizedBox(width: 10.w),
+                            Text(
+                              comment.timeAgo,
+                              style: TextStyle(
+                                fontSize: 12.sp,
+                                color: const Color(0xFF212221)
+                                    .withValues(alpha: 0.6),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                Padding(
+                  padding:
+                      EdgeInsets.only(left: 44.w, right: 29.w, bottom: 28.h),
+                  child: Row(
+                    children: [
+                      const CircleAvatar(
+                        backgroundImage:
+                            AssetImage('assets/images/explainer/profile.png'),
+                      ),
+                      SizedBox(width: 12.w),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: 'Add a comment...',
+                            hintStyle: TextStyle(
+                              fontSize: 16.sp,
+                              color: const Color(0xFF212221),
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide: BorderSide.none,
+                            ),
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 10.h, horizontal: 24.w),
+                            fillColor: const Color(0xFFF5F5F5),
+                            filled: true,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         );
       },

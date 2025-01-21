@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:hooked_up/components/home/feed_post.dart';
 import 'package:hooked_up/components/navigation/custom_drawer.dart';
 import 'package:hooked_up/screen/chat/chat_home.dart';
@@ -8,6 +9,7 @@ import 'package:hooked_up/screen/create_post/create_post_home.dart';
 import 'package:hooked_up/screen/home/activity_feed.dart';
 import 'package:hooked_up/screen/profile/my_profile.dart';
 import 'package:hooked_up/screen/season/open_season.dart';
+import 'package:image_picker/image_picker.dart';
 
 class HomeSocialFeed extends StatefulWidget {
   const HomeSocialFeed({super.key});
@@ -18,7 +20,6 @@ class HomeSocialFeed extends StatefulWidget {
 
 class _SocialFeedState extends State<HomeSocialFeed> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
   int _currentIndex = 0;
 
   List<Widget> body = const [
@@ -103,12 +104,7 @@ class _SocialFeedState extends State<HomeSocialFeed> {
               SizedBox(height: 12.h),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const CreatePostHome(),
-                    ),
-                  );
+                  uploadFromCamera();
                 },
                 child: Padding(
                   padding: EdgeInsets.only(left: 26.w),
@@ -135,7 +131,9 @@ class _SocialFeedState extends State<HomeSocialFeed> {
               ),
               SizedBox(height: 24.h),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  pickImageFromGallery();
+                },
                 child: Padding(
                   padding: EdgeInsets.only(left: 26.w),
                   child: Row(
@@ -165,6 +163,35 @@ class _SocialFeedState extends State<HomeSocialFeed> {
         );
       },
     );
+  }
+
+  Future<void> uploadFromCamera() async {
+    try {
+      final ImagePicker picker = ImagePicker();
+      final XFile? photo = await picker.pickImage(source: ImageSource.camera);
+      if (photo != null) {
+        setState(() {
+          Get.to(() => CreatePostHome(imagePath: photo.path));
+        });
+      }
+    } catch (e) {
+      print('Error picking image: $e');
+    }
+  }
+
+  Future<void> pickImageFromGallery() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? galleryPhoto =
+        await picker.pickImage(source: ImageSource.gallery);
+    if (galleryPhoto != null) {
+      setState(() {
+        Get.to(
+          CreatePostHome(
+            imagePath: galleryPhoto.path,
+          ),
+        );
+      });
+    }
   }
 
   @override

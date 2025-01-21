@@ -1,11 +1,15 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SentChatMessage extends StatelessWidget {
   final String message;
+  final String? imagePath;
   const SentChatMessage({
     super.key,
     required this.message,
+    this.imagePath,
   });
 
   @override
@@ -30,10 +34,14 @@ class SentChatMessage extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(
                         19, 12, 56, 12), // increased right padding
-                    child: Text(
-                      message,
-                      style: TextStyle(color: Color(0xFF000000)),
-                    ),
+                    child: imagePath != null
+                        ? Image.file(
+                            File(imagePath!),
+                          )
+                        : Text(
+                            message,
+                            style: TextStyle(color: Color(0xFF000000)),
+                          ),
                   ),
                 ),
                 Positioned(

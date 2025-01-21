@@ -288,23 +288,6 @@ class _UserProfileState extends State<UserProfile> {
                               color: const Color(0xFF212221).withAlpha(50),
                             ),
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const SavedPosts(),
-                                ),
-                              );
-                            },
-                            child: Text(
-                              'My saved posts',
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          ),
                         ],
                       ),
                       SizedBox(
@@ -548,32 +531,13 @@ class _UserProfileState extends State<UserProfile> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        'My Bucket List',
+                                        'Bucket List Item : 10',
                                         style: TextStyle(
                                           fontSize: 22.sp,
                                           fontWeight: FontWeight.w700,
                                           color: Color(0xFFD88F48),
                                         ),
                                       ),
-                                      GestureDetector(
-                                        onTap: () {
-                                          showAddBucketItemList(
-                                              context: context,
-                                              title: 'Add Bucket List Item',
-                                              buttonText: 'SAVE',
-                                              onPressed: () {});
-                                        },
-                                        child: Container(
-                                          height: 48.h,
-                                          width: 48.h,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(50.r),
-                                            color: Color(0xFFD7D9C9),
-                                          ),
-                                          child: Icon(Icons.add),
-                                        ),
-                                      )
                                     ],
                                   ),
                                 ),

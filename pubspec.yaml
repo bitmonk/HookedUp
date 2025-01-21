@@ -48,6 +48,7 @@ dependencies:
   cloud_firestore: ^5.5.1
   get: ^4.6.6
   form_validator: ^2.1.1
+  intl: ^0.20.1
   # share_plus: ^10.1.4
 dev_dependencies:
   flutter_test:
