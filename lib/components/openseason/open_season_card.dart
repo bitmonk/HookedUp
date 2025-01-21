@@ -9,11 +9,12 @@ import 'package:hooked_up/utils/colors.dart';
 
 class OpenSeasonCard extends StatefulWidget {
   final bool eventRequests;
+  final GestureTapCallback? onThreeDotTap;
 
-  // Default value for eventRequests is false
   const OpenSeasonCard({
     super.key,
-    this.eventRequests = false, // Default value of false
+    this.eventRequests = false,
+    this.onThreeDotTap,
   });
 
   @override
@@ -179,7 +180,6 @@ class _OpenSeasonCardState extends State<OpenSeasonCard> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // Checks if eventRequests is false
                 widget.eventRequests == false
                     ? Row(
                         children: [
@@ -241,11 +241,18 @@ class _OpenSeasonCardState extends State<OpenSeasonCard> {
                             ),
                           ),
                         ],
-                      ), // Show 'data' when eventRequests is true
-                SvgPicture.asset(
-                  'assets/images/icons/three_dots.svg',
-                  colorFilter:
-                      ColorFilter.mode(Color(0xFFD9D9D9), BlendMode.srcIn),
+                      ),
+                GestureDetector(
+                  onTap: widget.onThreeDotTap,
+                  child: SizedBox(
+                    height: 15.h,
+                    width: 20.w,
+                    child: SvgPicture.asset(
+                      'assets/images/icons/three_dots.svg',
+                      colorFilter:
+                          ColorFilter.mode(Color(0xFFD9D9D9), BlendMode.srcIn),
+                    ),
+                  ),
                 ),
               ],
             ),
