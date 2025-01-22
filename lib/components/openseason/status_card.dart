@@ -1,30 +1,62 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
-import 'package:hooked_up/components/openseason/request_join_popup.dart';
-import 'package:hooked_up/components/orange_button.dart';
-import 'package:hooked_up/components/popup/closable_popup.dart';
+
 import 'package:hooked_up/utils/colors.dart';
 
-class OpenSeasonCard extends StatefulWidget {
+class StatusCard extends StatefulWidget {
   final bool eventRequests;
   final GestureTapCallback? onThreeDotTap;
   final String? status;
+  final bool? showStar;
+  final bool? hideButton;
+  final bool? extraOption;
 
-  const OpenSeasonCard({
+  const StatusCard({
     super.key,
     this.eventRequests = false,
     this.onThreeDotTap,
     this.status,
+    this.showStar,
+    this.hideButton,
+    this.extraOption,
   });
 
   @override
-  State<OpenSeasonCard> createState() => _OpenSeasonCardState();
+  State<StatusCard> createState() => _StatusCardState();
 }
 
-class _OpenSeasonCardState extends State<OpenSeasonCard> {
-  bool _sentRequest = false;
+class _StatusCardState extends State<StatusCard> {
+  bool _starClicked = false;
+  Color _getButtonColor() {
+    switch (widget.status) {
+      case 'accepted':
+        return AppColors.requestAccepted;
+      case 'rejected':
+        return AppColors.requestRejected;
+      case 'request_sent':
+        return AppColors.requestSent;
+      case 'attended':
+        return AppColors.requestAttended;
+      default:
+        return AppColors.heading;
+    }
+  }
+
+  String _getButtonText() {
+    switch (widget.status) {
+      case 'accepted':
+        return 'Accepted';
+      case 'rejected':
+        return 'Rejected';
+      case 'request_sent':
+        return 'Request Sent';
+      case 'attended':
+        return 'Attended';
+      default:
+        return 'Accepted';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,19 +77,43 @@ class _OpenSeasonCardState extends State<OpenSeasonCard> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Morning Fishing Trip - Join Me!',
-                        style: TextStyle(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w700,
-                        ),
+                      Row(
+                        children: [
+                          Text(
+                            'Morning Fishing Trip - Join Me!',
+                            style: TextStyle(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5.w,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _starClicked = !_starClicked;
+                              });
+                            },
+                            child: Icon(
+                              _starClicked ? Icons.star : Icons.star_border,
+                              size: 15,
+                              color: _starClicked
+                                  ? AppColors.heading
+                                  : Color(0xFF767676),
+                            ),
+                          ),
+                        ],
                       ),
                       SizedBox(
                         height: 12.h,
                       ),
-                      Text(
-                        "Hey everyone! I'll be heading out on the boat this Saturday morning for some fishing. Planning to hit the water around sunrise and see what we can catch. \n just a relaxed day on the water with ..",
-                        style: TextStyle(fontSize: 12.sp),
+                      Padding(
+                        padding: EdgeInsets.only(right: 8.w),
+                        child: Text(
+                          "Hey everyone! I'll be heading out on the boat this Saturday morning for some fishing. Planning to hit the water around sunrise and see what we can catch. \n just a relaxed day on the water with ..",
+                          style: TextStyle(fontSize: 12.sp),
+                        ),
                       ),
                       SizedBox(
                         height: 14.h,
@@ -73,7 +129,7 @@ class _OpenSeasonCardState extends State<OpenSeasonCard> {
                   ),
                 ),
                 Expanded(
-                  flex: 1,
+                  flex: 0,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
@@ -138,31 +194,30 @@ class _OpenSeasonCardState extends State<OpenSeasonCard> {
                       SizedBox(
                         height: 12.h,
                       ),
-                      OrangeButton(
-                        buttonTitle: 'Request to Join',
-                        requestSent: _sentRequest,
-                        onTap: () {
-                          if (_sentRequest == false) {
-                            requestJoinPopup(
-                              context: context,
-                              title: 'Request to join',
-                              onPressed: () => setState(() {
-                                Get.back();
-                                showClosablePopup(
-                                    context: context,
-                                    title: 'Request Sent \nSuccessfully',
-                                    buttonText: 'OKAY',
-                                    onPressed: () => Get.back());
-                                _sentRequest = true;
-                              }),
-                            );
-                          } else {
-                            setState(() {
-                              _sentRequest = false;
-                            });
-                          }
-                        },
-                      ),
+                      widget.hideButton == true
+                          ? SizedBox.shrink()
+                          : Container(
+                              height: 26.h,
+                              width: 86.w,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20.r),
+                                border: Border.all(
+                                  width: 1,
+                                  color: _getButtonColor(),
+                                ),
+                                color: Colors.transparent,
+                              ),
+                              child: Center(
+                                child: Text(
+                                  _getButtonText(),
+                                  style: TextStyle(
+                                    color: _getButtonColor(),
+                                    fontSize: 9.sp,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            ),
                     ],
                   ),
                 ),
@@ -244,17 +299,68 @@ class _OpenSeasonCardState extends State<OpenSeasonCard> {
                           ),
                         ],
                       ),
-                GestureDetector(
-                  onTap: widget.onThreeDotTap,
-                  child: SizedBox(
-                    height: 15.h,
-                    width: 20.w,
-                    child: SvgPicture.asset(
-                      'assets/images/icons/three_dots.svg',
-                      colorFilter:
-                          ColorFilter.mode(Color(0xFFD9D9D9), BlendMode.srcIn),
+                Row(
+                  children: [
+                    Stack(
+                      children: [
+                        SizedBox(
+                          width: 42.w,
+                          child: Row(
+                            children: [
+                              Container(
+                                height: 21.h,
+                                width: 21
+                                    .h, // Use the same value for width and height
+                                decoration: BoxDecoration(
+                                  shape:
+                                      BoxShape.circle, // This makes it circular
+                                ),
+                                child: ClipOval(
+                                  child: Image.asset(
+                                    'assets/images/explainer/profile.png',
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                left: 0,
+                                child: Container(
+                                  height: 21.h,
+                                  width: 21
+                                      .h, // Use the same value for width and height
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape
+                                        .circle, // This makes it circular
+                                  ),
+                                  child: ClipOval(
+                                    child: Image.asset(
+                                      'assets/images/explainer/profile2.png',
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
+                    SizedBox(
+                      width: 15.w,
+                    ),
+                    GestureDetector(
+                      onTap: widget.onThreeDotTap,
+                      child: SizedBox(
+                        height: 15.h,
+                        width: 20.w,
+                        child: SvgPicture.asset(
+                          'assets/images/icons/three_dots.svg',
+                          colorFilter: ColorFilter.mode(
+                              Color(0xFFD9D9D9), BlendMode.srcIn),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

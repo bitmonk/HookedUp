@@ -8,6 +8,7 @@ import 'package:hooked_up/components/openseason/request_sent_card.dart';
 import 'package:hooked_up/components/popup/closable_popup.dart';
 import 'package:hooked_up/components/popup/report_closable_popup.dart';
 import 'package:hooked_up/screen/season/create_season_event.dart';
+import 'package:hooked_up/screen/season/request_page.dart';
 import 'package:hooked_up/utils/colors.dart';
 
 class OpenSeason extends StatefulWidget {
@@ -171,7 +172,13 @@ class _OpenSeasonState extends State<OpenSeason> {
                                 ),
                                 TextButton(
                                   onPressed: () {
-                                    
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const RequestPage(),
+                                      ),
+                                    );
                                   },
                                   child: Text(
                                     'View all',

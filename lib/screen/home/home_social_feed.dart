@@ -30,6 +30,7 @@ class _SocialFeedState extends State<HomeSocialFeed> {
     MyProfile(),
   ];
 
+  // This builds each item for the BottomNavigationBar.
   BottomNavigationBarItem _buildNavItem(String iconPath, int index) {
     return BottomNavigationBarItem(
       icon: Container(
@@ -50,6 +51,7 @@ class _SocialFeedState extends State<HomeSocialFeed> {
     );
   }
 
+  // Method for showing a bottom sheet when the user taps the "add post" button.
   void _showAddPostBottomSheet() {
     showModalBottomSheet(
       backgroundColor: Color(0xFFFFFFFC),
@@ -165,6 +167,7 @@ class _SocialFeedState extends State<HomeSocialFeed> {
     );
   }
 
+  // When the user clicks on a button to upload a photo using the camera.
   Future<void> uploadFromCamera() async {
     try {
       final ImagePicker picker = ImagePicker();
@@ -179,6 +182,7 @@ class _SocialFeedState extends State<HomeSocialFeed> {
     }
   }
 
+  // When the user clicks on a button to pick an image from the gallery.
   Future<void> pickImageFromGallery() async {
     final ImagePicker picker = ImagePicker();
     final XFile? galleryPhoto =
@@ -194,6 +198,7 @@ class _SocialFeedState extends State<HomeSocialFeed> {
     }
   }
 
+  // Scaffold layout with BottomNavigationBar
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -261,9 +266,7 @@ class _SocialFeedState extends State<HomeSocialFeed> {
         ],
       ),
       drawer: CustomDrawer(),
-      body: Center(
-        child: body[_currentIndex],
-      ),
+      body: body[_currentIndex], // Display the selected body content
       bottomNavigationBar: SafeArea(
         child: BottomNavigationBar(
           currentIndex: _currentIndex,
