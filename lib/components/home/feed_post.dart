@@ -8,8 +8,10 @@ import 'package:hooked_up/screen/home/home_reel_feed.dart';
 import 'package:hooked_up/screen/profile/user_profile/user_profile.dart';
 
 class FeedPost extends StatefulWidget {
+  final int? postId;
   const FeedPost({
     super.key,
+    this.postId,
   });
 
   @override
@@ -174,10 +176,25 @@ class _FeedPostState extends State<FeedPost> {
 
   @override
   Widget build(BuildContext context) {
+    List<FeedPostModel> posts = widget.postId != null
+        ? dummyFeedPosts.where((post) => post.postid == widget.postId).toList()
+        : dummyFeedPosts;
+
+    if (posts.isEmpty) {
+      return Center(
+        child: Text(
+          'Post not found',
+          style: TextStyle(
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      );
+    }
     return ListView.builder(
-      itemCount: dummyFeedPosts.length,
+      itemCount: posts.length,
       itemBuilder: (context, index) {
-        var post = dummyFeedPosts[index];
+        var post = posts[index];
         return Padding(
           padding: const EdgeInsets.only(top: 10.0),
           child: Column(

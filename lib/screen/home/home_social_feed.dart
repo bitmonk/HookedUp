@@ -182,7 +182,6 @@ class _SocialFeedState extends State<HomeSocialFeed> {
     }
   }
 
-  // When the user clicks on a button to pick an image from the gallery.
   Future<void> pickImageFromGallery() async {
     final ImagePicker picker = ImagePicker();
     final XFile? galleryPhoto =

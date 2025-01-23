@@ -186,58 +186,61 @@ class _SingleEventRequestState extends State<SingleEventRequest> {
                               ),
                               SizedBox(height: 29.h),
                               Divider(color: Colors.white),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text('Attending:'),
-                                  Row(
-                                    children: [
-                                      Stack(
-                                        children: [
-                                          SizedBox(
-                                            width: 42.w,
-                                            child: Row(
-                                              children: [
-                                                Container(
-                                                  height: 21.h,
-                                                  width: 21
-                                                      .h, // Same value for width and height
-                                                  decoration: BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                  ),
-                                                  child: ClipOval(
-                                                    child: Image.asset(
-                                                      'assets/images/explainer/profile.png',
-                                                      fit: BoxFit.cover,
-                                                    ),
-                                                  ),
-                                                ),
-                                                Positioned(
-                                                  left: 0,
-                                                  child: Container(
+                              GestureDetector(
+                                onTap: () => _showAttendingDialog(),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text('Attending:'),
+                                    Row(
+                                      children: [
+                                        Stack(
+                                          children: [
+                                            SizedBox(
+                                              width: 42.w,
+                                              child: Row(
+                                                children: [
+                                                  Container(
                                                     height: 21.h,
-                                                    width: 21.h,
+                                                    width: 21
+                                                        .h, // Same value for width and height
                                                     decoration: BoxDecoration(
                                                       shape: BoxShape.circle,
                                                     ),
                                                     child: ClipOval(
                                                       child: Image.asset(
-                                                        'assets/images/explainer/profile2.png',
+                                                        'assets/images/explainer/profile.png',
                                                         fit: BoxFit.cover,
                                                       ),
                                                     ),
                                                   ),
-                                                ),
-                                              ],
+                                                  Positioned(
+                                                    left: 0,
+                                                    child: Container(
+                                                      height: 21.h,
+                                                      width: 21.h,
+                                                      decoration: BoxDecoration(
+                                                        shape: BoxShape.circle,
+                                                      ),
+                                                      child: ClipOval(
+                                                        child: Image.asset(
+                                                          'assets/images/explainer/profile2.png',
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(width: 15.w),
-                                    ],
-                                  ),
-                                ],
+                                          ],
+                                        ),
+                                        SizedBox(width: 15.w),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ],
                           ),
@@ -278,6 +281,141 @@ class _SingleEventRequestState extends State<SingleEventRequest> {
           ),
         ),
       ),
+    );
+  }
+
+  _showAttendingDialog() {
+    showModalBottomSheet(
+      context: context,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
+      ),
+      backgroundColor: AppColors.backgroundColor,
+      builder: (BuildContext context) {
+        return Container(
+          padding: EdgeInsets.symmetric(vertical: 16.w, horizontal: 24.w),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        'Attending',
+                        style: TextStyle(
+                          fontSize: 22.sp,
+                          fontWeight: FontWeight.w700,
+                          color: Color(0xFFD88F48),
+                        ),
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(15.w),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF9FA482).withAlpha(60),
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Icon(
+                        Icons.close,
+                        color: Color(0xFF2B361C),
+                        size: 24,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 24.h,
+              ),
+              AttendingListItem(),
+              SizedBox(
+                height: 12.h,
+              ),
+              AttendingListItem(),
+              SizedBox(
+                height: 12.h,
+              ),
+              AttendingListItem(),
+              SizedBox(
+                height: 12.h,
+              ),
+              AttendingListItem(),
+              SizedBox(
+                height: 12.h,
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
+
+class AttendingListItem extends StatelessWidget {
+  const AttendingListItem({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(25.r),
+          child: Image.asset(
+            'assets/images/explainer/profile.png',
+            width: 50.w,
+            height: 50.h,
+            fit: BoxFit.cover,
+          ),
+        ),
+        SizedBox(width: 16.w),
+        Expanded(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Sarah Smith',
+                style: TextStyle(
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              Text(
+                'sarah.s1',
+                style: TextStyle(
+                  fontSize: 14.sp,
+                  color: Colors.black,
+                ),
+              ),
+            ],
+          ),
+        ),
+        GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Container(
+            padding: EdgeInsets.all(9),
+            decoration: BoxDecoration(
+              color: AppColors.containerBackground,
+              borderRadius: BorderRadius.circular(50.r),
+            ),
+            child: Icon(
+              Icons.close,
+              size: 20,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

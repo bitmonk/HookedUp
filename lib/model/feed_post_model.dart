@@ -11,6 +11,7 @@ class Comment {
 }
 
 class FeedPostModel {
+  final int? postid;
   final String userName;
   final String profileImage;
   final String location;
@@ -22,6 +23,7 @@ class FeedPostModel {
   bool isLiked;
 
   FeedPostModel({
+    this.postid,
     required this.userName,
     required this.profileImage,
     required this.location,

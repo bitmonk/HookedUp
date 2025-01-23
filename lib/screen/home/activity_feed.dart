@@ -286,22 +286,30 @@ class NotificationListItem extends StatelessWidget {
                           top: 19.h,
                           bottom: 19.h,
                         ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Sarah Smith',
-                              style: TextStyle(
-                                  fontSize: 14.sp, fontWeight: FontWeight.w700),
-                            ),
-                            Text(
-                              'Has commented on your post',
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                color: const Color(0xFF212221).withAlpha(60),
+                        child: Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Flexible(
+                                child: Text(
+                                  'Sarah Smith',
+                                  style: TextStyle(
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.w700),
+                                ),
                               ),
-                            ),
-                          ],
+                              Flexible(
+                                child: Text(
+                                  'Has commented on your post',
+                                  style: TextStyle(
+                                    fontSize: 14.sp,
+                                    color:
+                                        const Color(0xFF212221).withAlpha(60),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       Padding(

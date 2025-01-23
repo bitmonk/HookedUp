@@ -22,6 +22,7 @@ class _SubscriptionManagerState extends State<SubscriptionManager> {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(255, 255, 252, 1),
       appBar: AppBar(
+        surfaceTintColor: Colors.transparent,
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: Padding(

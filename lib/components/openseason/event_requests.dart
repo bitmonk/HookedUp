@@ -4,7 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:hooked_up/components/openseason/event_request_item.dart';
 import 'package:hooked_up/components/openseason/single_event_request.dart';
-import 'package:hooked_up/components/popup/link_connection_popup.dart';
 import 'package:hooked_up/utils/colors.dart';
 
 class EventRequests extends StatefulWidget {

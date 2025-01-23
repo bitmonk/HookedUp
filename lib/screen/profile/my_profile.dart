@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hooked_up/components/home/feed_post.dart';
 import 'package:hooked_up/components/popup/add_bucket_item_list.dart';
 import 'package:hooked_up/components/profile/bucket_list_item.dart';
 import 'package:hooked_up/components/profile/event_card.dart';
@@ -210,10 +211,17 @@ class _MyProfileState extends State<MyProfile> {
                   ),
                   itemCount: dummyFeedPosts.length,
                   itemBuilder: (context, index) {
-                    return ClipRRect(
-                      child: Image.asset(
-                        dummyFeedPosts[index].postImage,
-                        fit: BoxFit.cover,
+                    return GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _selectedIndex = 3;
+                        });
+                      },
+                      child: ClipRRect(
+                        child: Image.asset(
+                          dummyFeedPosts[index].postImage,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     );
                   },
@@ -249,7 +257,7 @@ class _MyProfileState extends State<MyProfile> {
                   ),
                 ),
               )
-            else
+            else if (_selectedIndex == 2)
               Expanded(
                 child: Column(
                   children: [
@@ -383,6 +391,12 @@ class _MyProfileState extends State<MyProfile> {
                   ],
                 ),
               )
+            else
+              Expanded(
+                child: FeedPost(
+                  postId: 2,
+                ),
+              ),
           ],
         ),
       ),

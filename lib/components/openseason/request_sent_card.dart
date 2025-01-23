@@ -21,7 +21,7 @@ class _RequestSentCardState extends State<RequestSentCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 320.w, // Reduced width
+      width: 308.w, // Reduced width
       height: 161.h, // Set a fixed height if needed
       decoration: BoxDecoration(
         color: Color(0xFFF5F5F5),

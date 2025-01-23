@@ -128,7 +128,7 @@ class _SubscriptionCardState extends State<SubscriptionCard> {
                           child: Text(
                             "Best Value",
                             style: TextStyle(
-                              fontSize: 12.sp,
+                              fontSize: 11.sp,
                               color: const Color(0xFFF3FAFE),
                               fontWeight: FontWeight.w600,
                             ),

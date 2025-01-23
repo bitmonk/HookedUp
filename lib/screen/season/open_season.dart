@@ -235,6 +235,14 @@ class _OpenSeasonState extends State<OpenSeason> {
                             children: [
                               OpenSeasonCard(
                                 eventRequests: true,
+                                hideButton: true,
+                                onThreeDotTap: () =>
+                                    showEditBottomSheet(context),
+                              ),
+                              SizedBox(height: 12.h),
+                              OpenSeasonCard(
+                                eventRequests: true,
+                                hideButton: true,
                                 onThreeDotTap: () =>
                                     showEditBottomSheet(context),
                               ),

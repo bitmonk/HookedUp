@@ -11,12 +11,14 @@ class OpenSeasonCard extends StatefulWidget {
   final bool eventRequests;
   final GestureTapCallback? onThreeDotTap;
   final String? status;
+  final bool? hideButton;
 
   const OpenSeasonCard({
     super.key,
     this.eventRequests = false,
     this.onThreeDotTap,
     this.status,
+    this.hideButton,
   });
 
   @override
@@ -138,31 +140,33 @@ class _OpenSeasonCardState extends State<OpenSeasonCard> {
                       SizedBox(
                         height: 12.h,
                       ),
-                      OrangeButton(
-                        buttonTitle: 'Request to Join',
-                        requestSent: _sentRequest,
-                        onTap: () {
-                          if (_sentRequest == false) {
-                            requestJoinPopup(
-                              context: context,
-                              title: 'Request to join',
-                              onPressed: () => setState(() {
-                                Get.back();
-                                showClosablePopup(
+                      widget.hideButton == true
+                          ? SizedBox.shrink()
+                          : OrangeButton(
+                              buttonTitle: 'Request to Join',
+                              requestSent: _sentRequest,
+                              onTap: () {
+                                if (_sentRequest == false) {
+                                  requestJoinPopup(
                                     context: context,
-                                    title: 'Request Sent \nSuccessfully',
-                                    buttonText: 'OKAY',
-                                    onPressed: () => Get.back());
-                                _sentRequest = true;
-                              }),
-                            );
-                          } else {
-                            setState(() {
-                              _sentRequest = false;
-                            });
-                          }
-                        },
-                      ),
+                                    title: 'Request to join',
+                                    onPressed: () => setState(() {
+                                      Get.back();
+                                      showClosablePopup(
+                                          context: context,
+                                          title: 'Request Sent \nSuccessfully',
+                                          buttonText: 'OKAY',
+                                          onPressed: () => Get.back());
+                                      _sentRequest = true;
+                                    }),
+                                  );
+                                } else {
+                                  setState(() {
+                                    _sentRequest = false;
+                                  });
+                                }
+                              },
+                            ),
                     ],
                   ),
                 ),
