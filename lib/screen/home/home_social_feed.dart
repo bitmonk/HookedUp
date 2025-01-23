@@ -197,6 +197,22 @@ class _SocialFeedState extends State<HomeSocialFeed> {
     }
   }
 
+  String _getTitle() {
+    if (_currentIndex == 0) {
+      return "Home";
+    } else if (_currentIndex == 1) {
+      return "Open Season";
+    } else if (_currentIndex == 2) {
+      return "";
+    } else if (_currentIndex == 3) {
+      return "Chat";
+    } else if (_currentIndex == 4) {
+      return "mary-jackson";
+    } else {
+      return '';
+    }
+  }
+
   // Scaffold layout with BottomNavigationBar
   @override
   Widget build(BuildContext context) {
@@ -208,7 +224,7 @@ class _SocialFeedState extends State<HomeSocialFeed> {
         backgroundColor: const Color(0xFFFFFFFC),
         automaticallyImplyLeading: false,
         title: Text(
-          'Home',
+          _getTitle(),
           style: TextStyle(
             fontSize: 22.sp,
             fontWeight: FontWeight.w700,
