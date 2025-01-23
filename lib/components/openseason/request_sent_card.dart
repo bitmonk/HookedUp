@@ -134,7 +134,7 @@ class _RequestSentCardState extends State<RequestSentCard> {
                       ),
                       Container(
                         height: 20.h,
-                        width: 64.w,
+                        // width: 64.w,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20.r),
                             border: Border.all(
@@ -142,13 +142,18 @@ class _RequestSentCardState extends State<RequestSentCard> {
                               color: AppColors.heading,
                             ),
                             color: Colors.transparent),
-                        child: Center(
-                          child: Text(
-                            'Request Sent',
-                            style: TextStyle(
-                              color: AppColors.heading,
-                              fontSize: 8.sp,
-                              fontWeight: FontWeight.w600,
+                        child: IntrinsicWidth(
+                          child: Center(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 6.w),
+                              child: Text(
+                                'Request Sent',
+                                style: TextStyle(
+                                  color: AppColors.heading,
+                                  fontSize: 8.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -175,35 +180,37 @@ class _RequestSentCardState extends State<RequestSentCard> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    Text(
-                      'Hosted by:',
-                      style: TextStyle(
-                        fontSize: 8.sp, // Reduced font size
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xFF212221).withAlpha(60),
+                Expanded(
+                  child: Row(
+                    children: [
+                      Text(
+                        'Hosted by:',
+                        style: TextStyle(
+                          fontSize: 8.sp, // Reduced font size
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xFF212221).withAlpha(60),
+                        ),
                       ),
-                    ),
-                    SizedBox(width: 4.w),
-                    SizedBox(
-                      height: 12.h,
-                      width: 12.w,
-                      child: CircleAvatar(
-                        backgroundImage: const AssetImage(
-                            'assets/images/explainer/profile2.png'),
+                      SizedBox(width: 4.w),
+                      SizedBox(
+                        height: 12.h,
+                        width: 12.w,
+                        child: CircleAvatar(
+                          backgroundImage: const AssetImage(
+                              'assets/images/explainer/profile2.png'),
+                        ),
                       ),
-                    ),
-                    SizedBox(width: 4.w),
-                    Text(
-                      ' Sarah Smith',
-                      style: TextStyle(
-                        fontSize: 8.sp, // Reduced font size
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xFF2B361C),
+                      SizedBox(width: 4.w),
+                      Text(
+                        ' Sarah Smith',
+                        style: TextStyle(
+                          fontSize: 8.sp, // Reduced font size
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xFF2B361C),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 SvgPicture.asset(
                   'assets/images/icons/three_dots.svg',
