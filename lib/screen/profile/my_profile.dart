@@ -217,11 +217,25 @@ class _MyProfileState extends State<MyProfile> {
                           _selectedIndex = 3;
                         });
                       },
-                      child: ClipRRect(
-                        child: Image.asset(
-                          dummyFeedPosts[index].postImage,
-                          fit: BoxFit.cover,
-                        ),
+                      child: Stack(
+                        children: [
+                          ClipRRect(
+                            child: Image.asset(
+                              height: double.infinity,
+                              width: double.infinity,
+                              dummyFeedPosts[index].postImage,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          Positioned(
+                            right: 5,
+                            bottom: 5,
+                            child: Icon(
+                              Icons.check_circle_outline_outlined,
+                              color: Color(0xFFD7D9C9),
+                            ),
+                          )
+                        ],
                       ),
                     );
                   },
@@ -247,12 +261,13 @@ class _MyProfileState extends State<MyProfile> {
                         ),
                       ),
                       EventCard(),
+                      SizedBox(height: 12.h),
                       EventCard(),
+                      SizedBox(height: 12.h),
                       EventCard(),
+                      SizedBox(height: 12.h),
                       EventCard(),
-                      EventCard(),
-                      EventCard(),
-                      EventCard(),
+                      SizedBox(height: 12.h),
                     ],
                   ),
                 ),
