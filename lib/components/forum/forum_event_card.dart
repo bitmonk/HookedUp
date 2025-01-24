@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:hooked_up/components/popup/report_closable_popup.dart';
 import 'package:hooked_up/screen/forum/single_forum.dart';
 import 'package:hooked_up/utils/colors.dart';
 

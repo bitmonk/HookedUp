@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooked_up/components/home/feed_post.dart';
-import 'package:hooked_up/components/popup/add_bucket_item_list.dart';
 import 'package:hooked_up/components/profile/bucket_list_item.dart';
 import 'package:hooked_up/components/profile/event_card.dart';
 import 'package:hooked_up/model/dummy_data.dart';
@@ -11,7 +10,6 @@ import 'package:hooked_up/screen/create_post/create_post_home.dart';
 import 'package:hooked_up/screen/home/activity_feed.dart';
 import 'package:hooked_up/screen/profile/my_connections.dart';
 import 'package:hooked_up/screen/profile/my_profile.dart';
-import 'package:hooked_up/screen/profile/saved_posts.dart';
 import 'package:hooked_up/screen/season/open_season.dart';
 import 'package:hooked_up/utils/colors.dart';
 

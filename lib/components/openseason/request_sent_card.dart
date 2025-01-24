@@ -17,7 +17,7 @@ class RequestSentCard extends StatefulWidget {
 }
 
 class _RequestSentCardState extends State<RequestSentCard> {
-  bool _sentRequest = true;
+  final bool _sentRequest = true;
   @override
   Widget build(BuildContext context) {
     return Container(

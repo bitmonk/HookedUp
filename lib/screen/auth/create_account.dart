@@ -24,25 +24,6 @@ class _CreateAccountState extends State<CreateAccount> {
   final TextEditingController _location = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-  // Future<bool> uploadUserDetailsToDb() async {
-  //   try {
-  //     DateTime dob = DateTime.parse(_dobController.text.trim());
-  //     final data =
-  //         await FirebaseFirestore.instance.collection("userDetails").add({
-  //       "full_name": _fullNameController.text.trim(),
-  //       "user_handle": _userHandle.text.trim(),
-  //       "phone_number": _phoneNumber.text.trim(),
-  //       "dob": Timestamp.fromDate(dob),
-  //       "location": _location.text.trim(),
-  //     });
-  //     print(data.id);
-  //     return true;
-  //   } catch (e) {
-  //     print("Error uploading user details: $e");
-  //     return false;
-  //   }
-  // }
-
   Future<void> _selectDate(BuildContext context) async {
     DateTime? selectedDate = await showDatePicker(
       context: context,
@@ -175,8 +156,7 @@ class _CreateAccountState extends State<CreateAccount> {
                                       final error =
                                           ValidationBuilder().build()(value);
                                       setState(() {
-                                        _isDobValid = error ==
-                                            null; // Update validity state based on validation result
+                                        _isDobValid = error == null;
                                       });
                                       return error;
                                     },
@@ -229,7 +209,6 @@ class _CreateAccountState extends State<CreateAccount> {
                                   onPressed: () {
                                     if (_formKey.currentState?.validate() ??
                                         false) {
-                                      // If form is valid, navigate to the next screen
                                       Get.to(() => UploadProfile());
                                     } else {
                                       Get.snackbar(

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 import 'package:hooked_up/components/settings/notification_setting_list.dart';
-import 'package:hooked_up/screen/home/activity_feed.dart';
 import 'package:hooked_up/utils/colors.dart';
 
 class NotificationCenter extends StatefulWidget {

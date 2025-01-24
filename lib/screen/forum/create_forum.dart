@@ -26,11 +26,9 @@ class _CreateForumState extends State<CreateForum> {
     final ImagePicker picker = ImagePicker();
     final List<XFile> images = await picker.pickMultiImage();
 
-    if (images != null) {
-      setState(() {
-        selectedImages.addAll(images.map((image) => File(image.path)));
-      });
-    }
+    setState(() {
+      selectedImages.addAll(images.map((image) => File(image.path)));
+    });
   }
 
   @override
@@ -79,27 +77,27 @@ class _CreateForumState extends State<CreateForum> {
                       FormInputField(
                           labelText: 'Forum Title', obscureText: false),
                       SizedBox(height: 12.h),
-                        Container(
-                          height: 371.h,
-                          decoration: BoxDecoration(
-                            color: Color(0xFFF5F5F5),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 24.w, vertical: 18.h),
-                            child: TextField(
-                              decoration: InputDecoration(
-                                hintText: 'Forum Description',
-                                enabledBorder: InputBorder.none,
-                                focusedBorder: InputBorder.none,
-                              ),
-                              maxLines: null,
-                              expands: true,
-                              keyboardType: TextInputType.multiline,
+                      Container(
+                        height: 371.h,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFF5F5F5),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 24.w, vertical: 18.h),
+                          child: TextField(
+                            decoration: InputDecoration(
+                              hintText: 'Forum Description',
+                              enabledBorder: InputBorder.none,
+                              focusedBorder: InputBorder.none,
                             ),
+                            maxLines: null,
+                            expands: true,
+                            keyboardType: TextInputType.multiline,
                           ),
                         ),
+                      ),
                       SizedBox(
                         height: 12.h,
                       ),

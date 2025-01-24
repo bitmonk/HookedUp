@@ -24,12 +24,10 @@ class _CreateSeasonEventState extends State<CreateSeasonEvent> {
     final ImagePicker picker = ImagePicker();
     final List<XFile> images = await picker.pickMultiImage();
 
-    if (images != null) {
-      setState(() {
-        selectedImages.addAll(images.map((image) => File(image.path)));
-      });
+    setState(() {
+      selectedImages.addAll(images.map((image) => File(image.path)));
+    });
     }
-  }
 
   @override
   Widget build(BuildContext context) {
